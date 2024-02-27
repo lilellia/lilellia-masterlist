@@ -31,6 +31,8 @@ def extract_fill_link(fill: FillData) -> str:
     if link is None:
         raise ValueError(f"could not find link for fill: {fill.title}")
 
+    return link
+
 
 def htmlify_fill(fill: FillData) -> str:
     if re.match(r"^M+4", fill.audience):
@@ -43,9 +45,9 @@ def htmlify_fill(fill: FillData) -> str:
     link = extract_fill_link(fill)
 
     return f"""\
-        <li class="fill-{gender}">
-            <a href="{link}">{fill.creator}</a>
-        </li>
+<li class="fill-{gender}">
+    <a href="{link}">{fill.creator}</a>
+</li>
 """
 
 
