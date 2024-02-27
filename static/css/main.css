@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --background: #111111;
+    --font-color: #dddddd;
+    --tag-background: darkslategrey;
+    --date-tag-background: slategrey;
+
+    --script-link-background: darkslategrey;
+    --post-link-background: darkslategrey;
+
+    /* fill speaker colours */
+    --fill-female-background: deeppink;
+    --fill-male-background: midnightblue;
+    --fill-mixed-background: seagreen;
+
+    /* audience tag colours */
+    --audience-f4f-background: deeppink;
+    --audience-f4a-background: deeppink;
+}
+
+body {
+    font-family: "Aleo", sans-serif;
+    background: var(--background);
+    color: var(--font-color);
+}
+
+a {
+    color: var(--font-color);
+}
+
+div.script-data {
+    padding: 10px 20px;
+    margin: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--font-color);
+}
+
+p.script-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+blockquote.script-summary {
+    font-style: italic;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+li {
+    font-size: 0.8rem;
+    
+    float: left;
+    padding: 8px 8px;
+    margin: 0px 4px;
+    border-radius: 10px;
+}
+
+li.script-tag {
+    background: var(--tag-background);
+}
+
+li.script-tag.date-tag {
+    background: var(--date-tag-background)
+}
+
+li.script-link {
+    background: var(--script-link-background);
+}
+
+li.post-link {
+    background: var(--post-link-background);
+}
+
+
+/* fill speaker tags */
+ul.script-fills > li.fill-male {
+    background: var(--fill-male-background);
+}
+
+ul.script-fills > li.fill-female {
+    background: var(--fill-female-background);
+}
+
+ul.script-fills > li.fill-mixed {
+    background: var(--fill-mixed-background);
+}
+
+
+/* audience tags */
+
+li.audience-tag.f4f {
+    background: var(--audience-f4f-background);
+}
+
+li.audience-tag.f4a {
+    background: var(--audience-f4a-background);
+}
