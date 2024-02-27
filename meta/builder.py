@@ -1,5 +1,5 @@
 import re
-from parser import FillData, Script, parse
+from parser import FillData, Script, SeriesData, parse
 from pathlib import Path
 
 
@@ -10,9 +10,19 @@ def html_header(num_scripts: int, num_fills: int) -> str:
     <meta charset="utf-8">
     <title>lilellia's masterlist</title>
     <link href="static/css/main.css" rel="stylesheet">
+    <link href="static/css/series.css" rel="stylesheet">
 </head>
 <body>
     <h1>lilellia's masterlist</h1>
+
+    <div class="terms-of-use">
+        <h2>Terms of Script Use</h2>
+        <ul>
+            <li class="terms-of-use"><b>Usage:</b> All of my scripts are freely available for use. Please credit me (<a href="https://reddit.com/user/lilellia">u/lilellia</a> and/or @lilellia) if you use the script, and let me know—I'd love to see what you come up with! Feel free to monetise it (but DM me first if you want to post on Patreon, etc.).</li>
+            <li class="terms-of-use"><b>Editing:</b> Small changes to the scripts are okay, but please ask before making any major line changes, additions, deletions, gender swaps, etc. Vocal cues and sound effects are suggestions, so feel free to be creative with those!</li>
+            <li class="terms-of-use"><b>Other notes:</b> I find it easier to write the listener's dialogue rather than keep track of half of a conversation, so their lines are given for context but aren't meant to be voiced. The word counts given only include the spoken text.</li>
+        </ul>
+    </div>
 """
 
 
@@ -44,25 +54,66 @@ def htmlify_fill(fill: FillData) -> str:
 
     link = extract_fill_link(fill)
 
+    return f"""\t\t\t\t<li class="fill-{gender}"><a href="{link}">{fill.creator}</a></li>"""
+
+
+def htmlify_fills_summary(fills: list[FillData]) -> str:
+    if not fills:
+        return ""
+
+    fill_tags = "\n".join(htmlify_fill(f) for f in fills)
     return f"""\
-<li class="fill-{gender}">
-    <a href="{link}">{fill.creator}</a>
-</li>
+        <div>
+            <b>Fills ({len(fills)}):</b>
+            <ul class="script-fills">
+{fill_tags}
+            </ul>
+        </div>
 """
+
+
+def htmlify_series_data(series: SeriesData | None) -> str:
+    if series is None:
+        return ""
+
+    class_ = series_css_class(series)
+
+    return f"""\
+        <ul class="script-tags">
+            <li class="script-tag series-tag {class_}">Series: {series.title} (Part {series.index})</li>
+        </ul>
+"""
+
+
+def script_tag_classes(tag: str) -> str:
+    classes = ["script-tag"]
+
+    nsfw_tags = ["18+", "nsfw", "r18"]
+    if tag in nsfw_tags:
+        classes.append("nsfw-tag")
+
+    return " ".join(classes)
+
+
+def series_css_class(series: SeriesData) -> str:
+    return series.title.lower().replace(" ", "-")
 
 
 def htmlify(script: Script) -> str:
     link_repl = {"google_docs": "Google Docs"}
 
+    # handle all the "content" tags
     date_tag = f"""\t\t\t<li class="script-tag date-tag">{script.published.strftime("%d %b %Y")}</li>"""
     audience_tag = "\n".join(
         f"""\t\t\t<li class="script-tag audience-tag {atag.lower()}">{atag.upper()}</li>"""
         for atag in script.audience
     )
     tags = "\n".join(
-        f"""\t\t\t<li class="script-tag">{tag}</li>""" for tag in script.tags
+        f"""\t\t\t<li class="{script_tag_classes(tag)}">{tag}</li>"""
+        for tag in script.tags
     )
 
+    # handle links
     script_links = "\n".join(
         f"""\t\t\t<li class="script-link"><a href="{href}">{link_repl.get(label, label)}</a></li>"""
         for label, href in script.links.script.items()
@@ -73,33 +124,28 @@ def htmlify(script: Script) -> str:
         for label, href in script.links.post.items()
     )
 
-    fills = "\n".join(htmlify_fill(f) for f in script.fills)
-
     return f"""\
     <div class="script-data">
         <p class="script-title">{script.title}</p>
 
         <ul class="script-tags">
-            {date_tag}
-            {audience_tag}
-            {tags}
+{date_tag}
+{audience_tag}
+{tags}
         </ul>
 
+{htmlify_series_data(script.series)}
+
         <blockquote class="script-summary">
-            {script.summary}
+            {script.summary.replace("\n", "<br/>\n")}
         </blockquote>
         
         <ul class="script-links">
-            {script_links}
-            {post_links}
+{script_links}
+{post_links}
         </ul>
 
-        <div>
-        <b>Fills ({script.num_fills}):</b>
-        <ul class="script-fills">
-            {fills}
-        </ul>
-        </div>
+{htmlify_fills_summary(script.fills)}
     </div>
 """
 
@@ -116,6 +162,10 @@ def main():
         f.write(html_header(num_scripts=total_scripts, num_fills=total_fills))
 
         for script in scripts:
+            if script.published is None:
+                # skip any scripts which aren't published!
+                continue
+
             f.write(htmlify(script))
 
         f.write(html_closer())

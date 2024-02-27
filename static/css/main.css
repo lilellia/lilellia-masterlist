@@ -3,20 +3,25 @@
 :root {
     --background: #111111;
     --font-color: #dddddd;
+
+    --terms-of-use-background: #222222;
+
     --tag-background: darkslategrey;
+    --nsfw-tag-background: #9e0d0d;
     --date-tag-background: slategrey;
+    --series-tag-background: darkslategrey;
 
     --script-link-background: darkslategrey;
     --post-link-background: darkslategrey;
 
     /* fill speaker colours */
-    --fill-female-background: deeppink;
-    --fill-male-background: midnightblue;
+    --fill-female-background: #c05adc;
+    --fill-male-background: #2626ad;
     --fill-mixed-background: seagreen;
 
     /* audience tag colours */
-    --audience-f4f-background: deeppink;
-    --audience-f4a-background: deeppink;
+    --audience-f4f-background: #c05adc;
+    --audience-f4a-background: #c05adc;
 }
 
 body {
@@ -51,7 +56,7 @@ ul {
 }
 
 li {
-    font-size: 0.8rem;
+    font-size: 90%;
     
     float: left;
     padding: 8px 8px;
@@ -59,12 +64,28 @@ li {
     border-radius: 10px;
 }
 
+div.terms-of-use {
+    background: var(--terms-of-use-background);
+}
+
+li.terms-of-use {
+    font-size: 1em;
+}
+
 li.script-tag {
     background: var(--tag-background);
 }
 
+li.script-tag.nsfw-tag {
+    background: var(--nsfw-tag-background);
+}
+
 li.script-tag.date-tag {
     background: var(--date-tag-background)
+}
+
+li.script-tag.series-tag {
+    background: var(--series-tag-background);
 }
 
 li.script-link {

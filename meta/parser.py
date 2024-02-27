@@ -9,7 +9,7 @@ import yaml
 
 @dataclass
 class SeriesData:
-    series: str
+    title: str
     index: int
 
 
