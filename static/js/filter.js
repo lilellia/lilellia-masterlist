@@ -5,11 +5,13 @@ function identifyScripts() {
         const id = element.id;
         const title = element.querySelector("p").textContent.trim();
         const summary = element.querySelector("blockquote").textContent.trim();
+        
 
         scripts[id] = {
             title: title,
             summary: summary,
-            fills: getNumberOfFills(id)
+            fills: getNumberOfFills(id),
+            series: getSeriesData(id),
         };
     }
 
@@ -26,6 +28,42 @@ function getNumberOfFills(scriptId) {
     return parseInt(el.textContent);
 }
 
+function getSeriesData(scriptId) {
+    const root = document.getElementById(scriptId).querySelector("li.series-tag");
+    
+    if (root === null) {
+        return null;
+    }
+
+    return {
+        title: root.querySelector("span.series-title").textContent,
+        index: parseInt(root.querySelector("span.series-index").textContent)
+    };
+
+}
+
+
+function matchesFilter(scriptData, filterText) {
+    if (filterText === "") {
+        // all scripts match the empty filter
+        return true;
+    }
+
+    if (scriptData["title"].toLowerCase().includes(filterText)) {
+        return true;
+    }
+
+    if (scriptData["summary"].toLowerCase().includes(filterText)) {
+        return true;
+    }
+
+    if (scriptData["series"] !== null && scriptData["series"]["title"].toLowerCase().includes(filterText)) {
+        return true;
+    }
+
+    return false;
+}
+
 
 function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
@@ -38,19 +76,11 @@ function filterScripts() {
         const element = document.getElementById(id);
         const data = scripts[id];
 
-        // if filter is empty, show all scripts
-        if (filterText === "") {
+        if (matchesFilter(data, filterText)) {
             element.style.display = "block";
             scriptsShown += 1;
             fillsShown += data["fills"];
             continue;
-        }
-
-        // determine if the title or description contains the target filter
-        if (data["title"].toLowerCase().includes(filterText) || data["summary"].toLowerCase().includes(filterText)) {
-            element.style.display = "block";
-            scriptsShown += 1;
-            fillsShown += data["fills"];
         } else {
             element.style.display = "none";
         }
