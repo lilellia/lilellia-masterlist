@@ -1,5 +1,5 @@
 import re
-from parser import FillData, Script, SeriesData, parse
+from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
 
 
@@ -124,13 +124,23 @@ def serialise(text: str) -> str:
     return text.lower().replace(" ", "-").replace("'", "").replace('"', "")
 
 
+def htmlify_wordcount(words: WordCountData) -> str:
+    num_speakers = len(words.spoken.keys())
+    full = words.all_spoken
+
+    if num_speakers == 1:
+        content = format(full, ",")
+    elif num_speakers >= 2:
+        individual = "+".join(format(v, ",") for v in words.spoken.values())
+        content = f"{individual} (={full:,})"
+
+    return f"""\t\t\t<li class="script-tag meta-tag">{content} words</li>"""
+
+
 def htmlify(script: Script) -> str:
     # handle all the "content" tags
     assert script.published is not None
     date_tag = f"""\t\t\t<li class="script-tag meta-tag">{script.published.strftime("%d %b %Y")}</li>"""
-    length_tag = (
-        f"""\t\t\t<li class="script-tag meta-tag">{script.spoken_words:,} words</li>"""
-    )
     audience_tag = "\n".join(
         f"""\t\t\t<li class="script-tag audience-tag {atag.lower()}">{atag.upper()}</li>"""
         for atag in script.audience
@@ -159,9 +169,9 @@ def htmlify(script: Script) -> str:
 
         <ul class="script-tags">
 {date_tag}
-{length_tag}
 {audience_tag}
 {tags}
+{htmlify_wordcount(script.words)}
         </ul>
 
 {htmlify_series_data(script.series)}
