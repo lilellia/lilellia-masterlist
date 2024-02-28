@@ -99,7 +99,16 @@ class Script:
         links = data.pop("links")
         links = LinkData(**links)
 
-        return cls(**data, series=series, words=words, fills=fills, links=links)
+        attendant_va = data.pop("attendant VA")
+
+        return cls(
+            **data,
+            series=series,
+            words=words,
+            fills=fills,
+            links=links,
+            attendant_va=attendant_va,
+        )
 
     @property
     def spoken_words(self) -> int:
