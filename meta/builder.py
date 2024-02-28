@@ -17,6 +17,12 @@ def html_header(num_scripts: int, num_fills: int) -> str:
     <h1>lilellia's masterlist</h1>
 
     <div class="container terms-of-use">
+        <div class="greeting">
+            <p>Hi, I'm <span class="lilellia">lilellia</span>, the butterfly princess of hugs! Welcome to my masterlist!</p>
+            <p>I mostly write cute, domestic/fluff, a bit of romance (established or friends-to-lovers), usually F4F/F4A</p>
+            <p class="butterfly">∼ ʚїɞ ∼</p>
+        </div>
+
         <h2>Terms of Script Use</h2>
         <ul>
             <li class="terms-of-use"><b>Usage:</b> All of my scripts are freely available for use. Please credit me (<a href="https://reddit.com/user/lilellia">u/lilellia</a> and/or @lilellia) if you use the script, and let me know—I'd love to see what you come up with! Feel free to monetise it (but DM me first if you want to post on Patreon, etc.).</li>

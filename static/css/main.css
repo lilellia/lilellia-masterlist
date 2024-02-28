@@ -3,8 +3,9 @@
 :root {
     --background: #111111;
     --font-color: #dddddd;
+    --greeting-color: #c05adc;
 
-    --terms-of-use-background: #471313;
+    --terms-of-use-background: #47133e;
 
     --tag-background: darkslategrey;
     --nsfw-tag-background: #9e0d0d;
@@ -30,6 +31,25 @@ body {
     font-family: "Aleo", sans-serif;
     background: var(--background);
     color: var(--font-color);
+}
+
+h1 {
+    padding: 10px;
+}
+
+.greeting {
+    font-size: 110%;
+    padding: 10px 40px;
+}
+
+span.lilellia {
+    font-weight: bold;
+}
+
+p.butterfly {
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: center;
 }
 
 a {
