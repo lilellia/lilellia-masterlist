@@ -30,7 +30,6 @@ function getNumberOfFills(scriptId) {
 function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
     let scripts = identifyScripts();
-    console.log(scripts);
 
     let scriptsShown = 0;
     let fillsShown = 0;
