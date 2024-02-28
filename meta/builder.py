@@ -11,17 +11,24 @@ def html_header(num_scripts: int, num_fills: int) -> str:
     <title>lilellia's masterlist</title>
     <link href="static/css/main.css" rel="stylesheet">
     <link href="static/css/series.css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/filter.js"></script>
 </head>
 <body>
     <h1>lilellia's masterlist</h1>
 
-    <div class="terms-of-use">
+    <div class="container terms-of-use">
         <h2>Terms of Script Use</h2>
         <ul>
             <li class="terms-of-use"><b>Usage:</b> All of my scripts are freely available for use. Please credit me (<a href="https://reddit.com/user/lilellia">u/lilellia</a> and/or @lilellia) if you use the script, and let me know—I'd love to see what you come up with! Feel free to monetise it (but DM me first if you want to post on Patreon, etc.).</li>
             <li class="terms-of-use"><b>Editing:</b> Small changes to the scripts are okay, but please ask before making any major line changes, additions, deletions, gender swaps, etc. Vocal cues and sound effects are suggestions, so feel free to be creative with those!</li>
             <li class="terms-of-use"><b>Other notes:</b> I find it easier to write the listener's dialogue rather than keep track of half of a conversation, so their lines are given for context but aren't meant to be voiced. The word counts given only include the spoken text.</li>
         </ul>
+    </div>
+
+    <div class="search-and-filter">
+        <p><span id="numScripts">{num_scripts:,}</span>/{num_scripts:,} scripts・<span id="numFills">{num_fills:,}</span>/{num_fills:,} fills</p>
+
+        <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary...">
     </div>
 """
 
@@ -69,8 +76,8 @@ def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) ->
 
     fill_tags = "\n".join(htmlify_fill(f, attendant_va=attendant_va) for f in fills)
     return f"""\
-        <div>
-            <b>Fills ({len(fills)}):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">{len(fills)}</span>):</b>
             <ul class="script-fills">
 {fill_tags}
             </ul>
@@ -82,7 +89,7 @@ def htmlify_series_data(series: SeriesData | None) -> str:
     if series is None:
         return ""
 
-    class_ = series_css_class(series)
+    class_ = serialise(series.title)
 
     return f"""\
         <ul class="script-tags">
@@ -101,8 +108,8 @@ def script_tag_classes(tag: str) -> str:
     return " ".join(classes)
 
 
-def series_css_class(series: SeriesData) -> str:
-    return series.title.lower().replace(" ", "-")
+def serialise(text: str) -> str:
+    return text.lower().replace(" ", "-").replace("'", "").replace('"', "")
 
 
 def htmlify(script: Script) -> str:
@@ -131,7 +138,7 @@ def htmlify(script: Script) -> str:
     summary = "\n".join(f"\t\t\t<p>{par}</p>" for par in script.summary.splitlines())
 
     return f"""\
-    <div class="script-data">
+    <div class="container script-data" id={serialise(script.title)}>
         <p class="script-title">{script.title}</p>
 
         <ul class="script-tags">
@@ -159,6 +166,9 @@ def htmlify(script: Script) -> str:
 def main():
     datafile = Path(__file__).parent.parent / "script-data.yaml"
     scripts = parse(datafile)
+
+    # filter to only published scripts
+    scripts = [s for s in scripts if s.published is not None]
 
     total_scripts = len(scripts)
     total_fills = sum(s.num_fills for s in scripts)

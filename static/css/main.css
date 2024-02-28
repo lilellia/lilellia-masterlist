@@ -4,7 +4,7 @@
     --background: #111111;
     --font-color: #dddddd;
 
-    --terms-of-use-background: #222222;
+    --terms-of-use-background: #471313;
 
     --tag-background: darkslategrey;
     --nsfw-tag-background: #9e0d0d;
@@ -36,7 +36,7 @@ a {
     color: var(--font-color);
 }
 
-div.script-data {
+div.container {
     padding: 10px 20px;
     margin: 30px;
     border-radius: 20px;
@@ -73,6 +73,16 @@ div.terms-of-use {
 li.terms-of-use {
     font-size: 1em;
 }
+
+div.search-and-filter {
+    text-align: center;
+}
+
+input#filterInput {
+    border-radius: 10px;
+    padding: 8px 8px;
+}
+
 
 li.script-tag {
     background: var(--tag-background);

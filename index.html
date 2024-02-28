@@ -4,11 +4,12 @@
     <title>lilellia's masterlist</title>
     <link href="static/css/main.css" rel="stylesheet">
     <link href="static/css/series.css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/filter.js"></script>
 </head>
 <body>
     <h1>lilellia's masterlist</h1>
 
-    <div class="terms-of-use">
+    <div class="container terms-of-use">
         <h2>Terms of Script Use</h2>
         <ul>
             <li class="terms-of-use"><b>Usage:</b> All of my scripts are freely available for use. Please credit me (<a href="https://reddit.com/user/lilellia">u/lilellia</a> and/or @lilellia) if you use the script, and let me know—I'd love to see what you come up with! Feel free to monetise it (but DM me first if you want to post on Patreon, etc.).</li>
@@ -16,7 +17,13 @@
             <li class="terms-of-use"><b>Other notes:</b> I find it easier to write the listener's dialogue rather than keep track of half of a conversation, so their lines are given for context but aren't meant to be voiced. The word counts given only include the spoken text.</li>
         </ul>
     </div>
-    <div class="script-data">
+
+    <div class="search-and-filter">
+        <p><span id="numScripts">36</span>/36 scripts・<span id="numFills">45</span>/45 fills</p>
+
+        <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary...">
+    </div>
+    <div class="container script-data" id=girlfriend-takes-care-of-you-while-youre-sick>
         <p class="script-title">Girlfriend Takes Care of You While You're Sick</p>
 
         <ul class="script-tags">
@@ -44,15 +51,15 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/GWASapphic/comments/1av4pfp/f4f_girlfriend_takes_care_of_you_while_youre_sick/">r/GWASapphic</a></li>
         </ul>
 
-        <div>
-            <b>Fills (1):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">1</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=8f7CsmiTL8U">SleepyKittyASMR</a></li>
             </ul>
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=roommate-confesses-to-you-after-a-break-up>
         <p class="script-title">Roommate Confesses to You After a Break Up</p>
 
         <ul class="script-tags">
@@ -79,15 +86,15 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/pillowtalkaudio/comments/1an38uk/f4a_script_offer_roommate_confesses_to_you_after/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (1):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">1</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=cxG-Crz7iRA">RedAutumnOwl</a></li>
             </ul>
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=reassured-by-your-loving-girlfriend>
         <p class="script-title">Reassured by Your Loving Girlfriend</p>
 
         <ul class="script-tags">
@@ -115,8 +122,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/pillowtalkaudio/comments/1ai8atg/f4f_reassured_by_your_loving_girlfriend_script/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (5):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">5</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=gTQfV7RpL9M">Penlock Holmes</a></li>
 				<li class="fill-male"><a href="https://soundgasm.net/u/MoonbeamAudios/Reassured-by-your-loving-Boyfriend">Moonbeam Audios</a></li>
@@ -127,7 +134,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=princess-comforts-thy-worries>
         <p class="script-title">Princess Comforts Thy Worries</p>
 
         <ul class="script-tags">
@@ -159,7 +166,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=pleasuring-thine-injured-princess>
         <p class="script-title">Pleasuring Thine Injured Princess</p>
 
         <ul class="script-tags">
@@ -192,7 +199,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=rescuing-thine-injured-princess>
         <p class="script-title">Rescuing Thine Injured Princess</p>
 
         <ul class="script-tags">
@@ -225,7 +232,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=scuba-diving-with-a-mermaid>
         <p class="script-title">Scuba Diving with a Mermaid</p>
 
         <ul class="script-tags">
@@ -254,8 +261,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/pillowtalkaudio/comments/18sfzhl/f4a_scuba_diving_with_a_mermaid_mermaid_speaker/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (3):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">3</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://soundgasm.net/u/ForestQueenYukiko/Scuba-Diving-with-a-Mermaid-Script-Fill">ForestQueenYukiko</a></li>
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=qRWF9actLj8">Asaki Valentine</a></li>
@@ -264,7 +271,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=saved-from-the-cold-by-a-gentle-stranger>
         <p class="script-title">Saved from the Cold by a Gentle Stranger</p>
 
         <ul class="script-tags">
@@ -292,15 +299,15 @@
 			<li class="post-link"><a href="None">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (1):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">1</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://youtu.be/gjpZZHbq-cU">Apollo VA</a> [※]</li>
             </ul>
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=your-friend-confesses-to-you-at-a-new-years-eve-party>
         <p class="script-title">Your Friend Confesses to You at a New Year's Eve Party</p>
 
         <ul class="script-tags">
@@ -329,8 +336,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/pillowtalkaudio/comments/18gvwui/f4f_your_friend_confesses_to_you_at_a_new_years/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (4):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">4</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=7MwO-yoS5b8">ViolentlySapphic</a></li>
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=ZyFXgpN2Yp8">Hexenfuchs</a> [TL: 🇩🇪]</li>
@@ -340,7 +347,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=becoming-a-fully-fledged-alchemist>
         <p class="script-title">Becoming a Fully-Fledged Alchemist</p>
 
         <ul class="script-tags">
@@ -373,7 +380,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=comforting-your-kitsune-partners-insecurities>
         <p class="script-title">Comforting Your Kitsune Partner's Insecurities</p>
 
         <ul class="script-tags">
@@ -403,8 +410,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/pillowtalkaudio/comments/1827hhy/a4a_comforting_your_kitsune_partners_insecurities/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (5):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">5</span>):</b>
             <ul class="script-fills">
 				<li class="fill-male"><a href="https://www.youtube.com/watch?v=M0CwscmKQPU">TwilightAudio</a></li>
 				<li class="fill-male"><a href="https://www.youtube.com/watch?v=LrLrWncUkM4">Kuroturi wav</a></li>
@@ -415,7 +422,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=game-night-date-with-your-girlfriends>
         <p class="script-title">Game Night Date with Your Girlfriends</p>
 
         <ul class="script-tags">
@@ -449,7 +456,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=investigating-a-disturbance-in-the-forest>
         <p class="script-title">Investigating a Disturbance in the Forest</p>
 
         <ul class="script-tags">
@@ -476,15 +483,15 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/ASMRScriptHaven/comments/17i8zc6/f4a_investigating_a_disturbance_in_the_forest/">r/ASMRScriptHaven</a></li>
         </ul>
 
-        <div>
-            <b>Fills (1):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">1</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=86LlqKRoULk">Asaki Valentine</a></li>
             </ul>
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=a-fateful-encounter-with-a-fiendish-harpy>
         <p class="script-title">A Fateful Encounter with a Fiendish Harpy</p>
 
         <ul class="script-tags">
@@ -520,7 +527,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=an-autumn-picnic-date-with-your-girlfriend>
         <p class="script-title">An Autumn Picnic Date with Your Girlfriend</p>
 
         <ul class="script-tags">
@@ -547,8 +554,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/user/lilellia/comments/17fww70/f4a_an_autumn_picnic_date_with_your_girlfriend/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (5):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">5</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=AQedQZQVu_k">Rei Hoshino / れい星野 Ch.</a></li>
 				<li class="fill-female"><a href="https://soundgasm.net/u/screentimecat/F4A-An-Autumn-Picnic-Date-with-Your-Girlfriend-established-relationship-picnic-date-cute-romantic-reminiscent-relaxing-SFW">screentimecat</a></li>
@@ -559,7 +566,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=waking-up-with-a-flirtatious-fishergirl>
         <p class="script-title">Waking Up with a Flirtatious Fishergirl</p>
 
         <ul class="script-tags">
@@ -594,7 +601,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=confessing-to-your-magical-girl-best-friend>
         <p class="script-title">Confessing to Your Magical Girl Best Friend</p>
 
         <ul class="script-tags">
@@ -625,7 +632,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=becoming-your-dragon-friends-plushie-for-the-night>
         <p class="script-title">Becoming Your Dragon Friend's Plushie for the Night</p>
 
         <ul class="script-tags">
@@ -654,8 +661,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/user/lilellia/comments/17fwrqw/a4a_becoming_your_dragon_friends_plushie_for_the/">r/ASMRScriptHaven</a></li>
         </ul>
 
-        <div>
-            <b>Fills (2):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">2</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=oTQaKUqgScoi">NightRuby</a></li>
 				<li class="fill-male"><a href="https://youtu.be/TbbMXNSnSFw">BrainyDragon VA</a> [※]</li>
@@ -663,7 +670,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=helping-your-alchemy-master-with-requests>
         <p class="script-title">Helping Your Alchemy Master with Requests</p>
 
         <ul class="script-tags">
@@ -695,7 +702,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=scary-fairy-trio>
         <p class="script-title">Scary Fairy Trio</p>
 
         <ul class="script-tags">
@@ -724,7 +731,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=cuddly-baking-sleepover>
         <p class="script-title">Cuddly Baking Sleepover</p>
 
         <ul class="script-tags">
@@ -755,7 +762,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=your-cute-&-cuddly-catgirl-consumed-catnip-and-craves-cuddles>
         <p class="script-title">Your Cute & Cuddly Catgirl Consumed Catnip and Craves Cuddles</p>
 
         <ul class="script-tags">
@@ -782,8 +789,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/user/lilellia/comments/17fwqph/f4a_script_offer_your_cute_clingy_catgirl/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (2):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">2</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=bUi3K2Y0aq4">Asaki Valentine</a></li>
 				<li class="fill-female"><a href="https://youtu.be/CqLUl0J6EEs">AnonyMissBliss</a></li>
@@ -791,7 +798,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=discovered-by-your-magical-girl-best-friend>
         <p class="script-title">Discovered by Your Magical Girl Best Friend</p>
 
         <ul class="script-tags">
@@ -820,7 +827,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=staying-with-your-ghost-girlfriend>
         <p class="script-title">Staying with Your Ghost Girlfriend</p>
 
         <ul class="script-tags">
@@ -847,8 +854,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/user/lilellia/comments/17fwjzs/f4f_a_commitment_to_your_ghost_girlfriend_ghost/">r/ASMRScriptHaven</a></li>
         </ul>
 
-        <div>
-            <b>Fills (2):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">2</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=xl0KpcwI8v4">DitzyGiglet</a></li>
 				<li class="fill-female"><a href="https://youtu.be/_8Btn6DdYQ8">HexxedStrawberry</a></li>
@@ -856,7 +863,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=alchemist-bends-spacetime-to-make-you-hers>
         <p class="script-title">Alchemist Bends Spacetime to Make You Hers</p>
 
         <ul class="script-tags">
@@ -885,7 +892,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=caught-by-a-flirtatious-fishergirl>
         <p class="script-title">"Caught" by a Flirtatious Fishergirl</p>
 
         <ul class="script-tags">
@@ -916,8 +923,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/GWASapphic/comments/1asp1wj/f4f_caught_by_a_flirtatious_fishergirl_script/">r/GWASapphic</a></li>
         </ul>
 
-        <div>
-            <b>Fills (3):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">3</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=1mrICjkvKAE">CrowsAndKisses</a></li>
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=jhXdgYEErG4">Asaki Valentine</a></li>
@@ -926,7 +933,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=playful-friend-offers-to-cuddle-after-a-long-day>
         <p class="script-title">Playful Friend Offers to Cuddle After a Long Day</p>
 
         <ul class="script-tags">
@@ -953,15 +960,15 @@
 			<li class="post-link"><a href="https://www.reddit.com/user/lilellia/comments/17fwh94/a4a_playful_friend_offers_to_cuddle_after_a_long/">r/ASMRScriptHaven</a></li>
         </ul>
 
-        <div>
-            <b>Fills (1):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">1</span>):</b>
             <ul class="script-fills">
 				<li class="fill-male"><a href="https://youtu.be/fgphYfNIgC0">RaconteurAudios</a></li>
             </ul>
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=meeting-your-magical-girl-best-friend>
         <p class="script-title">"Meeting" Your Magical Girl Best Friend</p>
 
         <ul class="script-tags">
@@ -990,7 +997,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=girl-mode-shopping-with-your-owner>
         <p class="script-title">Girl-Mode Shopping with Your Owner</p>
 
         <ul class="script-tags">
@@ -1020,15 +1027,15 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/GWASapphic/comments/1auswmk/f4tf_neko_girl_comes_out_as_trans_script_offer_2/">r/GWASapphic</a></li>
         </ul>
 
-        <div>
-            <b>Fills (1):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">1</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://youtu.be/VSUoycVvDvY">HexxedStrawberry</a></li>
             </ul>
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=alchemist-&-witch-invite-you-to-become-their-apprentice>
         <p class="script-title">Alchemist & Witch Invite You to Become Their Apprentice</p>
 
         <ul class="script-tags">
@@ -1059,7 +1066,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=confessing-to-your-best-friend-at-the-amusement-park>
         <p class="script-title">Confessing to Your Best Friend at the Amusement Park</p>
 
         <ul class="script-tags">
@@ -1089,7 +1096,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=radio-host-reads-very-normal-events>
         <p class="script-title">Radio Host Reads Very "Normal" Events</p>
 
         <ul class="script-tags">
@@ -1116,7 +1123,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=giving-part-of-yourself>
         <p class="script-title">Giving Part of Yourself</p>
 
         <ul class="script-tags">
@@ -1146,7 +1153,7 @@
 
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=automata-deserve-cuddles-too>
         <p class="script-title">Automata Deserve Cuddles Too</p>
 
         <ul class="script-tags">
@@ -1177,8 +1184,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/talkingtalltales/comments/1b038ps/a4a_f4a_m4a_automata_deserve_cuddles_too/">r/talkingtalltales</a></li>
         </ul>
 
-        <div>
-            <b>Fills (4):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">4</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=BYbgn4alLzw">Asaki Valentine</a></li>
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=Bi-_FJpa2d0">Olivia Necron</a> [re-record]</li>
@@ -1188,7 +1195,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=alchemist-saves-you-from-the-cold>
         <p class="script-title">Alchemist Saves You From the Cold</p>
 
         <ul class="script-tags">
@@ -1217,8 +1224,8 @@
 			<li class="post-link"><a href="https://new.reddit.com/r/talkingtalltales/comments/1aykjgf/f4a_becoming_a_fullyfledged_alchemist_series_5/">r/talkingtalltales</a></li>
         </ul>
 
-        <div>
-            <b>Fills (2):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">2</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://youtu.be/0dqYC5yalLg">Miwo</a></li>
 				<li class="fill-female"><a href="https://youtu.be/TaSJgTdmjFA">Dream Audio</a></li>
@@ -1226,7 +1233,7 @@
         </div>
 
     </div>
-    <div class="script-data">
+    <div class="container script-data" id=coming-out-to-your-owner-as-trans>
         <p class="script-title">Coming Out to Your Owner as Trans</p>
 
         <ul class="script-tags">
@@ -1255,8 +1262,8 @@
 			<li class="post-link"><a href="https://www.reddit.com/r/GWASapphic/comments/1auswmk/f4tf_neko_girl_comes_out_as_trans_script_offer_2/">r/pillowtalkaudio</a></li>
         </ul>
 
-        <div>
-            <b>Fills (2):</b>
+        <div class="fill-summary">
+            <b>Fills (<span class="fill-count">2</span>):</b>
             <ul class="script-fills">
 				<li class="fill-female"><a href="https://www.youtube.com/watch?v=zc7QbjtFLSk">Cozy Chocolate ASMR</a></li>
 				<li class="fill-female"><a href="https://youtu.be/ZtiullQ88q8">AlluringAura</a></li>
