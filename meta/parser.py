@@ -40,6 +40,7 @@ class FillData:
     duration: timedelta
     credited: bool
     informed: bool
+    label: str | None = None
     notes: str | None = None
 
     @classmethod
@@ -81,6 +82,7 @@ class Script:
     links: LinkData
     attendant_va: str | None = None
     fills: list[FillData] = field(default_factory=list)
+    notes: str | None = None
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Self:

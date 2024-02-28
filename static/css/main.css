@@ -22,6 +22,8 @@
     /* audience tag colours */
     --audience-f4f-background: #c05adc;
     --audience-f4a-background: #c05adc;
+    --audience-m4a-background: #2626ad;
+    --audience-a4a-background: seagreen;
 }
 
 body {
@@ -119,4 +121,24 @@ li.audience-tag.f4f {
 
 li.audience-tag.f4a {
     background: var(--audience-f4a-background);
+}
+
+li.audience-tag.ff4a {
+    background: var(--audience-f4a-background);
+}
+
+li.audience-tag.fff4a {
+    background: var(--audience-f4a-background);
+}
+
+li.audience-tag.m4a {
+    background: var(--audience-m4a-background);
+}
+
+li.audience-tag.a4a {
+    background: var(--audience-a4a-background);
+}
+
+li.audience-tag.fa4a {
+    background: var(--audience-a4a-background);
 }

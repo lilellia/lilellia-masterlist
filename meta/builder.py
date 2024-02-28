@@ -44,24 +44,30 @@ def extract_fill_link(fill: FillData) -> str:
     return link
 
 
-def htmlify_fill(fill: FillData) -> str:
-    if re.match(r"^M+4", fill.audience):
+def summarise_gender(audience: str) -> str:
+    if re.match(r"^M+4", audience):
         gender = "male"
-    elif re.match(r"^F+4", fill.audience):
+    elif re.match(r"^F+4", audience):
         gender = "female"
     else:
         gender = "mixed"
 
+    return gender
+
+
+def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
     link = extract_fill_link(fill)
+    label = f" [{fill.label}]" if fill.label else ""
+    attendant = " [※]" if attendant_va and fill.creator == attendant_va else ""
 
-    return f"""\t\t\t\t<li class="fill-{gender}"><a href="{link}">{fill.creator}</a></li>"""
+    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}"><a href="{link}">{fill.creator}</a>{label}{attendant}</li>"""
 
 
-def htmlify_fills_summary(fills: list[FillData]) -> str:
+def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) -> str:
     if not fills:
         return ""
 
-    fill_tags = "\n".join(htmlify_fill(f) for f in fills)
+    fill_tags = "\n".join(htmlify_fill(f, attendant_va=attendant_va) for f in fills)
     return f"""\
         <div>
             <b>Fills ({len(fills)}):</b>
@@ -100,8 +106,6 @@ def series_css_class(series: SeriesData) -> str:
 
 
 def htmlify(script: Script) -> str:
-    link_repl = {"google_docs": "Google Docs"}
-
     # handle all the "content" tags
     date_tag = f"""\t\t\t<li class="script-tag date-tag">{script.published.strftime("%d %b %Y")}</li>"""
     audience_tag = "\n".join(
@@ -115,7 +119,7 @@ def htmlify(script: Script) -> str:
 
     # handle links
     script_links = "\n".join(
-        f"""\t\t\t<li class="script-link"><a href="{href}">{link_repl.get(label, label)}</a></li>"""
+        f"""\t\t\t<li class="script-link"><a href="{href}">{label}</a></li>"""
         for label, href in script.links.script.items()
     )
 
@@ -123,6 +127,8 @@ def htmlify(script: Script) -> str:
         f"""\t\t\t<li class="post-link"><a href="{href}">{re.sub(r"^r_", "r/", label)}</a></li>"""
         for label, href in script.links.post.items()
     )
+
+    summary = "\n".join(f"\t\t\t<p>{par}</p>" for par in script.summary.splitlines())
 
     return f"""\
     <div class="script-data">
@@ -137,7 +143,7 @@ def htmlify(script: Script) -> str:
 {htmlify_series_data(script.series)}
 
         <blockquote class="script-summary">
-            {script.summary.replace("\n", "<br/>\n")}
+{summary}
         </blockquote>
         
         <ul class="script-links">
@@ -145,7 +151,7 @@ def htmlify(script: Script) -> str:
 {post_links}
         </ul>
 
-{htmlify_fills_summary(script.fills)}
+{htmlify_fills_summary(script.fills, attendant_va=script.attendant_va)}
     </div>
 """
 
