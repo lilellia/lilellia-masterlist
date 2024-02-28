@@ -126,7 +126,11 @@ def serialise(text: str) -> str:
 
 def htmlify(script: Script) -> str:
     # handle all the "content" tags
-    date_tag = f"""\t\t\t<li class="script-tag date-tag">{script.published.strftime("%d %b %Y")}</li>"""
+    assert script.published is not None
+    date_tag = f"""\t\t\t<li class="script-tag meta-tag">{script.published.strftime("%d %b %Y")}</li>"""
+    length_tag = (
+        f"""\t\t\t<li class="script-tag meta-tag">{script.spoken_words:,} words</li>"""
+    )
     audience_tag = "\n".join(
         f"""\t\t\t<li class="script-tag audience-tag {atag.lower()}">{atag.upper()}</li>"""
         for atag in script.audience
@@ -155,6 +159,7 @@ def htmlify(script: Script) -> str:
 
         <ul class="script-tags">
 {date_tag}
+{length_tag}
 {audience_tag}
 {tags}
         </ul>

@@ -9,7 +9,7 @@
 
     --tag-background: darkslategrey;
     --nsfw-tag-background: #9e0d0d;
-    --date-tag-background: slategrey;
+    --meta-tag-background: slategrey;
     --series-tag-background: darkslategrey;
 
     --script-link-background: darkslategrey;
@@ -112,8 +112,8 @@ li.script-tag.nsfw-tag {
     background: var(--nsfw-tag-background);
 }
 
-li.script-tag.date-tag {
-    background: var(--date-tag-background)
+li.script-tag.meta-tag {
+    background: var(--meta-tag-background)
 }
 
 li.script-tag.series-tag {
@@ -162,6 +162,10 @@ li.audience-tag.ff4a {
 }
 
 li.audience-tag.fff4a {
+    background: var(--audience-f4a-background);
+}
+
+li.audience-tag.fff4f {
     background: var(--audience-f4a-background);
 }
 

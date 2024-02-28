@@ -77,8 +77,8 @@ class Script:
     series: SeriesData | None
     summary: str
     words: WordCountData
-    finished: str
-    published: str
+    finished: datetime | None
+    published: datetime | None
     links: LinkData
     attendant_va: str | None = None
     fills: list[FillData] = field(default_factory=list)
