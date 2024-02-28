@@ -119,6 +119,10 @@ li.audience-tag.f4f {
     background: var(--audience-f4f-background);
 }
 
+li.audience-tag.f4tf {
+    background: var(--audience-f4f-background);
+}
+
 li.audience-tag.f4a {
     background: var(--audience-f4a-background);
 }
