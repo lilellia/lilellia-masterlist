@@ -21,7 +21,13 @@
     <div class="search-and-filter">
         <p><span id="numScripts">36</span>/36 scripts・<span id="numFills">45</span>/45 fills</p>
 
-        <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary...">
+        <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary..."><br/>
+
+        <input type="checkbox" id="unfilledScripts" name="unfilledScripts" onclick="filterScripts()">
+        <label for="unfilledScripts">Show only unfilled scripts?</label><br/>
+
+        <input type="checkbox" id="oneShots" name="oneShots" onclick="filterScripts()">
+        <label for="oneShots">Show only one-shot scripts?</label>
     </div>
     <div class="container script-data" id=girlfriend-takes-care-of-you-while-youre-sick>
         <p class="script-title">Girlfriend Takes Care of You While You're Sick</p>

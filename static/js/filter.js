@@ -43,7 +43,7 @@ function getSeriesData(scriptId) {
 }
 
 
-function matchesFilter(scriptData, filterText) {
+function matchesTextFilter(scriptData, filterText) {
     if (filterText === "") {
         // all scripts match the empty filter
         return true;
@@ -67,6 +67,8 @@ function matchesFilter(scriptData, filterText) {
 
 function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
+    const unfilledOnly = document.getElementById("unfilledScripts").checked;
+    const oneShotsOnly = document.getElementById("oneShots").checked;
     let scripts = identifyScripts();
 
     let scriptsShown = 0;
@@ -76,14 +78,24 @@ function filterScripts() {
         const element = document.getElementById(id);
         const data = scripts[id];
 
-        if (matchesFilter(data, filterText)) {
-            element.style.display = "block";
-            scriptsShown += 1;
-            fillsShown += data["fills"];
-            continue;
-        } else {
+        if (!matchesTextFilter(data, filterText)) {
             element.style.display = "none";
+            continue;
         }
+
+        if (unfilledOnly && data["fills"] > 0) {
+            element.style.display = "none";
+            continue;
+        }
+
+        if (oneShotsOnly && data["series"] !== null) {
+            element.style.display = "none";
+            continue;
+        }
+
+        element.style.display = "block";
+        scriptsShown += 1;
+        fillsShown += data["fills"];
     }
 
     document.getElementById("numScripts").textContent = scriptsShown;

@@ -28,7 +28,13 @@ def html_header(num_scripts: int, num_fills: int) -> str:
     <div class="search-and-filter">
         <p><span id="numScripts">{num_scripts:,}</span>/{num_scripts:,} scripts・<span id="numFills">{num_fills:,}</span>/{num_fills:,} fills</p>
 
-        <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary...">
+        <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary..."><br/>
+
+        <input type="checkbox" id="unfilledScripts" name="unfilledScripts" onclick="filterScripts()">
+        <label for="unfilledScripts">Show only unfilled scripts?</label><br/>
+
+        <input type="checkbox" id="oneShots" name="oneShots" onclick="filterScripts()">
+        <label for="oneShots">Show only one-shot scripts?</label>
     </div>
 """
 
