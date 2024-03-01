@@ -1,9 +1,10 @@
 import re
 from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
+from typing import Iterable
 
 
-def html_header(num_scripts: int, num_fills: int) -> str:
+def html_header() -> str:
     return f"""\
 <html>
 <head>
@@ -30,20 +31,60 @@ def html_header(num_scripts: int, num_fills: int) -> str:
             <li class="terms-of-use"><b>Other notes:</b> I find it easier to write the listener's dialogue rather than keep track of half of a conversation, so their lines are given for context but aren't meant to be voiced. The word counts given only include the spoken text.</li>
         </ul>
     </div>
+"""
 
+
+def html_filter_section(num_scripts: int, num_fills: int, series_names: Iterable[str]) -> str:
+    series = "\n".join(
+        f"""\t\t\t<option class="{serialise(name)}" value="{name}">{name}</option>"""
+        for name in sorted(series_names)
+    )
+
+    return f"""\
     <div class="search-and-filter">
         <p><span id="numScripts">{num_scripts:,}</span>/{num_scripts:,} scripts・<span id="numFills">{num_fills:,}</span>/{num_fills:,} fills</p>
 
+
+        <table>
+        <tr>
+        <td colspan="2">
+            
         <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary..."><br/>
+        </td>
+        </tr>
 
-        <input type="checkbox" id="unfilledScripts" name="unfilledScripts" onclick="filterScripts()">
-        <label for="unfilledScripts">Show only unfilled scripts?</label><br/>
+        <tr>
+        <td><label for="seriesFilter">Filter by Series:</label></td>
+        <td><select name="seriesFilter" id="seriesFilter" onchange="filterScripts()">
+            <option value=""></option>
+            <option value="(one-shots only)">(one-shots only)</option>
+{series}
+        </select>
+        </td>
+        </tr>
 
-        <input type="checkbox" id="oneShots" name="oneShots" onclick="filterScripts()">
-        <label for="oneShots">Show only one-shot scripts?</label><br/>
+        <tr>
+        <td><label for="fillsFilter">Filter by Fills:</label></td>
+        <td><select name="fillsFilter" id="fillsFilter" onchange="filterScripts()">
+            <option value=""></option>
+            <option value="0">0 (unfilled)</option>
+            <option value="1+">1+ (filled)</option>
+        </select>
+        </td>
+        </tr>
 
-        <input type="checkbox" id="singleSpeaker" name="singleSpeaker" onclick="filterScripts()">
-        <label for="singleSpeaker">Show only single-speaker scripts?</label>
+        <tr>
+        <td><label for="speakersFilter">Filter by Speaker Count:</label></td>
+        <td><select name="speakersFilter" id="speakersFilter" onchange="filterScripts()">
+            <option value=""></option>
+            <option value="1 speaker">1 speaker</option>
+            <option value="2+ speakers">2+ speakers</option>
+        </select>
+        </td>
+        </tr>
+
+        </table>
+
     </div>
 """
 
@@ -202,9 +243,17 @@ def main():
     total_scripts = len(scripts)
     total_fills = sum(s.num_fills for s in scripts)
 
+    # get overall series data for filtering purposes
+    series_names = set(s.title for script in scripts if (s := script.series) is not None)
+
+    filter_section = html_filter_section(
+        num_scripts=total_scripts, num_fills=total_fills, series_names=series_names
+    )
+
     outpath = Path(__file__).parent.parent / "index.html"
     with open(outpath, "w", encoding="utf-8") as f:
-        f.write(html_header(num_scripts=total_scripts, num_fills=total_fills))
+        f.write(html_header())
+        f.write(filter_section)
 
         for script in scripts:
             if script.published is None:

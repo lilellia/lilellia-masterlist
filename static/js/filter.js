@@ -80,11 +80,32 @@ function matchesTextFilter(scriptData, filterText) {
 }
 
 
+function matchesSeries(target, actual) {
+    if (target === "") {
+        // empty string for target means we have no filter
+        // i.e., everything passes
+        return true;
+    }
+
+    if (target === "(one-shots only)") {
+        // only those which do not have series data will pass
+        return (actual === null)
+    }
+
+    // we know that the target is some particular series
+    if (actual === null) {
+        return false;
+    }
+
+    return actual["title"] === target;
+}
+
+
 function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
-    const unfilledOnly = document.getElementById("unfilledScripts").checked;
-    const oneShotsOnly = document.getElementById("oneShots").checked;
-    const singleSpeakerOnly = document.getElementById("singleSpeaker").checked;
+    const fillsFilter = document.getElementById("fillsFilter").value;
+    const seriesFilter = document.getElementById("seriesFilter").value;
+    const speakersFilter = document.getElementById("speakersFilter").value;
     let scripts = identifyScripts();
 
     let scriptsShown = 0;
@@ -99,19 +120,25 @@ function filterScripts() {
             continue;
         }
 
-        if (unfilledOnly && data["fills"] > 0) {
+        if (fillsFilter === "0" && data["fills"] !== 0) {
+            element.style.display = "none";
+            continue;
+        } else if (fillsFilter === "1+" && data["fills"] === 0) {
             element.style.display = "none";
             continue;
         }
 
-        if (oneShotsOnly && data["series"] !== null) {
+        if (!matchesSeries(seriesFilter, data["series"])) {
             element.style.display = "none";
             continue;
         }
 
-        if (singleSpeakerOnly && data["speakers"].length > 1) {
+        if (speakersFilter === "1 speaker" && data["speakers"].length > 1) {
             element.style.display = "none";
             continue;
+        } else if (speakersFilter === "2+ speakers" && data["speakers"].length === 1) {
+            element.style.display = "none";
+            continue
         }
 
         element.style.display = "block";
