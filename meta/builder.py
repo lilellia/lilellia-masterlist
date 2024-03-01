@@ -40,7 +40,7 @@ def html_header(num_scripts: int, num_fills: int) -> str:
         <label for="unfilledScripts">Show only unfilled scripts?</label><br/>
 
         <input type="checkbox" id="oneShots" name="oneShots" onclick="filterScripts()">
-        <label for="oneShots">Show only one-shot scripts?</label>
+        <label for="oneShots">Show only one-shot scripts?</label><br/>
 
         <input type="checkbox" id="singleSpeaker" name="singleSpeaker" onclick="filterScripts()">
         <label for="singleSpeaker">Show only single-speaker scripts?</label>
