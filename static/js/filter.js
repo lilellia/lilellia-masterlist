@@ -12,11 +12,26 @@ function identifyScripts() {
             summary: summary,
             fills: getNumberOfFills(id),
             series: getSeriesData(id),
+            speakers: getSpeakers(id),
         };
     }
 
     return scripts;
 }
+
+function getSpeakers(scriptId) {
+    const el = document.getElementById(scriptId).querySelector("li.audience-tag");
+
+    // MTMFNBTF4A -> speaker = "MTMFNBTF4A"
+    const speaker = el.textContent.split("4")[0];
+
+    // recognised speaker tags
+    // TF, TM, TA = transfem, transmasc, transany
+    // F, M, A = fem, masc, any
+    // NB = nonbinary
+    return speaker.matchAll(/TF|TM|TA|M|F|NB|A/).toArray()
+}
+
 
 function getNumberOfFills(scriptId) {
     const el = document.getElementById(scriptId).querySelector("span.fill-count");
@@ -69,6 +84,7 @@ function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
     const unfilledOnly = document.getElementById("unfilledScripts").checked;
     const oneShotsOnly = document.getElementById("oneShots").checked;
+    const singleSpeakerOnly = document.getElementById("singleSpeaker").checked;
     let scripts = identifyScripts();
 
     let scriptsShown = 0;
@@ -89,6 +105,11 @@ function filterScripts() {
         }
 
         if (oneShotsOnly && data["series"] !== null) {
+            element.style.display = "none";
+            continue;
+        }
+
+        if (singleSpeakerOnly && data["speakers"].length > 1) {
             element.style.display = "none";
             continue;
         }

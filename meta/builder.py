@@ -41,6 +41,9 @@ def html_header(num_scripts: int, num_fills: int) -> str:
 
         <input type="checkbox" id="oneShots" name="oneShots" onclick="filterScripts()">
         <label for="oneShots">Show only one-shot scripts?</label>
+
+        <input type="checkbox" id="singleSpeaker" name="singleSpeaker" onclick="filterScripts()">
+        <label for="singleSpeaker">Show only single-speaker scripts?</label>
     </div>
 """
 
@@ -133,6 +136,8 @@ def htmlify_wordcount(words: WordCountData) -> str:
     elif num_speakers >= 2:
         individual = "+".join(format(v, ",") for v in words.spoken.values())
         content = f"{individual} (={full:,})"
+    else:
+        raise ValueError(f"invalid speaker count: {words}")
 
     return f"""\t\t\t<li class="script-tag meta-tag">{content} words</li>"""
 
@@ -145,10 +150,7 @@ def htmlify(script: Script) -> str:
         f"""\t\t\t<li class="script-tag audience-tag {atag.lower()}">{atag.upper()}</li>"""
         for atag in script.audience
     )
-    tags = "\n".join(
-        f"""\t\t\t<li class="{script_tag_classes(tag)}">{tag}</li>"""
-        for tag in script.tags
-    )
+    tags = "\n".join(f"""\t\t\t<li class="{script_tag_classes(tag)}">{tag}</li>""" for tag in script.tags)
 
     # handle links
     script_links = "\n".join(
