@@ -138,6 +138,7 @@ function filterScripts() {
     const seriesFilter = document.getElementById("seriesFilter").value;
     const audienceTagFilter = document.getElementById("audienceTagFilter").value;
     const filledByFilter = document.getElementById("filledByFilter").value;
+    const unfilledOnlyFilter = document.getElementById("unfilledOnlyFilter").value;
     let scripts = identifyScripts();
 
     let scriptsShown = 0;
@@ -152,10 +153,7 @@ function filterScripts() {
             continue;
         }
 
-        if (fillsFilter === "0" && data["fills"] !== 0) {
-            element.style.display = "none";
-            continue;
-        } else if (fillsFilter === "1+" && data["fills"] === 0) {
+        if (unfilledOnlyFilter === "yes" && data["fills"] !== 0) {
             element.style.display = "none";
             continue;
         }
