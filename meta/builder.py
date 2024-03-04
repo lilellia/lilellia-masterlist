@@ -289,12 +289,14 @@ def main():
         f.write(html_header())
         f.write(filter_section)
 
+        f.write("""<div class="all-scripts">""")
         for script in scripts:
             if script.published is None:
                 # skip any scripts which aren't published!
                 continue
 
             f.write(htmlify(script))
+        f.write("""</div>""")
 
         f.write(html_closer())
 

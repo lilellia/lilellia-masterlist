@@ -56,12 +56,19 @@ a {
     color: var(--font-color);
 }
 
+div.all-scripts {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
 div.container {
     padding: 10px 20px;
-    margin: 30px;
     border-radius: 20px;
     border: 1px solid var(--font-color);
 }
+
 
 p.script-title {
     font-size: 1.5em;
