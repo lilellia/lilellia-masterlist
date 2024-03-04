@@ -76,16 +76,6 @@ def html_filter_section(
         </tr>
 
         <tr>
-        <td><label for="fillsFilter">Filter by Fills:</label></td>
-        <td><select name="fillsFilter" id="fillsFilter" onchange="filterScripts()">
-            <option value=""></option>
-            <option value="0">0 (unfilled)</option>
-            <option value="1+">1+ (filled)</option>
-        </select>
-        </td>
-        </tr>
-
-        <tr>
         <td><label for="audienceTagFilter">Filter by Audience Tag:</label></td>
         <td><select name="audienceTagFilter" id="audienceTagFilter" onchange="filterScripts()">
             <option value=""></option>

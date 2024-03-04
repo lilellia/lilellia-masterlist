@@ -134,7 +134,6 @@ function matchesSeries(target, actual) {
 
 function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
-    const fillsFilter = document.getElementById("fillsFilter").value;
     const seriesFilter = document.getElementById("seriesFilter").value;
     const audienceTagFilter = document.getElementById("audienceTagFilter").value;
     const filledByFilter = document.getElementById("filledByFilter").value;
