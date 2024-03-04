@@ -11,13 +11,44 @@ function identifyScripts() {
             title: title,
             summary: summary,
             fills: getNumberOfFills(id),
+            filledBy: getFilledBy(id),
             series: getSeriesData(id),
             speakers: getSpeakers(id),
+            audienceTags: getAudienceTags(id),
         };
     }
 
     return scripts;
 }
+
+
+function getAudienceTags(scriptId) {
+    const elements = document.getElementById(scriptId).querySelectorAll("li.audience-tag");
+    
+    let results = [];
+    for (const e of elements) {
+        results.push(e.textContent);
+    }
+
+    return results;
+}
+
+
+function getFilledBy(scriptId) {
+    const ul = document.getElementById(scriptId).querySelector("ul.script-fills");
+
+    if (ul === null) {
+        return [];
+    }
+
+    let filledBy = [];
+    for (const e of ul.querySelectorAll("li")) {
+        filledBy.push(e.querySelector("a").textContent);
+    }
+
+    return filledBy;
+}
+
 
 function getSpeakers(scriptId) {
     const el = document.getElementById(scriptId).querySelector("li.audience-tag");
@@ -105,7 +136,8 @@ function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
     const fillsFilter = document.getElementById("fillsFilter").value;
     const seriesFilter = document.getElementById("seriesFilter").value;
-    const speakersFilter = document.getElementById("speakersFilter").value;
+    const audienceTagFilter = document.getElementById("audienceTagFilter").value;
+    const filledByFilter = document.getElementById("filledByFilter").value;
     let scripts = identifyScripts();
 
     let scriptsShown = 0;
@@ -133,12 +165,14 @@ function filterScripts() {
             continue;
         }
 
-        if (speakersFilter === "1 speaker" && data["speakers"].length > 1) {
+        if (audienceTagFilter !== "" && !data["audienceTags"].includes(audienceTagFilter)) {
             element.style.display = "none";
             continue;
-        } else if (speakersFilter === "2+ speakers" && data["speakers"].length === 1) {
+        }
+
+        if (filledByFilter !== "" && !data["filledBy"].includes(filledByFilter)) {
             element.style.display = "none";
-            continue
+            continue;
         }
 
         element.style.display = "block";

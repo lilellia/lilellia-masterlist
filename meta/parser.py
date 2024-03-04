@@ -47,9 +47,7 @@ class FillData:
     def from_dict(cls, data: dict[str, Any]) -> Self:
         duration = data.pop("duration")
 
-        match = re.match(
-            r"(?P<hours>\d+h)?(?P<minutes>\d+m)(?P<seconds>\d+s)", duration
-        )
+        match = re.match(r"(?P<hours>\d+h)?(?P<minutes>\d+m)(?P<seconds>\d+s)", duration)
 
         if not match:
             raise ValueError(f"invalid duration value: {duration!r}")
@@ -62,9 +60,7 @@ class FillData:
         minutes = match.group("minutes").rstrip("m")
         seconds = match.group("seconds").rstrip("s")
 
-        duration = timedelta(
-            hours=int(hours), minutes=int(minutes), seconds=float(seconds)
-        )
+        duration = timedelta(hours=int(hours), minutes=int(minutes), seconds=float(seconds))
 
         return cls(**data, duration=duration)
 
@@ -124,6 +120,11 @@ class Script:
     def num_fills(self) -> int:
         """Return the number of known fills for this script."""
         return len(self.fills)
+
+    @property
+    def filled_by(self) -> set[str]:
+        """Return a set of the VAs who have filled this script."""
+        return set(f.creator for f in self.fills)
 
 
 def parse(filepath: Path) -> list[Script]:

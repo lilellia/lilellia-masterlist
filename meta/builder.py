@@ -34,11 +34,20 @@ def html_header() -> str:
 """
 
 
-def html_filter_section(num_scripts: int, num_fills: int, series_names: Iterable[str]) -> str:
+def html_filter_section(
+    num_scripts: int,
+    num_fills: int,
+    series_names: Iterable[str],
+    audience_tags: Iterable[str],
+    filled_by: Iterable[str],
+) -> str:
     series = "\n".join(
         f"""\t\t\t<option class="{serialise(name)}" value="{name}">{name}</option>"""
         for name in sorted(series_names)
     )
+
+    audience = "\n".join(f"""\t\t\t<option value="{tag}">{tag}</option>""" for tag in sorted(audience_tags))
+    filled_by = "\n".join(f"""\t\t\t<option value="{name}">{name}</option>""" for name in sorted(filled_by))
 
     return f"""\
     <div class="search-and-filter">
@@ -74,15 +83,23 @@ def html_filter_section(num_scripts: int, num_fills: int, series_names: Iterable
         </tr>
 
         <tr>
-        <td><label for="speakersFilter">Filter by Speaker Count:</label></td>
-        <td><select name="speakersFilter" id="speakersFilter" onchange="filterScripts()">
+        <td><label for="audienceTagFilter">Filter by Audience Tag:</label></td>
+        <td><select name="audienceTagFilter" id="audienceTagFilter" onchange="filterScripts()">
             <option value=""></option>
-            <option value="1 speaker">1 speaker</option>
-            <option value="2+ speakers">2+ speakers</option>
+{audience}
         </select>
         </td>
         </tr>
 
+        <tr>
+        <td><label for="filledByFilter">Filter by VAs:</label></td>
+        <td><select name="filledByFilter" id="filledByFilter" onchange="filterScripts()">
+            <option value=""></option>
+{filled_by}
+        </select>
+        </td>
+        </tr>
+    
         </table>
 
     </div>
@@ -243,11 +260,26 @@ def main():
     total_scripts = len(scripts)
     total_fills = sum(s.num_fills for s in scripts)
 
-    # get overall series data for filtering purposes
-    series_names = set(s.title for script in scripts if (s := script.series) is not None)
+    # get overall data for filters
+    series_names: set[str] = set()
+    audience_tags: set[str] = set()
+    all_VAs: set[str] = set()
+
+    for script in scripts:
+        if (s := script.series) is not None:
+            series_names.add(s.title)
+
+        for tag in script.audience:
+            audience_tags.add(tag)
+
+        all_VAs |= script.filled_by
 
     filter_section = html_filter_section(
-        num_scripts=total_scripts, num_fills=total_fills, series_names=series_names
+        num_scripts=total_scripts,
+        num_fills=total_fills,
+        series_names=series_names,
+        audience_tags=audience_tags,
+        filled_by=all_VAs,
     )
 
     outpath = Path(__file__).parent.parent / "index.html"
