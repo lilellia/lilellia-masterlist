@@ -47,7 +47,10 @@ def html_filter_section(
     )
 
     audience = "\n".join(f"""\t\t\t<option value="{tag}">{tag}</option>""" for tag in sorted(audience_tags))
-    filled_by = "\n".join(f"""\t\t\t<option value="{name}">{name}</option>""" for name in sorted(filled_by))
+    filled_by = "\n".join(
+        f"""\t\t\t<option value="{name}">{name}</option>"""
+        for name in sorted(filled_by, key=lambda va: va.lower())  # make sort case-insensitive
+    )
 
     return f"""\
     <div class="search-and-filter">
