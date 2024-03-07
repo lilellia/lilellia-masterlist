@@ -140,9 +140,10 @@ def summarise_gender(audience: str) -> str:
 def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
     link = extract_fill_link(fill)
     label = f" [{fill.label}]" if fill.label else ""
-    attendant = " [※]" if attendant_va and fill.creator == attendant_va else ""
+    attendant = " [※]" if attendant_va and attendant_va in fill.creators else ""
 
-    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}"><a href="{link}">{fill.creator}</a>{label}{attendant}</li>"""
+    creators = ", ".join(fill.creators)
+    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}"><a href="{link}">{creators}</a>{label}{attendant}</li>"""
 
 
 def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) -> str:

@@ -32,7 +32,7 @@ class LinkData:
 
 @dataclass
 class FillData:
-    creator: str
+    creators: list[str]
     title: str
     audience: str
     links: dict[str, str]
@@ -124,7 +124,12 @@ class Script:
     @property
     def filled_by(self) -> set[str]:
         """Return a set of the VAs who have filled this script."""
-        return set(f.creator for f in self.fills)
+        creators: set[str] = set()
+
+        for f in self.fills:
+            creators |= set(f.creators)
+
+        return creators
 
 
 def parse(filepath: Path) -> list[Script]:
