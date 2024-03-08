@@ -132,7 +132,7 @@ def summarise_gender(audience: str) -> str:
     elif re.match(r"^F+4", audience):
         gender = "female"
     else:
-        gender = "mixed"
+        gender = "neutral"
 
     return gender
 

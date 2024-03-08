@@ -18,7 +18,7 @@
     /* fill speaker colours */
     --fill-female-background: #c05adc;
     --fill-male-background: #2626ad;
-    --fill-mixed-background: seagreen;
+    --fill-neutral-background: seagreen;
 
     /* audience tag colours */
     --audience-f4f-background: #c05adc;
@@ -165,8 +165,8 @@ ul.script-fills > li.fill-female {
     background: var(--fill-female-background);
 }
 
-ul.script-fills > li.fill-mixed {
-    background: var(--fill-mixed-background);
+ul.script-fills > li.fill-neutral {
+    background: var(--fill-neutral-background);
 }
 
 
