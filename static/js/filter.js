@@ -15,6 +15,7 @@ function identifyScripts() {
             series: getSeriesData(id),
             speakers: getSpeakers(id),
             audienceTags: getAudienceTags(id),
+            contentTags: getContentTags(id),
         };
     }
 
@@ -33,6 +34,17 @@ function getAudienceTags(scriptId) {
     return results;
 }
 
+
+function getContentTags(scriptId) {
+    const elements = document.getElementById(scriptId).querySelectorAll("li.script-tag:not(.meta-tag):not(.audience-tag)");
+
+    let results = [];
+    for (const e of elements) {
+        results.push(e.textContent);
+    }
+
+    return results;
+}
 
 function getFilledBy(scriptId) {
     const ul = document.getElementById(scriptId).querySelector("ul.script-fills");
@@ -105,6 +117,12 @@ function matchesTextFilter(scriptData, filterText) {
 
     if (scriptData["series"] !== null && scriptData["series"]["title"].toLowerCase().includes(filterText)) {
         return true;
+    }
+
+    for (const tag of scriptData["contentTags"]) {
+        if (tag.toLowerCase().includes(filterText)) {
+            return true;
+        }
     }
 
     return false;
