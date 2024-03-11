@@ -254,7 +254,7 @@ def htmlify(script: Script) -> str:
 
 
 def main():
-    datafile = Path(__file__).parent.parent / "script-data.yaml"
+    datafile = Path(__file__).parent.parent / "script-data.json"
     scripts = parse(datafile)
 
     # filter to only published scripts
