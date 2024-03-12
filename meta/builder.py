@@ -118,8 +118,9 @@ def html_closer() -> str:
 def extract_fill_link(fill: FillData) -> str:
     youtube = fill.links.get("YouTube")
     soundgasm = fill.links.get("soundgasm")
+    patreon = fill.links.get("Patreon")
 
-    link = youtube or soundgasm
+    link = youtube or soundgasm or patreon
     if link is None:
         raise ValueError(f"could not find link for fill: {fill.title}")
 
