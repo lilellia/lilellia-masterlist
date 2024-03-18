@@ -1,7 +1,7 @@
 import re
 from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Literal
 
 
 def html_header() -> str:
@@ -11,7 +11,8 @@ def html_header() -> str:
     <meta charset="utf-8">
     <title>lilellia's masterlist</title>
     <link href="static/css/main.css" rel="stylesheet">
-    <link href="static/css/series.css" rel="stylesheet">
+    <link href="static/css/series.css" rel="stylesheet">i
+    <script src="https://kit.fontawesome.com/d17f614691.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="static/js/filter.js"></script>
 </head>
 <body>
@@ -138,13 +139,26 @@ def summarise_gender(audience: str) -> str:
     return gender
 
 
+def is_exclusive(fill: FillData) -> bool:
+    """Determine whether the fill is exclusive"""
+    link = extract_fill_link(fill)
+    return re.search(r"patreon", link) is not None
+
+
+def icon(icon_name: str, style: Literal["regular", "solid", "brands"], color: str | None = None) -> str:
+    """Create a font awesome icon."""
+    css = f""" style="color: {color}" """ if color else ""
+    return f"""<i class="icon fa-{style} fa-{icon_name}"{css}></i>"""
+
+
 def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
     link = extract_fill_link(fill)
     label = f" [{fill.label}]" if fill.label else ""
-    attendant = " [※]" if attendant_va and attendant_va in fill.creators else ""
+    exclusive = icon("lock", style="solid") if is_exclusive(fill) else ""
+    attendant = icon("star", style="solid") if attendant_va and attendant_va in fill.creators else ""
 
     creators = ", ".join(fill.creators)
-    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}"><a href="{link}">{creators}</a>{label}{attendant}</li>"""
+    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}"><a href="{link}">{creators}</a>{label}{attendant}{exclusive}</li>"""
 
 
 def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) -> str:

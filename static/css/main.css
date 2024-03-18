@@ -130,6 +130,10 @@ select, option {
     padding: 8px;
 }
 
+i.icon {
+    margin-left: 4px;
+}
+
 
 li.script-tag {
     background: var(--tag-background);
