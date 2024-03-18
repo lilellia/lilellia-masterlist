@@ -1,7 +1,14 @@
+from enum import Enum, auto
 import re
 from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
 from typing import Iterable, Literal
+
+
+class FillSource(Enum):
+    YOUTUBE = "fa-brands fa-youtube"
+    SOUNDGASM = "fa-solid fa-headphones"
+    PATREON = "fa-brands fa-patreon"
 
 
 def html_header() -> str:
@@ -116,16 +123,17 @@ def html_closer() -> str:
 """
 
 
-def extract_fill_link(fill: FillData) -> str:
-    youtube = fill.links.get("YouTube")
-    soundgasm = fill.links.get("soundgasm")
-    patreon = fill.links.get("Patreon")
+def extract_fill_link(fill: FillData) -> tuple[FillSource, str]:
+    if link := fill.links.get("YouTube"):
+        return FillSource.YOUTUBE, link
 
-    link = youtube or soundgasm or patreon
-    if link is None:
-        raise ValueError(f"could not find link for fill: {fill.title}")
+    if link := fill.links.get("soundgasm"):
+        return FillSource.SOUNDGASM, link
 
-    return link
+    if link := fill.links.get("Patreon"):
+        return FillSource.PATREON, link
+
+    raise ValueError(f"could not find link for fill: {fill.title}")
 
 
 def summarise_gender(audience: str) -> str:
@@ -139,26 +147,21 @@ def summarise_gender(audience: str) -> str:
     return gender
 
 
-def is_exclusive(fill: FillData) -> bool:
-    """Determine whether the fill is exclusive"""
-    link = extract_fill_link(fill)
-    return re.search(r"patreon", link) is not None
-
-
-def icon(icon_name: str, style: Literal["regular", "solid", "brands"], color: str | None = None) -> str:
+def icon(fa_class: str, direction: Literal["left", "right"]) -> str:
     """Create a font awesome icon."""
-    css = f""" style="color: {color}" """ if color else ""
-    return f"""<i class="icon fa-{style} fa-{icon_name}"{css}></i>"""
+    return f"""<i class="icon-{direction} {fa_class}"></i>"""
 
 
 def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
-    link = extract_fill_link(fill)
+    source, link = extract_fill_link(fill)
     label = f" [{fill.label}]" if fill.label else ""
-    exclusive = icon("lock", style="solid") if is_exclusive(fill) else ""
-    attendant = icon("star", style="solid") if attendant_va and attendant_va in fill.creators else ""
+    source_icon = icon(source.value, direction="left")
+    attendant = (
+        icon("fa-solid fa-star", direction="right") if attendant_va and attendant_va in fill.creators else ""
+    )
 
     creators = ", ".join(fill.creators)
-    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}"><a href="{link}">{creators}</a>{label}{attendant}{exclusive}</li>"""
+    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}">{source_icon}<a href="{link}">{creators}</a>{label}{attendant}</li>"""
 
 
 def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) -> str:

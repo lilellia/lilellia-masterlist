@@ -130,7 +130,11 @@ select, option {
     padding: 8px;
 }
 
-i.icon {
+i.icon-left {
+    margin-right: 4px;
+}
+
+i.icon-right {
     margin-left: 4px;
 }
 
