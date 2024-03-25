@@ -18,7 +18,7 @@ def html_header() -> str:
     <meta charset="utf-8">
     <title>lilellia's masterlist</title>
     <link href="static/css/main.css" rel="stylesheet">
-    <link href="static/css/series.css" rel="stylesheet">i
+    <link href="static/css/series.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d17f614691.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="static/js/filter.js"></script>
 </head>
