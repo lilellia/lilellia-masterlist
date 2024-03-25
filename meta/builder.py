@@ -1,4 +1,4 @@
-from enum import Enum, auto
+from enum import Enum
 import re
 from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
@@ -6,9 +6,9 @@ from typing import Iterable, Literal
 
 
 class FillSource(Enum):
-    YOUTUBE = "fa-brands fa-youtube"
-    SOUNDGASM = "fa-solid fa-headphones"
-    PATREON = "fa-brands fa-patreon"
+    YOUTUBE = ("fa-brands", "fa-youtube")
+    SOUNDGASM = ("fa-solid", "fa-headphones")
+    PATREON = ("fa-brands", "fa-patreon")
 
 
 def html_header() -> str:
@@ -147,21 +147,25 @@ def summarise_gender(audience: str) -> str:
     return gender
 
 
-def icon(fa_class: str, direction: Literal["left", "right"]) -> str:
+def icon(*fa_classes: str, direction: Literal["left", "right"]) -> str:
     """Create a font awesome icon."""
-    return f"""<i class="icon-{direction} {fa_class}"></i>"""
+    class_str = " ".join(fa_classes)
+    return f"""<i class="icon-{direction} {class_str}"></i>"""
 
 
 def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
     source, link = extract_fill_link(fill)
     label = f" [{fill.label}]" if fill.label else ""
-    source_icon = icon(source.value, direction="left")
+    source_icon = icon(*source.value, direction="left")
     attendant = (
-        icon("fa-solid fa-star", direction="right") if attendant_va and attendant_va in fill.creators else ""
+        icon("fa-solid", "fa-star", direction="right")
+        if attendant_va and attendant_va in fill.creators
+        else ""
     )
+    self_fill = icon("fa-solid", "fa-crown", direction="right") if "lilellia" in fill.creators else ""
 
     creators = ", ".join(fill.creators)
-    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}">{source_icon}<a href="{link}">{creators}</a>{label}{attendant}</li>"""
+    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}">{source_icon}<a href="{link}">{creators}</a>{label}{attendant}{self_fill}</li>"""
 
 
 def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) -> str:
