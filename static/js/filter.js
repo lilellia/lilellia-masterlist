@@ -72,7 +72,9 @@ function getSpeakers(scriptId) {
     // TF, TM, TA = transfem, transmasc, transany
     // F, M, A = fem, masc, any
     // NB = nonbinary
-    return speaker.matchAll(/TF|TM|TA|M|F|NB|A/g).toArray()
+    const matches = speaker.matchAll(/TF|TM|TA|M|F|NB|A/g)
+
+    return Array.from(matches);
 }
 
 
