@@ -360,8 +360,8 @@ def build_fills_page(scripts: list[Script]):
 
 def main():
     scripts = load_scripts()
-    # build_index(scripts)
-    build_fills_page(scripts)
+    build_index(scripts)
+    # build_fills_page(scripts)
 
 
 if __name__ == "__main__":
