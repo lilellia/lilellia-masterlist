@@ -2,13 +2,19 @@ from enum import Enum
 import re
 from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
-from typing import Iterable, Literal
+from typing import Any, Iterable, Literal
 
 
 class FillSource(Enum):
     YOUTUBE = ("fa-brands", "fa-youtube")
     SOUNDGASM = ("fa-solid", "fa-headphones")
     PATREON = ("fa-brands", "fa-patreon")
+
+
+
+def tagged(value: Any, tag: str) -> str:
+    """Enclose the value in the given tag."""
+    return f"<{tag}>{value}</{tag}>"
 
 
 def html_header() -> str:
@@ -275,13 +281,16 @@ def htmlify(script: Script) -> str:
 """
 
 
-def main():
+def load_scripts() -> list[Script]:
+    """Return a list of the scripts loaded from the file."""
     datafile = Path(__file__).parent.parent / "script-data.json"
     scripts = parse(datafile)
 
     # filter to only published scripts
-    scripts = [s for s in scripts if s.published is not None]
+    return [s for s in scripts if s.published is not None]
 
+
+def build_index(scripts: list[Script]):
     total_scripts = len(scripts)
     total_fills = sum(s.num_fills for s in scripts)
 
@@ -322,6 +331,37 @@ def main():
         f.write("""</div>""")
 
         f.write(html_closer())
+
+
+
+def build_fills_page(scripts: list[Script]):
+    fills: list[FillData] = []
+
+    for script in scripts:
+        fills.extend(script.fills)
+
+    # most recent fills at the head of the list
+    fills.sort(key=lambda f: f.date, reverse=True)
+
+    outpath = Path(__file__).parent.parent / "all-fills.html"
+    with open(outpath, "w", encoding="utf-8") as f:
+        f.write("<table>")
+        f.write("<tr><th>Date</th><th>Creators</th><th>Title<th></tr>")
+
+        for fill in fills:
+            date = tagged(fill.date.strftime("%d %B %Y"), tag="td")
+            creators = tagged(", ".join(fill.creators), tag="td")
+            title = tagged(fill.title, tag="td")
+            row = tagged(f"{date}{creators}{title}", tag="tr")
+            f.write(row)
+
+        f.write("</table>")
+
+
+def main():
+    scripts = load_scripts()
+    # build_index(scripts)
+    build_fills_page(scripts)
 
 
 if __name__ == "__main__":
