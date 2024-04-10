@@ -1,3 +1,4 @@
+from datetime import datetime
 from enum import Enum
 import re
 from parser import FillData, Script, SeriesData, WordCountData, parse
@@ -287,7 +288,7 @@ def load_scripts() -> list[Script]:
     scripts = parse(datafile)
 
     # filter to only published scripts
-    return [s for s in scripts if s.published is not None]
+    return [s for s in scripts if s.published is not None and s.published <= datetime.today()]
 
 
 def build_index(scripts: list[Script]):

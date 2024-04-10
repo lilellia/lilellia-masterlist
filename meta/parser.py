@@ -124,6 +124,11 @@ class Script:
         )
 
     @property
+    def speakers(self) -> tuple[str, ...]:
+        """Return a tuple of the speaker names in the script."""
+        return tuple(self.words.spoken.keys())
+
+    @property
     def spoken_words(self) -> int:
         """Return the total number of spoken words in the script."""
         return self.words.all_spoken
