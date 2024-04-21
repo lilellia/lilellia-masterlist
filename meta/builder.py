@@ -1,6 +1,7 @@
 from datetime import datetime
 from enum import Enum
 import re
+from operator import attrgetter
 from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
 from typing import Any, Iterable, Literal
@@ -64,7 +65,7 @@ def html_filter_section(
     audience = "\n".join(f"""\t\t\t<option value="{tag}">{tag}</option>""" for tag in sorted(audience_tags))
     filled_by = "\n".join(
         f"""\t\t\t<option value="{name}">{name}</option>"""
-        for name in sorted(filled_by, key=lambda va: va.lower())  # make sort case-insensitive
+        for name in sorted(filled_by, key=str.lower)  # make sort case-insensitive
     )
 
     return f"""\
@@ -342,7 +343,7 @@ def build_fills_page(scripts: list[Script]):
         fills.extend(script.fills)
 
     # most recent fills at the head of the list
-    fills.sort(key=lambda f: f.date, reverse=True)
+    fills.sort(key=attrgetter("date"), reverse=True)
 
     outpath = Path(__file__).parent.parent / "all-fills.html"
     with open(outpath, "w", encoding="utf-8") as f:
