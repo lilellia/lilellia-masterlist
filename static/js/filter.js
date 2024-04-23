@@ -152,7 +152,7 @@ function matchesSeries(target, actual) {
 }
 
 
-function filterScripts() {
+export function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
     const seriesFilter = document.getElementById("seriesFilter").value;
     const audienceTagFilter = document.getElementById("audienceTagFilter").value;

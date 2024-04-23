@@ -199,7 +199,8 @@ def htmlify_series_data(series: SeriesData | None) -> str:
 
     return f"""\
         <ul class="script-tags">
-            <li class="script-tag series-tag {class_}">Series: <span class="series-title">{series.title}</span> (Part <span class="series-index">{series.index}</span>)</li>
+            <li class="script-tag series-tag {class_}">
+            Series: <span class="series-title">{series.title}</span> (Part <span class="series-index">{series.index}</span>)</li>
         </ul>
 """
 
