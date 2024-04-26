@@ -78,20 +78,33 @@
         "total": 4260
       },
       "finished": "2024-04-15",
-      "published": null,
+      "published": "2024-04-26",
       "links": {
         "script": {
           "scriptbin": "https://scriptbin.works/s/wfe5h",
           "Google Docs": "https://docs.google.com/document/d/13g2cKE1fgzIC2Zng6R2bBEFjqCyvAOXCZoaniWtZnBk/edit?usp=sharing"
         },
         "post": {
-          "r/ASMRScriptHaven": null,
-          "r/talkingtalltales": null,
-          "r/pillowtalkaudio": null
+          "r/ASMRScriptHaven": "https://new.reddit.com/r/ASMRScriptHaven/comments/1cdw2et/ff4a_yandere_megadere_fight_over_you_yandere/",
+          "r/talkingtalltales": "https://new.reddit.com/r/talkingtalltales/comments/1cdw3pe/ff4a_yandere_megadere_fight_over_you_yandere/"
         }
       },
       "attendant VA": "YoruBunn",
-      "fills": []
+      "fills": [
+        {
+          "creators": [
+            "YoruBunn",
+            "lilellia"
+          ],
+          "title": "Yandere & Megadere Fight Over You ♥ Ft. @lilellia ♥ FF4A ASMR RP",
+          "audience": "FF4A",
+          "links": {
+            "YouTube": "https://www.youtube.com/watch?v=_XZVbBFaHxg"
+          },
+          "duration": "23m56s",
+          "date": "2024-04-25"
+        }
+      ]
     },
     {
       "title": "Alchemist Friend Helps You Get Over a Crush",
