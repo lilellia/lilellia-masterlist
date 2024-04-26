@@ -289,7 +289,8 @@ def load_scripts() -> list[Script]:
     scripts = parse(datafile)
 
     # filter to only published scripts
-    return [s for s in scripts if s.published is not None and s.published <= datetime.today()]
+    scripts = [s for s in scripts if s.published is not None and s.published <= datetime.today()]
+    return sorted(scripts, key=attrgetter("published"), reverse=True)
 
 
 def build_index(scripts: list[Script]):
