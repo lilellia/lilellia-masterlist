@@ -6,6 +6,8 @@ from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
 from typing import Any, Iterable, Literal
 
+# a set containing tags that designate the script as NSFW
+NSFW_TAGS = {"18+", "nsfw", "r18"}
 
 class FillSource(Enum):
     YOUTUBE = ("fa-brands", "fa-youtube")
@@ -29,6 +31,16 @@ def html_header() -> str:
     <link href="static/css/series.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d17f614691.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="static/js/filter.js"></script>
+    <script>
+        window.onload = function() {{
+            for(const element of document.getElementsByClassName("blurred")) {{
+                console.log(element);
+                element.onclick = function() {{
+                    element.classList.remove("blurred");
+                }}
+            }}
+        }};
+    </script>
 </head>
 <body>
     <h1>lilellia's masterlist</h1>
@@ -46,6 +58,11 @@ def html_header() -> str:
             <li class="terms-of-use"><b>Editing:</b> Small changes to the scripts are okay, but please ask before making any major line changes, additions, deletions, gender swaps, etc. Vocal cues and sound effects are suggestions, so feel free to be creative with those!</li>
             <li class="terms-of-use"><b>Other notes:</b> I find it easier to write the listener's dialogue rather than keep track of half of a conversation, so their lines are given for context but aren't meant to be voiced. The word counts given only include the spoken text.</li>
         </ul>
+
+        <div>
+            <p class="butterfly">∼ ʚїɞ ∼</p>
+            <p>NSFW scripts are blurred. Click them to reveal the contents.</p>
+        </div>
     </div>
 """
 
@@ -207,11 +224,15 @@ def htmlify_series_data(series: SeriesData | None) -> str:
 def script_tag_classes(tag: str) -> str:
     classes = ["script-tag"]
 
-    nsfw_tags = ["18+", "nsfw", "r18"]
-    if tag in nsfw_tags:
+    if tag in NSFW_TAGS:
         classes.append("nsfw-tag")
 
     return " ".join(classes)
+
+
+def is_nsfw(script: Script) -> bool:
+    """Determine whether this script is marked as NSFW"""
+    return any(tag in NSFW_TAGS for tag in script.tags)
 
 
 def serialise(text: str) -> str:
@@ -256,8 +277,9 @@ def htmlify(script: Script) -> str:
 
     summary = "\n".join(f"\t\t\t<p>{par}</p>" for par in script.summary.splitlines())
 
+    additional_class = " blurred" if is_nsfw(script) else ""
     return f"""\
-    <div class="container script-data" id={serialise(script.title)}>
+    <div class="container script-data{additional_class}" id={serialise(script.title)}>
         <p class="script-title">{script.title}</p>
 
         <ul class="script-tags">

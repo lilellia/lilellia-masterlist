@@ -6,6 +6,16 @@
     <link href="static/css/series.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/d17f614691.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="static/js/filter.js"></script>
+    <script>
+        window.onload = function() {
+            for(const element of document.getElementsByClassName("blurred")) {
+                console.log(element);
+                element.onclick = function() {
+                    element.classList.remove("blurred");
+                }
+            }
+        };
+    </script>
 </head>
 <body>
     <h1>lilellia's masterlist</h1>
@@ -23,6 +33,11 @@
             <li class="terms-of-use"><b>Editing:</b> Small changes to the scripts are okay, but please ask before making any major line changes, additions, deletions, gender swaps, etc. Vocal cues and sound effects are suggestions, so feel free to be creative with those!</li>
             <li class="terms-of-use"><b>Other notes:</b> I find it easier to write the listener's dialogue rather than keep track of half of a conversation, so their lines are given for context but aren't meant to be voiced. The word counts given only include the spoken text.</li>
         </ul>
+
+        <div>
+            <p class="butterfly">∼ ʚїɞ ∼</p>
+            <p>NSFW scripts are blurred. Click them to reveal the contents.</p>
+        </div>
     </div>
     <div class="search-and-filter">
         <p><span id="numScripts">43</span>/43 scripts・<span id="numFills">61</span>/61 fills</p>
@@ -552,7 +567,7 @@
 
 
     </div>
-    <div class="container script-data" id=pleasuring-thine-injured-princess>
+    <div class="container script-data blurred" id=pleasuring-thine-injured-princess>
         <p class="script-title">Pleasuring Thine Injured Princess</p>
 
         <ul class="script-tags">
@@ -1707,6 +1722,7 @@
 			<li class="script-link"><a href="https://docs.google.com/document/d/1uu8fG4z3KXOKTzl2eOsfWN1OZ0PRgokut_IJaZc5rl4/edit">Google Docs</a></li>
 			<li class="post-link"><a href="https://www.reddit.com/user/lilellia/comments/17fvvyl/f4tf_coming_out_to_your_owner_as_trans_neko/">r/ASMRScriptHaven</a></li>
 			<li class="post-link"><a href="https://www.reddit.com/r/GWASapphic/comments/1auswmk/f4tf_neko_girl_comes_out_as_trans_script_offer_2/">r/pillowtalkaudio</a></li>
+			<li class="post-link"><a href="https://www.reddit.com/r/GWASapphic/comments/1auswmk/f4tf_neko_girl_comes_out_as_trans_script_offer_2/">r/GWASapphic</a></li>
         </ul>
 
         <div class="fill-summary">
