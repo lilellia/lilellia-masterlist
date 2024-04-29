@@ -25,6 +25,9 @@
     --audience-f4a-background: #c05adc;
     --audience-m4a-background: #2626ad;
     --audience-a4a-background: seagreen;
+
+    /* amount of the blur on the NSFW scripts */
+    --nsfw-blur-range: 5px;
 }
 
 body {
@@ -71,11 +74,11 @@ div.container {
 
 
 .blurred {
-    -webkit-filter: blur(4px);
-    -moz-filter: blur(4px);
-    -o-filter: blur(4px);
-    -ms-filter: blur(4px);
-    filter: blur(4px); 
+    -webkit-filter: blur(var(--nsfw-blur-range));
+    -moz-filter: blur(var(--nsfw-blur-range));
+    -o-filter: blur(var(--nsfw-blur-range));
+    -ms-filter: blur(var(--nsfw-blur-range));
+    filter: blur(var(--nsfw-blur-range)); 
 }
 
 
