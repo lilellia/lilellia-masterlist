@@ -128,6 +128,7 @@ input#filterInput {
 
 table {
     padding: 10px 40px;
+    border-collapse: collapse;
 }
 
 td {
@@ -231,3 +232,4 @@ li.audience-tag.a4a {
 li.audience-tag.fa4a {
     background: var(--audience-a4a-background);
 }
+

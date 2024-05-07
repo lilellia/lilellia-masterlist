@@ -1,5 +1,6 @@
 from datetime import datetime
 from enum import Enum
+from io import StringIO
 import re
 from operator import attrgetter
 from parser import FillData, Script, SeriesData, WordCountData, parse
@@ -34,14 +35,16 @@ def html_header() -> str:
     <script>
         window.onload = function() {{
             for(const element of document.getElementsByClassName("blurred")) {{
-                console.log(element);
                 element.onclick = function() {{
                     element.classList.remove("blurred");
                 }}
             }}
         }};
     </script>
-</head>
+</head>"""
+        
+def introduction() -> str:
+    return """\
 <body>
     <h1>lilellia's masterlist</h1>
 
@@ -315,6 +318,22 @@ def load_scripts() -> list[Script]:
     return sorted(scripts, key=attrgetter("published"), reverse=True)
 
 
+def scripts_tab(scripts: list[Script]) -> str:
+    """Create the scripts tab"""
+    s = StringIO()
+
+    s.write("""<div id="_scripts" class="all-scripts tabcontent">""")
+    for script in scripts:
+        if script.published is None:
+            # skip any scripts which aren't published
+            continue
+
+        s.write(htmlify(script))
+    s.write("""</div>""")
+
+    return s.getvalue()
+
+
 def build_index(scripts: list[Script]):
     total_scripts = len(scripts)
     total_fills = sum(s.num_fills for s in scripts)
@@ -344,49 +363,69 @@ def build_index(scripts: list[Script]):
     outpath = Path(__file__).parent.parent / "index.html"
     with open(outpath, "w", encoding="utf-8") as f:
         f.write(html_header())
+        f.write(introduction())
         f.write(filter_section)
 
-        f.write("""<div class="all-scripts">""")
-        for script in scripts:
-            if script.published is None:
-                # skip any scripts which aren't published!
-                continue
+#         f.write("""\
+#     <div class="tab">
+#         <button class="tablink" onclick="openTab(event, '_scripts');">Scripts</button>
+#         <button class="tablink" onclick="openTab(event, '_audios');">Audios</button>
+#         <button class="tablink" onclick="openTab(event, '_filldata');">Fill Data</button>
+#     </div>
+# """)
 
-            f.write(htmlify(script))
-        f.write("""</div>""")
+        f.write(scripts_tab(scripts))
 
         f.write(html_closer())
 
 
-
-def build_fills_page(scripts: list[Script]):
+def build_fills_page(scripts: list[Script]) -> None:
     fills: list[FillData] = []
-
     for script in scripts:
         fills.extend(script.fills)
+    
+    s = StringIO()
 
-    # most recent fills at the head of the list
-    fills.sort(key=attrgetter("date"), reverse=True)
+    s.write(html_header())
+    s.write("""<table>""")
+    s.write("""\
+    <tr>
+        <th></th>
+        <th>Date</th>
+        <th>Script</th>
+        <th>Creators</th>
+        <th>Link</th>
+    </tr>
+ """)
 
+    for i, fill in enumerate(fills, start=1):
+        date = fill.date.strftime("%d %b %Y") if fill.date else ""
+        creators = ", ".join(fill.creators)
+        _, link = extract_fill_link(fill)
+        
+        
+        s.write(f"""\
+    <tr>
+        <td>{i:,}</td>
+        <td>{date}</td>
+        <td>---</td>
+        <td>{creators}</td>
+        <td><a href="{link}">{fill.title}</a></td>
+""")
+
+    s.write("""</table>""")
+
+    
     outpath = Path(__file__).parent.parent / "all-fills.html"
     with open(outpath, "w", encoding="utf-8") as f:
-        f.write("<table>")
-        f.write("<tr><th>Date</th><th>Creators</th><th>Title<th></tr>")
+        f.write(s.getvalue())
 
-        for fill in fills:
-            date = tagged(fill.date.strftime("%d %B %Y"), tag="td")
-            creators = tagged(", ".join(fill.creators), tag="td")
-            title = tagged(fill.title, tag="td")
-            row = tagged(f"{date}{creators}{title}", tag="tr")
-            f.write(row)
-
-        f.write("</table>")
 
 
 def main():
     scripts = load_scripts()
     build_index(scripts)
-    # build_fills_page(scripts)
+    build_fills_page(scripts)
 
 
 if __name__ == "__main__":
