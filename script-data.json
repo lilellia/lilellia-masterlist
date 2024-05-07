@@ -197,6 +197,18 @@
       "fills": [
         {
           "creators": [
+            "Asaki Valentine"
+          ],
+          "title": "[F4A] Taking a Nap with a Professional Cuddler [neko speaker] [human listener] [platonic] [cuddling] [consent] [comfort] [purring] [wholesome]",
+          "audience": "F4A",
+          "links": {
+            "Patreon": "https://www.patreon.com/posts/pt-1-f4a-taking-103717871"
+          },
+          "duration": "15m36s",
+          "date": "2024-05-05"
+        },
+        {
+          "creators": [
             "LadyScrubAudio"
           ],
           "title": "[F4A] Audio RP • Taking a Nap with a Professional Cuddler",
@@ -886,6 +898,18 @@
       },
       "attendant VA": "Apollo VA",
       "fills": [
+        {
+          "creators": [
+            "Asaki Valentine"
+          ],
+          "title": "[F4A] Saved from the Cold by a Gentle Stranger [rabbitfolk listener] [stray listener] [human speaker] [comfort] [wholesome] [strangers to friends] [platonic]",
+          "audience": "F4A",
+          "links": {
+            "Patreon": "https://www.patreon.com/posts/f4a-saved-from-103718016"
+          },
+          "duration": "13m53s",
+          "date": "2024-05-05"
+        },
         {
           "creators": [
             "Apollo VA"
@@ -2468,6 +2492,45 @@
           "date": "2023-04-10"
         }
       ]
+    }
+  ],
+  "audios": [
+    {
+      "creators": [
+        "lilellia"
+      ],
+      "title": "[F4F] Playful Fairy Flirts with You (...but is flustered the whole time) [fairy speaker] [water nymph speaker] [strangers to more] [flowers] [playful] [kissing] [meet cute]",
+      "audience": "F4F",
+      "links": {
+        "YouTube": "https://youtu.be/-z6Yf_ZIkTg",
+        "soundgasm": "https://soundgasm.net/u/lilellia/F4F-Playful-Fairy-Flirts-with-You-but-is-flustered-the-whole-time-fairy-speaker-water-nymph-speaker-strangers-to-more-flowers-playful-kissing-meet-cute",
+        "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1ciyp1j/f4f_playful_fairy_flirts_with_you_but_is/?utm_source=share&utm_medium=web2x&context=3"
+      },
+      "duration": "8m38s",
+      "date": "2024-05-02",
+      "script": {
+        "title": "Playful Fairy Flirts With You (But Is Flustered The Whole Time)",
+        "author": "u/softlikestatic",
+        "link": "https://new.reddit.com/r/ASMRScriptHaven/comments/utlp4c/f4f_playful_fairy_flirts_with_you_but_is/"
+      }
+    },
+    {
+      "creators": [
+        "lilellia"
+      ],
+      "title": "[F4A] Taking Care of an Abandoned Neko",
+      "audience": "F4A",
+      "links": {
+        "YouTube": "https://www.youtube.com/watch?v=mjFaNE-n7-U",
+        "soundgasm": "https://soundgasm.net/u/lilellia/SFW-F4A-Taking-Care-of-an-Abandoned-Neko-Script-Fill-Neko-Listener-Pampering-Cuddling-Cute-Wholesome"
+      },
+      "duration": "11m38s",
+      "date": "2023-12-25",
+      "script": {
+        "title": "Taking care of an abandoned Neko.",
+        "author": "u/rydikar1",
+        "link": "https://new.reddit.com/r/ASMRScriptHaven/comments/18fegrs/asmr_rp_a4a_taking_care_of_an_abandoned_neko_neko/"
+      }
     }
   ]
 }
