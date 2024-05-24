@@ -383,7 +383,8 @@ def build_fills_page(scripts: list[Script]) -> None:
     fills: list[FillData] = []
     for script in scripts:
         fills.extend(script.fills)
-    
+
+    fills.sort(key=lambda fill: fill.date)
     s = StringIO()
 
     s.write(html_header())

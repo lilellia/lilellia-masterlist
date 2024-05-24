@@ -444,7 +444,21 @@
         }
       },
       "attendant VA": null,
-      "fills": []
+      "fills": [
+        {
+          "creators": [
+            "Talia Wolf Audios",
+            "lilellia"
+          ],
+          "title": "Unlocking Your Potential [FF4F][Magical girl &Goddess Speakers][Fantasy][Magic Lesson][Lore heavy]",
+          "audience": "FF4F",
+          "links": {
+            "YouTube": "https://www.youtube.com/watch?v=sqzxAt5LbT8"
+          },
+          "duration": "24m25s",
+          "date": "2024-05-23"
+        }
+      ]
     },
     {
       "title": "Girlfriend Takes Care of You While You're Sick",
