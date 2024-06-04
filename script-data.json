@@ -1,6 +1,51 @@
 {
   "scripts": [
     {
+      "title": "Automata Deserve Humanity Too",
+      "audience": [
+        "A4A",
+        "F4A",
+        "M4A"
+      ],
+      "tags": [
+        "automaton listener",
+        "overworked listener",
+        "human speaker",
+        "noble speaker",
+        "stern but gentle",
+        "forced relaxation",
+        "comfort",
+        "platonic",
+        "lore"
+      ],
+      "series": {
+        "title": "Automata Deserve Things Too",
+        "index": 2
+      },
+      "summary": "You're a Class I automaton who takes immense pride in your work, even more than most. It's what you were built for: your purpose is to be useful. But yesterday, you were approached at the Recommission Centre by a noble who disagrees and is concerned that you are incredibly overworked. They hire you for a rather unusual job with the distinct purpose of giving you time off. You're initially resistant to the idea, but you also don't really have a choice. Today's your first day... \"on the job?\"",
+      "words": {
+        "spoken": {
+          "Kalani": 2400
+        },
+        "total": 3659
+      },
+      "finished": "2024-06-03",
+      "published": "2024-06-03",
+      "links": {
+        "script": {
+          "scriptbin": "https://scriptbin.works/s/y522v",
+          "Google Docs": "https://docs.google.com/document/d/1hkJu6fIjg31QbOrgZ6YQtKDU3PxJAFGeBuLYHo9VJbI/edit?usp=sharing"
+        },
+        "post": {
+          "r/ASMRScriptHaven": "https://new.reddit.com/r/ASMRScriptHaven/comments/1d7mdy3/a4a_automata_deserve_humanity_too_part_ii/",
+          "r/pillowtalkaudio": "https://new.reddit.com/r/pillowtalkaudio/comments/1d7memc/a4a_automata_deserve_humanity_too_part_ii/",
+          "r/talkingtalltales": "https://new.reddit.com/r/talkingtalltales/comments/1d7mfkt/a4a_automata_deserve_humanity_too_part_ii/"
+        }
+      },
+      "attendant VA": null,
+      "fills": []
+    },
+    {
       "title": "Cuddlefucking with Your Mistress",
       "audience": [
         "F4F"
