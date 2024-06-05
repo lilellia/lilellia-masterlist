@@ -2444,7 +2444,10 @@
         "overworked listener",
         "platonic"
       ],
-      "series": null,
+      "series": {
+        "title": "Automata Deserve Things Too",
+        "index": 1
+      },
       "summary": "After the completion of your previous contract, you've been put in the Recommission Centre (a housing center for uncontracted automata), waiting for your next contract. As an automaton, even more than most, you consider your job to be of the utmost importance. It's what you were built for, after all. Your purpose is to be useful. Your new master, however, disagrees—and they intend to convince you.",
       "words": {
         "spoken": {
