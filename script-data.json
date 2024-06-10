@@ -995,16 +995,34 @@
         "total": 2566
       },
       "finished": "2023-12-20",
-      "published": null,
+      "published": "2024-06-10",
       "links": {
         "script": {
           "scriptbin": "https://scriptbin.works/s/3nf8t",
           "Google Docs": "https://docs.google.com/document/u/0/d/1y1gFCqRSoh8SvdGOyjkXFwFsdOdL9f1E2GnHYiR2q_Y/edit"
         },
-        "post": null
+        "post": {
+          "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1dcqanm/fa4a_coming_home_to_your_partners_after_a/",
+          "r/pillowtalkaudio": "https://www.reddit.com/r/pillowtalkaudio/comments/1dcqbqc/fa4a_coming_home_to_your_partners_after_a/",
+          "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1dcqcbs/fa4a_coming_home_to_your_partners_after_a/"
+        }
       },
       "attendant VA": "Apollo VA",
-      "fills": []
+      "fills": [
+        {
+          "creators": [
+            "Apollo VA",
+            "King Kiri Random Stuff"
+          ],
+          "title": "[FF4A] Coming Home To Your Partners After A Business Trip ft. @KingKiriRandomStuff [poly] [cuddles]",
+          "audience": "FF4A",
+          "links": {
+            "YouTube": "https://youtu.be/8mhwuwHQ62s"
+          },
+          "duration": "11m40s",
+          "date": "2024-06-10"
+        }
+      ]
     },
     {
       "title": "Saved from the Cold by a Gentle Stranger",
