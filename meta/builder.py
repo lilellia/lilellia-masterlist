@@ -34,6 +34,7 @@ def html_header() -> str:
     <title>lilellia's masterlist</title>
     <link href="static/css/main.css" rel="stylesheet">
     <link href="static/css/series.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.png">
     <script src="https://kit.fontawesome.com/d17f614691.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="static/js/filter.js"></script>
     <script>
