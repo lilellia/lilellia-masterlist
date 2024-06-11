@@ -62,7 +62,7 @@ a {
 div.all-scripts {
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
@@ -70,6 +70,7 @@ div.container {
     padding: 10px 20px;
     border-radius: 20px;
     border: 1px solid var(--font-color);
+    margin: 0 10px;
 }
 
 
