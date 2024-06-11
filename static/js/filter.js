@@ -55,10 +55,12 @@ function getFilledBy(scriptId) {
 
     let filledBy = [];
     for (const e of ul.querySelectorAll("li")) {
-        filledBy.push(e.querySelector("a").textContent);
+        const text = e.querySelector("a").textContent;  // "VA1, VA2, VA3"
+        const voices = text.split(", "); // ["VA1", "VA2", "VA3"]
+        filledBy.push(voices);
     }
 
-    return filledBy;
+    return filledBy; // [["VA1", "VA2"], ["VA3", "VA4"]]
 }
 
 
@@ -152,6 +154,17 @@ function matchesSeries(target, actual) {
 }
 
 
+function isVoicedBy(scriptData, targetVA) {
+    for (const voices of scriptData["filledBy"]) {
+        if (voices.includes(targetVA)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
 function filterScripts() {
     const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
     const seriesFilter = document.getElementById("seriesFilter").value;
@@ -187,7 +200,7 @@ function filterScripts() {
             continue;
         }
 
-        if (filledByFilter !== "" && !data["filledBy"].includes(filledByFilter)) {
+        if (filledByFilter !== "" && !isVoicedBy(data, filledByFilter)) { 
             element.style.display = "none";
             continue;
         }
