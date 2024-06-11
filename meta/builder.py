@@ -1,5 +1,4 @@
 from datetime import datetime
-from enum import Enum
 from io import StringIO
 import re
 from operator import attrgetter
@@ -10,10 +9,15 @@ from typing import Any, Iterable, Literal
 # a set containing tags that designate the script as NSFW
 NSFW_TAGS = {"18+", "nsfw", "r18"}
 
-class FillSource(Enum):
-    YOUTUBE = ("fa-brands", "fa-youtube")
-    SOUNDGASM = ("fa-solid", "fa-headphones")
-    PATREON = ("fa-brands", "fa-patreon")
+
+LINK_ICONS = {
+    "YouTube": ("fa-brands", "fa-youtube"),
+    "soundgasm": ("fa-solid", "fa-headphones"),
+    "Patreon": ("fa-brands", "fa-patreon"),
+    "Reddit": ("fa-brands", "fa-reddit-alien"),
+    "Google Docs": ("fa-brands", "fa-google-drive"),
+    "scriptbin": ("fa-solid", "fa-file-lines")
+}
 
 
 
@@ -151,15 +155,15 @@ def html_closer() -> str:
 """
 
 
-def extract_fill_link(fill: FillData) -> tuple[FillSource, str]:
+def extract_priority_fill_link(fill: FillData) -> str:
     if link := fill.links.get("YouTube"):
-        return FillSource.YOUTUBE, link
+        return link
 
     if link := fill.links.get("soundgasm"):
-        return FillSource.SOUNDGASM, link
+        return link
 
     if link := fill.links.get("Patreon"):
-        return FillSource.PATREON, link
+        return link
 
     raise ValueError(f"could not find link for fill: {fill.title}")
 
@@ -182,9 +186,8 @@ def icon(*fa_classes: str, direction: Literal["left", "right"]) -> str:
 
 
 def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
-    source, link = extract_fill_link(fill)
+    priority_link = extract_priority_fill_link(fill)
     label = f" [{fill.label}]" if fill.label else ""
-    source_icon = icon(*source.value, direction="left")
     attendant = (
         icon("fa-solid", "fa-star", direction="right")
         if attendant_va and attendant_va in fill.creators
@@ -193,7 +196,10 @@ def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
     self_fill = icon("fa-solid", "fa-crown", direction="right") if "lilellia" in fill.creators else ""
 
     creators = ", ".join(fill.creators)
-    return f"""\t\t\t\t<li class="fill-{summarise_gender(fill.audience)}">{source_icon}<a href="{link}">{creators}</a>{label}{attendant}{self_fill}</li>"""
+
+    tag_class = f"fill-{summarise_gender(fill.audience)}"
+    tag_label = f"""<a href="{priority_link}">{creators}</a>{label}{attendant}{self_fill}"""
+    return links_to_tag(fill.links, tag_class=tag_class, tag_label=tag_label)
 
 
 def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) -> str:
@@ -203,7 +209,7 @@ def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) ->
     fill_tags = "\n".join(htmlify_fill(f, attendant_va=attendant_va) for f in fills)
     return f"""\
         <div class="fill-summary">
-            <b>Fills (<span class="fill-count">{len(fills)}</span>):</b>
+            <p><b>Fills (<span class="fill-count">{len(fills)}</span>):</b></p>
             <ul class="script-fills">
 {fill_tags}
             </ul>
@@ -257,6 +263,29 @@ def htmlify_wordcount(words: WordCountData) -> str:
     return f"""\t\t\t<li class="script-tag meta-tag">{content} words</li>"""
 
 
+def links_to_tag(links: dict[str, str], tag_class: str, tag_label: str) -> str:
+    """Convert a dict of {label: href} to a tooltip list of <a> tags"""
+    def get_icon_classes(label: str) -> tuple[str, ...]:
+        if label.startswith("r/"):
+            return LINK_ICONS["Reddit"]
+
+        return LINK_ICONS.get(label, ("",))
+
+    lis = [f"""<li>{icon(*get_icon_classes(label), direction="left")} <a href="{href}">{label}</a></li>""" for label, href in links.items()]
+    li_string = "\n".join(lis)
+    return f"""
+    <li class="{tag_class}">
+		<div class="tooltip">
+		    {tag_label}
+			<div class="tooltiptext">
+				<ul>
+					{li_string}
+				</ul>
+			</div>
+		</div>
+	</li>
+"""
+
 def htmlify(script: Script) -> str:
     # handle all the "content" tags
     assert script.published is not None
@@ -267,22 +296,14 @@ def htmlify(script: Script) -> str:
     )
     tags = "\n".join(f"""\t\t\t<li class="{script_tag_classes(tag)}">{tag}</li>""" for tag in script.tags)
 
-    # handle links
-    script_links = "\n".join(
-        f"""\t\t\t<li class="script-link"><a href="{href}">{label}</a></li>"""
-        for label, href in script.links.script.items()
-    )
-
-    post_links = "\n".join(
-        f"""\t\t\t<li class="post-link"><a href="{href}">{re.sub(r"^r_", "r/", label)}</a></li>"""
-        for label, href in script.links.post.items()
-    )
-
     summary = "\n".join(f"\t\t\t<p>{par}</p>" for par in script.summary.splitlines())
 
-    additional_class = " blurred" if is_nsfw(script) else ""
+    classes = ["container", "script-data"]
+    if is_nsfw(script):
+        classes.append("blurred")
+
     return f"""\
-    <div class="container script-data{additional_class}" id={serialise(script.title)}>
+    <div class="{' '.join(classes)}" id={serialise(script.title)}>
         <p class="script-title">{script.title}</p>
 
         <ul class="script-tags">
@@ -290,18 +311,15 @@ def htmlify(script: Script) -> str:
 {audience_tag}
 {tags}
 {htmlify_wordcount(script.words)}
-        </ul>
+{links_to_tag(script.links.script, tag_class="link-tag", tag_label="script links")}
+{links_to_tag(script.links.post, tag_class="link-tag", tag_label="post links")}
+</ul>
 
 {htmlify_series_data(script.series)}
 
         <blockquote class="script-summary">
 {summary}
         </blockquote>
-        
-        <ul class="script-links">
-{script_links}
-{post_links}
-        </ul>
 
 {htmlify_fills_summary(script.fills, attendant_va=script.attendant_va)}
     </div>
@@ -402,7 +420,7 @@ def build_fills_page(scripts: list[Script]) -> None:
     for i, fill in enumerate(fills, start=1):
         date = fill.date.strftime("%d %b %Y") if fill.date else ""
         creators = ", ".join(fill.creators)
-        _, link = extract_fill_link(fill)
+        link = extract_priority_fill_link(fill)
         
         
         s.write(f"""\

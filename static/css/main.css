@@ -12,8 +12,8 @@
     --meta-tag-background: slategrey;
     --series-tag-background: darkslategrey;
 
-    --script-link-background: darkslategrey;
-    --post-link-background: darkslategrey;
+    --script-link-background: slategrey;
+    --post-link-background: slategrey;
 
     /* fill speaker colours */
     --fill-female-background: #c05adc;
@@ -93,7 +93,8 @@ blockquote.script-summary {
 
 ul {
     list-style-type: none;
-    overflow: hidden;
+    display: inline-block;
+    margin: 0px;
 }
 
 li {
@@ -168,13 +169,11 @@ li.script-tag.series-tag {
     background: var(--series-tag-background);
 }
 
-li.script-link {
+li.link-tag {
     background: var(--script-link-background);
+    border: 2px solid var(--font-color);
 }
 
-li.post-link {
-    background: var(--post-link-background);
-}
 
 
 /* fill speaker tags */
@@ -233,3 +232,33 @@ li.audience-tag.fa4a {
     background: var(--audience-a4a-background);
 }
 
+/* tooltips */
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted var(--font-color);
+    overflow: visible;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: var(--meta-tag-background);
+    color: var(--font-color);
+    text-align: center;
+    padding: 2px 8px;
+    border: 1px solid white;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltiptext > ul {
+    padding: 8px 0;
+    white-space: nowrap;
+}
