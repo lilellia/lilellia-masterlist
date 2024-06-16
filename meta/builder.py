@@ -246,7 +246,7 @@ def is_nsfw(script: Script) -> bool:
 
 
 def serialise(text: str) -> str:
-    return text.lower().replace(" ", "-").replace("'", "").replace('"', "")
+    return text.lower().replace("∼", "-").replace(" ", "-").replace("'", "").replace('"', "").replace("&", "and")
 
 
 def htmlify_wordcount(words: WordCountData) -> str:

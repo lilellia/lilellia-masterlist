@@ -1,6 +1,50 @@
 {
   "scripts": [
     {
+      "title": "Helping Your Dandere Neko and Bakadere Inu Become Friends",
+      "audience": [
+        "FF4A"
+      ],
+      "tags": [
+        "neko speaker",
+        "dandere speaker",
+        "inu speaker",
+        "bakadere speaker",
+        "human listener",
+        "cute",
+        "wholesome",
+        "strangers to friends"
+      ],
+      "series": {
+        "title": "∼ neko & inu ∼",
+        "index": 1
+      },
+      "summary": "[Collaborative script with <a href=\"https://new.reddit.com/user/LaikaVT\">u/LaikaVT</a>]\nYou live with your inu companion, but after some consideration, you figure it's time to adopt another kemonomimi. So, today, you're bringing a neko girl home from the shelter. She seems sweet, but timid, and while she's happy to be adopted from the shelter after being there most of her life, she's also nervous—and your very affectionate inu is a bit much for her at first. But you're sure that with a bit of mediation between them, they'll end up being good friends.",
+      "words": {
+        "spoken": {
+          "Shizuka": 1014,
+          "Hibiki": 1014
+        },
+        "total": 3272
+      },
+      "finished": "2024-06-15",
+      "published": "2024-06-16",
+      "links": {
+        "script": {
+          "scriptbin": "https://scriptbin.works/s/fjxxw",
+          "Google Docs": "https://docs.google.com/document/d/1wJYtBgxwv2fTaGrEQUfCOtzxJl7TcMKowMtRqs9vW1M/edit?usp=sharing"
+        },
+        "post": {
+          "r/ASMRScriptHaven": "https://new.reddit.com/r/ASMRScriptHaven/comments/1dhe88p/ff4a_helping_your_dandere_neko_and_bakadere_inu/",
+          "r/talkingtalltales": "https://new.reddit.com/r/talkingtalltales/comments/1dhe7g4/ff4a_helping_your_dandere_neko_and_bakadere_inu/"
+        }
+      },
+      "attendant VA": [
+        "LaikaVT"
+      ],
+      "fills": []
+    },
+    {
       "title": "Owner Does Your Make-Up For the First Time",
       "audience": [
         "F4TF"
