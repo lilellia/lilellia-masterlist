@@ -178,59 +178,63 @@ li.link-tag {
 
 
 /* fill speaker tags */
-ul.script-fills > li.fill-male {
+.fill-male {
     background: var(--fill-male-background);
 }
 
-ul.script-fills > li.fill-female {
+.fill-female {
     background: var(--fill-female-background);
 }
 
-ul.script-fills > li.fill-neutral {
+.fill-neutral {
     background: var(--fill-neutral-background);
 }
 
 
 /* audience tags */
 
-li.audience-tag.f4f {
+.audience-tag.f4f {
     background: var(--audience-f4f-background);
 }
 
-li.audience-tag.f4tf {
+.audience-tag.f4tf {
     background: var(--audience-f4f-background);
 }
 
-li.audience-tag.f4a {
+.audience-tag.f4a {
     background: var(--audience-f4a-background);
 }
 
-li.audience-tag.ff4a {
+.audience-tag.ff4a {
     background: var(--audience-f4a-background);
 }
 
-li.audience-tag.ff4f {
+.audience-tag.ff4f {
     background: var(--audience-f4a-background);
 }
 
-li.audience-tag.fff4a {
+.audience-tag.fff4a {
     background: var(--audience-f4a-background);
 }
 
-li.audience-tag.fff4f {
+.audience-tag.fff4f {
     background: var(--audience-f4a-background);
 }
 
-li.audience-tag.m4a {
+.audience-tag.m4a {
     background: var(--audience-m4a-background);
 }
 
-li.audience-tag.a4a {
+.audience-tag.a4a {
     background: var(--audience-a4a-background);
 }
 
-li.audience-tag.fa4a {
+.audience-tag.fa4a {
     background: var(--audience-a4a-background);
+}
+
+.audience-tag.nb4a {
+    background: var(--fill-neutral-background);
 }
 
 /* tooltips */

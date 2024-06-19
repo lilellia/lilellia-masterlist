@@ -1,10 +1,11 @@
+import json
 import re
 from dataclasses import dataclass, field
-import dateparser
 from datetime import datetime, timedelta
-import json
 from pathlib import Path
 from typing import Any, Self
+
+import dateparser
 
 
 @dataclass
@@ -32,6 +33,7 @@ class LinkData:
 
 @dataclass
 class FillData:
+    script: str
     creators: list[str]
     title: str
     audience: str
@@ -104,7 +106,7 @@ class Script:
             published = dateparser.parse(published)
 
         fills = data.pop("fills", [])
-        fills = [FillData.from_dict(f) for f in fills]
+        fills = [FillData.from_dict({"script": data["title"], **f}) for f in fills]
 
         links = data.pop("links", None)
         if links:

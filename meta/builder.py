@@ -1,14 +1,14 @@
+import re
 from datetime import datetime
 from io import StringIO
-import re
 from operator import attrgetter
-from parser import FillData, Script, SeriesData, WordCountData, parse
 from pathlib import Path
 from typing import Any, Iterable, Literal
 
+from parser import FillData, Script, SeriesData, WordCountData, parse
+
 # a set containing tags that designate the script as NSFW
 NSFW_TAGS = {"18+", "nsfw", "r18"}
-
 
 LINK_ICONS = {
     "YouTube": ("fa-brands", "fa-youtube"),
@@ -18,7 +18,6 @@ LINK_ICONS = {
     "Google Docs": ("fa-brands", "fa-google-drive"),
     "scriptbin": ("fa-solid", "fa-file-lines")
 }
-
 
 
 def tagged(value: Any, tag: str) -> str:
@@ -47,7 +46,8 @@ def html_header() -> str:
         }};
     </script>
 </head>"""
-        
+
+
 def introduction() -> str:
     return """\
 <body>
@@ -71,16 +71,42 @@ def introduction() -> str:
             <p class="butterfly">∼ ʚїɞ ∼</p>
             <p>NSFW scripts are blurred. Click them to reveal the contents.</p>
         </div>
+        <div>
+            See <a href="./all-fills.html">here</a> to see all fills in order of post date.
+        </div>
     </div>
 """
 
 
+def introduction_fills_page() -> str:
+    return """\
+    <body>
+        <h1>lilellia's masterlist: fills</h1>
+
+        <div class="container terms-of-use">
+            <div class="greeting">
+                <p>Hi, I'm <span class="lilellia">lilellia</span>, the butterfly princess of hugs! Welcome to my masterlist!</p>
+                <p>I mostly write cute, domestic/fluff, a bit of romance (established or friends-to-lovers), usually F4F/F4A</p>
+                <p class="butterfly">∼ ʚїɞ ∼</p>
+                
+                <p>This is a list of all of the fills of my scripts that I'm aware of!</p>
+            </div>
+
+
+            <div>
+                <p class="butterfly">∼ ʚїɞ ∼</p>
+                <p>NSFW scripts are blurred. Click them to reveal the contents.</p>
+            </div>
+        </div>
+    """
+
+
 def html_filter_section(
-    num_scripts: int,
-    num_fills: int,
-    series_names: Iterable[str],
-    audience_tags: Iterable[str],
-    filled_by: Iterable[str],
+        num_scripts: int,
+        num_fills: int,
+        series_names: Iterable[str],
+        audience_tags: Iterable[str],
+        filled_by: Iterable[str],
 ) -> str:
     series = "\n".join(
         f"""\t\t\t<option class="{serialise(name)}" value="{name}">{name}</option>"""
@@ -264,15 +290,18 @@ def htmlify_wordcount(words: WordCountData) -> str:
     return f"""\t\t\t<li class="script-tag meta-tag">{content} words</li>"""
 
 
+def get_icon_classes(label: str) -> tuple[str, ...]:
+    if label.startswith("r/"):
+        return LINK_ICONS["Reddit"]
+
+    return LINK_ICONS.get(label, ("",))
+
+
 def links_to_tag(links: dict[str, str], tag_class: str, tag_label: str) -> str:
     """Convert a dict of {label: href} to a tooltip list of <a> tags"""
-    def get_icon_classes(label: str) -> tuple[str, ...]:
-        if label.startswith("r/"):
-            return LINK_ICONS["Reddit"]
 
-        return LINK_ICONS.get(label, ("",))
-
-    lis = [f"""<li>{icon(*get_icon_classes(label), direction="left")} <a href="{href}">{label}</a></li>""" for label, href in links.items()]
+    lis = [f"""<li>{icon(*get_icon_classes(label), direction="left")} <a href="{href}">{label}</a></li>""" for
+           label, href in links.items()]
     li_string = "\n".join(lis)
     return f"""
     <li class="{tag_class}">
@@ -286,6 +315,7 @@ def links_to_tag(links: dict[str, str], tag_class: str, tag_label: str) -> str:
 		</div>
 	</li>
 """
+
 
 def htmlify(script: Script) -> str:
     # handle all the "content" tags
@@ -385,13 +415,13 @@ def build_index(scripts: list[Script]):
         f.write(introduction())
         f.write(filter_section)
 
-#         f.write("""\
-#     <div class="tab">
-#         <button class="tablink" onclick="openTab(event, '_scripts');">Scripts</button>
-#         <button class="tablink" onclick="openTab(event, '_audios');">Audios</button>
-#         <button class="tablink" onclick="openTab(event, '_filldata');">Fill Data</button>
-#     </div>
-# """)
+        #         f.write("""\
+        #     <div class="tab">
+        #         <button class="tablink" onclick="openTab(event, '_scripts');">Scripts</button>
+        #         <button class="tablink" onclick="openTab(event, '_audios');">Audios</button>
+        #         <button class="tablink" onclick="openTab(event, '_filldata');">Fill Data</button>
+        #     </div>
+        # """)
 
         f.write(scripts_tab(scripts))
 
@@ -399,47 +429,49 @@ def build_index(scripts: list[Script]):
 
 
 def build_fills_page(scripts: list[Script]) -> None:
+    nsfw_scripts = set(script.title for script in scripts if is_nsfw(script))
+
     fills: list[FillData] = []
     for script in scripts:
         fills.extend(script.fills)
 
-    fills.sort(key=lambda fill: fill.date)
+    fills.sort(key=lambda fill: fill.date, reverse=True)
     s = StringIO()
 
     s.write(html_header())
-    s.write("""<table>""")
-    s.write("""\
-    <tr>
-        <th></th>
-        <th>Date</th>
-        <th>Script</th>
-        <th>Creators</th>
-        <th>Link</th>
-    </tr>
- """)
+    s.write(introduction_fills_page())
+    s.write("""<div class="all-scripts">""")
 
     for i, fill in enumerate(fills, start=1):
-        date = fill.date.strftime("%d %b %Y") if fill.date else ""
         creators = ", ".join(fill.creators)
-        link = extract_priority_fill_link(fill)
-        
-        
+        date = fill.date.strftime("%d %b %Y")
+        links = "\n".join(
+            f"""<li>{icon(*get_icon_classes(label), direction="left")} <a href="{href}">{label}</a></li>""" for
+            label, href in fill.links.items())
+
+        extra = "blurred" if fill.script in nsfw_scripts else ""
+
         s.write(f"""\
-    <tr>
-        <td>{i:,}</td>
-        <td>{date}</td>
-        <td>---</td>
-        <td>{creators}</td>
-        <td><a href="{link}">{fill.title}</a></td>
+<div class="container fill-{summarise_gender(fill.audience)} {extra}">
+    <p>#{i:,} | {date}</p>
+    
+    <p style="font-weight: bold;">{creators}</p>
+    
+    <p>{fill.title}</p>
+    
+    <p style="font-style: italic; font-size: 80%;">{icon(*get_icon_classes("scriptbin"), direction="left")} {fill.script}</p>
+    
+        <ul>
+            {links}
+        </ul>
+</div>
 """)
 
-    s.write("""</table>""")
+    s.write("""</div></body>""")
 
-    
     outpath = Path(__file__).parent.parent / "all-fills.html"
     with open(outpath, "w", encoding="utf-8") as f:
         f.write(s.getvalue())
-
 
 
 def main():
