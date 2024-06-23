@@ -1,6 +1,48 @@
 {
   "scripts": [
     {
+      "title": "An Unexpected, Emotional Reunion with Your Adventurer Friend",
+      "audience": [
+        "F4F"
+      ],
+      "tags": [
+        "adventurer speaker",
+        "adventurer listener",
+        "reunion",
+        "reverse comfort",
+        "emotional",
+        "queerplatonic",
+        "confession",
+        "wholesome",
+        "Atelier Ryza"
+      ],
+      "series": null,
+      "summary": "Three years ago, you led an adventuring party with your friends, foregoing your safe life to explore ancient ruins, fight dragons, discover secrets about the past. But when that adventure came to an end, you all went your separate ways, each chasing your own passions. You stayed home to continue developing your alchemy skills, but you've recently been called down to the capital by one of those friends to assist in an investigation. And today, whilst you're minding your own business looking at the jobs request board in the café, you notice your best friend. You two are thrilled to see each other, but having missed each other beyond description, it's a very emotional reunion as you talk about how hard these last three years have been. Though that's not to say that there's no hope for the future.",
+      "words": {
+        "spoken": {
+          "Klaudia": 2531,
+          "Zephine": 279
+        },
+        "total": 4723
+      },
+      "finished": "2024-06-23",
+      "published": "2024-06-23",
+      "links": {
+        "script": {
+          "scriptbin": "https://scriptbin.works/s/e8yt8",
+          "Google Docs": "https://docs.google.com/document/d/11Mqp8c42HzMmeYlkXz4YqnVYeKiDERQQaxBv_vhs5F4/edit?usp=sharing"
+        },
+        "post": {
+          "r/ASMRScriptHaven": "https://new.reddit.com/r/ASMRScriptHaven/comments/1dmu1ik/f4f_an_unexpected_emotional_reunion_with_your/",
+          "r/talkingtalltales": "https://new.reddit.com/r/talkingtalltales/comments/1dmu38n/f4f_an_unexpected_emotional_reunion_with_your/",
+          "r/GWASapphic": "https://new.reddit.com/r/GWASapphic/comments/1dmu24m/f4f_an_unexpected_emotional_reunion_with_your/",
+          "r/SapphicScriptGuild": "https://new.reddit.com/r/SapphicScriptGuild/comments/1dmu2kt/f4f_an_unexpected_emotional_reunion_with_your/"
+        }
+      },
+      "attendant VA": null,
+      "fills": []
+    },
+    {
       "title": "Helping Your Dandere Neko and Bakadere Inu Become Friends",
       "audience": [
         "FF4A"
