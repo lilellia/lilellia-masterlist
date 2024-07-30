@@ -1,6 +1,32 @@
 {
   "scripts": [
     {
+      "title": "The Princesses' Polycule",
+      "audience": [
+        "FF4F"
+      ],
+      "tags": [
+        null
+      ],
+      "series": null,
+      "summary": "",
+      "words": {
+        "spoken": {
+          "Anya": 4150,
+          "Eliana": 3601
+        },
+        "total": 11552
+      },
+      "finished": null,
+      "published": null,
+      "links": {
+        "script": null,
+        "post": null
+      },
+      "attendant VA": "u/VociferousVerses",
+      "fills": []
+    },
+    {
       "title": "An Unexpected, Emotional Reunion with Your Adventurer Friend",
       "audience": [
         "F4F"
@@ -20,10 +46,10 @@
       "summary": "Three years ago, you led an adventuring party with your friends, forgoing your safe life to explore ancient ruins, fight dragons, discover secrets about the past. But when that adventure came to an end, you all went your separate ways, each chasing your own passions. You stayed home to continue developing your alchemy skills, but you've recently been called down to the capital by one of those friends to assist in an investigation. And today, whilst you're minding your own business looking at the jobs request board in the café, you notice your best friend. You two are thrilled to see each other, but having missed each other beyond description, it's a very emotional reunion as you talk about how hard these last three years have been. Though that's not to say that there's no hope for the future.",
       "words": {
         "spoken": {
-          "Klaudia": 2554,
+          "Klaudia": 2555,
           "Zephine": 279
         },
-        "total": 4746
+        "total": 4747
       },
       "finished": "2024-06-23",
       "published": "2024-06-23",
@@ -273,6 +299,18 @@
       },
       "attendant VA": null,
       "fills": [
+        {
+          "creators": [
+            "AliceSMR"
+          ],
+          "title": "F4F | Trying Pet Play With Your Girlfriend | British Accent | Girlfriend ASMR RP",
+          "audience": "F4F",
+          "links": {
+            "YouTube": "https://www.youtube.com/watch?v=NTJaD5ge-G0"
+          },
+          "duration": "14m33s",
+          "date": "2024-07-30"
+        },
         {
           "creators": [
             "VociferousVerses"
@@ -906,7 +944,8 @@
       "summary": "Thou wert surprised when the princess told thee that she had not only noticed thy affections for her—thou wert never as subtle as thou hadst imagined—but returned them in equal measure, despite the difference in rank and despite the kingdom's opinions regarding courtship betwixt two women. The princess wisheth that thou shouldst become her permanent personal guard, a position which should likewise provide you with more privacy and time together. She thinketh it all but guaranteed that her petition shall be accepted by her parents, but the king and queen wish to speak to thee ere they make their decision. Despite thyself, thou canst not settle thy nerves regarding this summons, and thou goest to visit her, hoping that she might bring thee some consolation.",
       "words": {
         "spoken": {
-          "Isolde": 1544
+          "Isolde": 1459,
+          "Aryn": 85
         },
         "total": 2146
       },
