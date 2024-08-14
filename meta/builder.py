@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 from io import StringIO
+from itertools import count
 from operator import attrgetter
 from pathlib import Path
 from typing import Any, Iterable, Literal
@@ -317,7 +318,7 @@ def links_to_tag(links: dict[str, str], tag_class: str, tag_label: str) -> str:
 """
 
 
-def htmlify(script: Script) -> str:
+def htmlify(script: Script, *, index: int) -> str:
     # handle all the "content" tags
     assert script.published is not None
     date_tag = f"""\t\t\t<li class="script-tag meta-tag">{script.published.strftime("%d %b %Y")}</li>"""
@@ -335,6 +336,7 @@ def htmlify(script: Script) -> str:
 
     return f"""\
     <div class="{' '.join(classes)}" id={serialise(script.title)}>
+        <span class="script-index">{index}</span>
         <p class="script-title">{script.title}</p>
 
         <ul class="script-tags">
@@ -372,12 +374,14 @@ def scripts_tab(scripts: list[Script]) -> str:
     s = StringIO()
 
     s.write("""<div id="_scripts" class="all-scripts tabcontent">""")
-    for script in scripts:
+    
+    n = len(scripts)
+    for index, script in zip(count(start=n, step=-1), scripts):
         if script.published is None:
             # skip any scripts which aren't published
             continue
 
-        s.write(htmlify(script))
+        s.write(htmlify(script, index=index))
     s.write("""</div>""")
 
     return s.getvalue()
