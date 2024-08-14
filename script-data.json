@@ -1,6 +1,44 @@
 {
   "scripts": [
     {
+      "title": "Finding a Cuddle Monster Under Your Bed",
+      "audience": [
+        "F4A"
+      ],
+      "tags": [
+        "monster girl speaker",
+        "human listener",
+        "literal cuddle monster",
+        "strangers to friends?",
+        "platonic",
+        "cuddling",
+        "wholesome",
+        "sleep aid"
+      ],
+      "series": null,
+      "summary": "As you're in bed, trying to fall asleep, you hear some suspicious sounds. When you get up to investigate, you find an odd monster girl hiding under your bed. She introduces herself as Avaria, a synecubus—a \"cuddle monster\" who feeds on the happiness and relaxation she induces with her cuddles. After she explains what she's doing here, you decide to take advantage of the situation.",
+      "words": {
+        "spoken": {
+          "Avaria": 1657
+        },
+        "total": 2348
+      },
+      "finished": "2024-08-14",
+      "published": "2024-08-14",
+      "links": {
+        "script": {
+          "scriptbin": "https://scriptbin.works/s/w8mex",
+          "Google Docs": "https://docs.google.com/document/d/1kW2CaV0bHRkE5HdSUUOOV8YpbVpxEdELAm6XVdqswcI/edit?usp=sharing"
+        },
+        "post": {
+          "r/ASMRScriptHaven": "https://new.reddit.com/r/ASMRScriptHaven/comments/1es78ei/f4a_finding_a_cuddle_monster_under_your_bed/",
+          "r/talkingtalltales": "https://new.reddit.com/r/talkingtalltales/comments/1es78k5/f4a_finding_a_cuddle_monster_under_your_bed/"
+        }
+      },
+      "attendant VA": null,
+      "fills": []
+    },
+    {
       "title": "Confessing Under a Shared Umbrella",
       "audience": [
         "F4F"
