@@ -4,7 +4,7 @@ from io import StringIO
 from itertools import count
 from operator import attrgetter
 from pathlib import Path
-from typing import Any, Iterable, Literal
+from typing import Any, Iterable, Literal, Collection
 
 from parser import FillData, Script, SeriesData, WordCountData, parse
 
@@ -19,6 +19,13 @@ LINK_ICONS = {
     "Google Docs": ("fa-brands", "fa-google-drive"),
     "scriptbin": ("fa-solid", "fa-file-lines")
 }
+
+
+def reverse_enumerate[T](seq: Collection[T], *, start: int = 1) -> Iterator[tuple[int, T]]:
+    """Return an enumeration of (index, item), but numbered n, n-1, ..., 1"""
+    n = len(seq)
+    for i, item in zip(range(n + (start - 1), start - 1, -1), seq):
+        yield i, item
 
 
 def tagged(value: Any, tag: str) -> str:
@@ -375,8 +382,7 @@ def scripts_tab(scripts: list[Script]) -> str:
 
     s.write("""<div id="_scripts" class="all-scripts tabcontent">""")
     
-    n = len(scripts)
-    for index, script in zip(count(start=n, step=-1), scripts):
+    for index, script in reverse_enumerate(scripts):
         if script.published is None:
             # skip any scripts which aren't published
             continue
@@ -446,7 +452,7 @@ def build_fills_page(scripts: list[Script]) -> None:
     s.write(introduction_fills_page())
     s.write("""<div class="all-scripts">""")
 
-    for i, fill in enumerate(fills, start=1):
+    for i, fill in reverse_enumerate(fills):
         creators = ", ".join(fill.creators)
         date = fill.date.strftime("%d %b %Y")
         links = "\n".join(
