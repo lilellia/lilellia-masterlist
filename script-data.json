@@ -36,7 +36,20 @@
         }
       },
       "attendant VA": null,
-      "fills": []
+      "fills": [
+        {
+          "creators": [
+            "Flawless Fae Audio"
+          ],
+          "title": "[F4A] [TF4A] Finding a Cuddle Monster Under Your Bed [monster girl speaker] [human listener]",
+          "audience": "F4A",
+          "links": {
+            "YouTube": "https://youtu.be/QwkTh818uGA"
+          },
+          "duration": "15m03s",
+          "date": "2024-08-15"
+        }
+      ]
     },
     {
       "title": "Confessing Under a Shared Umbrella",
@@ -262,9 +275,23 @@
         }
       },
       "attendant VA": [
-        "LaikaVT"
+        "Laika ASMR"
       ],
-      "fills": []
+      "fills": [
+        {
+          "creators": [
+            "Laika ASMR",
+            "lilellia"
+          ],
+          "title": "Helping Your Dandere Neko and Bakadere Inu Become Friends [FF4A] [Strangers to Friends] [Wholesome]",
+          "audience": "FF4A",
+          "links": {
+            "YouTube": "https://youtu.be/8VngCG8iwOU"
+          },
+          "duration": "19m41s",
+          "date": "2024-08-15"
+        }
+      ]
     },
     {
       "title": "Owner Does Your Make-Up For the First Time",
