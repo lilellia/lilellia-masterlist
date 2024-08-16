@@ -4,7 +4,7 @@ from io import StringIO
 from itertools import count
 from operator import attrgetter
 from pathlib import Path
-from typing import Any, Iterable, Literal, Collection
+from typing import Any, Iterator, Iterable, Literal, Collection
 
 from parser import FillData, Script, SeriesData, WordCountData, parse
 
