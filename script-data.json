@@ -1,6 +1,85 @@
 {
   "scripts": [
     {
+      "title": "Witch Girls Trio: Observing a Magical Coming-of-Age Ritual",
+      "audience": [
+        "FFFF4F"
+      ],
+      "tags": [
+        "witch speakers",
+        "witch listener",
+        "fantasy"
+      ],
+      "series": null,
+      "summary": "...",
+      "words": {
+        "spoken": {
+          "Homura": null,
+          "Yuki": null,
+          "Arashi": null,
+          "Tamashii": null
+        },
+        "total": null
+      },
+      "finished": null,
+      "published": null,
+      "links": {
+        "script": {
+          "scriptbin": null,
+          "Google Docs": "https://docs.google.com/document/d/1NQ6vAWo1tP0Gldx7SDndZcc6b4m6_5Bgr9P2pEIp0Ag/edit?usp=sharing"
+        },
+        "post": {
+          "r/ASMRScriptHaven": null,
+          "r/talkingtalltales": null
+        }
+      },
+      "attendant VA": null,
+      "fills": []
+    },
+    {
+      "title": "Being Adopted as a Mute Neko",
+      "audience": [
+        "F4F"
+      ],
+      "tags": [
+        "neko listener",
+        "human speaker",
+        "mute listener",
+        "stray listener",
+        "nurturing speaker",
+        "comfort",
+        "sweet",
+        "wholesome",
+        "cuddles",
+        "platonic"
+      ],
+      "series": null,
+      "summary": "You forgot something outside earlier, and when you go to get it, you notice a little neko hiding under the table from the rain. Even though she can't speak, she can understand you, and between her meowing and her gestures, you learn that she's a stray, living outside. You offer to let her stay with you for as long as she's comfortable, and though she's initially hesitant, she agrees, and you spend the evening getting her taken care of before settling in for some cuddles.",
+      "words": {
+        "spoken": {
+          "Emi": 2504
+        },
+        "total": 4146
+      },
+      "finished": "2024-09-04",
+      "published": null,
+      "links": {
+        "script": {
+          "scriptbin": null,
+          "Google Docs": null
+        },
+        "post": {
+          "r/ASMRScriptHaven": null,
+          "r/talkingtalltales": null,
+          "r/GWASapphic": null
+        }
+      },
+      "attendant VA": [
+        "VociferousVerses"
+      ],
+      "fills": []
+    },
+    {
       "title": "Finding a Cuddle Monster Under Your Bed",
       "audience": [
         "F4A"
@@ -199,7 +278,10 @@
           "r/SapphicScriptGuild": "https://new.reddit.com/r/SapphicScriptGuild/comments/1ejrcak/ff4f_princesses_polycule_incestprincess/"
         }
       },
-      "attendant VA": "VociferousVerses",
+      "attendant VA": [
+        "lilellia",
+        "VociferousVerses"
+      ],
       "fills": [
         {
           "creators": [
@@ -299,7 +381,8 @@
         }
       },
       "attendant VA": [
-        "Laika ASMR"
+        "Laika ASMR",
+        "lilellia"
       ],
       "fills": [
         {
@@ -603,7 +686,10 @@
           "r/talkingtalltales": "https://new.reddit.com/r/talkingtalltales/comments/1cdw3pe/ff4a_yandere_megadere_fight_over_you_yandere/"
         }
       },
-      "attendant VA": "YoruBunn",
+      "attendant VA": [
+        "YoruBunn",
+        "lilellia"
+      ],
       "fills": [
         {
           "creators": [
@@ -1435,7 +1521,9 @@
           "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1dcqcbs/fa4a_coming_home_to_your_partners_after_a/"
         }
       },
-      "attendant VA": "Apollo VA",
+      "attendant VA": [
+        "Apollo VA"
+      ],
       "fills": [
         {
           "creators": [
@@ -1500,7 +1588,9 @@
           "r/pillowtalkaudio": null
         }
       },
-      "attendant VA": "Apollo VA",
+      "attendant VA": [
+        "Apollo VA"
+      ],
       "fills": [
         {
           "creators": [
@@ -1695,7 +1785,9 @@
           "r/pillowtalkaudio": "https://www.reddit.com/r/pillowtalkaudio/comments/1827hhy/a4a_comforting_your_kitsune_partners_insecurities/"
         }
       },
-      "attendant VA": "NaughtPlusZero",
+      "attendant VA": [
+        "NaughtPlusZero"
+      ],
       "fills": [
         {
           "creators": [
@@ -1904,7 +1996,9 @@
           "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/17hda5u/f4a_a_fateful_encounter_with_a_fiendish_harpy/"
         }
       },
-      "attendant VA": "Starry KitKat",
+      "attendant VA": [
+        "Starry KitKat"
+      ],
       "notes": "- word counts given for Ending A",
       "fills": [
         {
@@ -2162,7 +2256,9 @@
           "r/ASMRScriptHaven": "https://www.reddit.com/user/lilellia/comments/17fwrqw/a4a_becoming_your_dragon_friends_plushie_for_the/"
         }
       },
-      "attendant VA": "BrainyDragon VA",
+      "attendant VA": [
+        "BrainyDragon VA"
+      ],
       "fills": [
         {
           "creators": [

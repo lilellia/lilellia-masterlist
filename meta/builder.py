@@ -220,12 +220,12 @@ def icon(*fa_classes: str, direction: Literal["left", "right"]) -> str:
     return f"""<i class="icon-{direction} {class_str}"></i>"""
 
 
-def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
+def htmlify_fill(fill: FillData, *, attendant_va: list[str] | None) -> str:
     priority_link = extract_priority_fill_link(fill)
     label = f" [{fill.label}]" if fill.label else ""
     attendant = (
         icon("fa-solid", "fa-star", direction="right")
-        if attendant_va and attendant_va in fill.creators
+        if attendant_va and set(attendant_va) & set(fill.creators)
         else ""
     )
     self_fill = icon("fa-solid", "fa-crown", direction="right") if "lilellia" in fill.creators else ""
@@ -237,7 +237,7 @@ def htmlify_fill(fill: FillData, *, attendant_va: str | None) -> str:
     return links_to_tag(fill.links, tag_class=tag_class, tag_label=tag_label)
 
 
-def htmlify_fills_summary(fills: list[FillData], *, attendant_va: str | None) -> str:
+def htmlify_fills_summary(fills: list[FillData], *, attendant_va: list[str] | None) -> str:
     if not fills:
         return ""
 

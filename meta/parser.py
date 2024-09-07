@@ -83,7 +83,7 @@ class Script:
     finished: datetime | None
     published: datetime | None
     links: LinkData
-    attendant_va: str | None = None
+    attendant_va: list[str] | None = None
     fills: list[FillData] = field(default_factory=list)
     notes: str | None = None
 
