@@ -57,16 +57,16 @@
       "summary": "You forgot something outside earlier, and when you go to get it, you notice a little neko hiding under the table from the rain. Even though she can't speak, she can understand you, and between her meowing and her gestures, you learn that she's a stray, living outside. You offer to let her stay with you for as long as she's comfortable, and though she's initially hesitant, she agrees, and you spend the evening getting her taken care of before settling in for some cuddles.",
       "words": {
         "spoken": {
-          "Emi": 2504
+          "Vivi": 2764
         },
-        "total": 4146
+        "total": 4600
       },
       "finished": "2024-09-04",
       "published": null,
       "links": {
         "script": {
-          "scriptbin": null,
-          "Google Docs": null
+          "scriptbin": "https://scriptbin.works/s/kkkv8",
+          "Google Docs": "https://docs.google.com/document/d/1e03tWItdr8Pe9LRW_79MABADFIg6SQJGdEYhjzeZ7MM/edit?usp=sharing"
         },
         "post": {
           "r/ASMRScriptHaven": null,
@@ -913,6 +913,18 @@
       },
       "attendant VA": null,
       "fills": [
+        {
+          "creators": [
+            "lilellia"
+          ],
+          "title": "[F4A] Visiting an Ancient Library [adventurer listener] [automaton speaker] [lore heavy]",
+          "audience": "F4A",
+          "links": {
+            "YouTube": "https://youtu.be/cDbujEkQnuM"
+          },
+          "duration": "17m46s",
+          "date": "2024-09-15"
+        },
         {
           "creators": [
             "NumptyVA"
