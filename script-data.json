@@ -42,27 +42,32 @@
         "F4A"
       ],
       "tags": [
-        null
+        "brief party atmosphere",
+        "comfort",
+        "sensory overload",
+        "platonic",
+        "acquaintances to friends",
+        "wholesome"
       ],
       "series": null,
-      "summary": "...",
+      "summary": "You've been dragged along to a house party as the designated driver for two of your friends. Not one for this sort of atmosphere, you sit alone in the corner, struggling not to get overwhelmed by the mix of loud music and conversations. Eventually, a girl you've met once or twice before, comes back to the party and notices that you're still in the same position as when she'd left and that you seem quite uncomfortable. Empathetic to your situation and on her way from the party herself, she invites you to her place across the street to wait until your friends are ready to leave. There, away from the incessant noise of the party, she helps you to calm down as you more properly get to know each other.",
       "words": {
         "spoken": {
-          "Claire": 0,
+          "Claire": 2432,
           "unnamed party guest": 12
         },
-        "total": 0
+        "total": 3867
       },
-      "finished": null,
-      "published": null,
+      "finished": "2024-09-29",
+      "published": "2024-09-29",
       "links": {
         "script": {
-          "scriptbin": null,
+          "scriptbin": "https://scriptbin.works/s/e645c",
           "Google Docs": "https://docs.google.com/document/d/17mm5HVhf38JfC4CF7pIKwA4JMARk90XigXSzKF6tUdE/edit?usp=sharing"
         },
         "post": {
-          "r/ASMRScriptHaven": null,
-          "r/talkingtalltales": null
+          "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1fsh1j2/f4a_being_comforted_for_sensory_overload_brief/",
+          "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1fsh197/f4a_being_comforted_for_sensory_overload_brief/"
         }
       },
       "attendant VA": null,
