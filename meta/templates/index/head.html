@@ -1,0 +1,23 @@
+<head>
+    <meta charset="utf-8" />
+    <title>lilellia's masterlist</title>
+    <link href="static/css/main.css" rel="stylesheet" />
+    <link href="static/css/series.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="static/favicon.png" />
+    <script
+      src="https://kit.fontawesome.com/d17f614691.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="static/js/script.js"></script>
+    <script>
+      window.onload = function () {
+        for (const element of document.getElementsByClassName("blurred")) {
+        // When an element with the class "blurred" is clicked, remove the class to
+        // unblur it. This is used to unblur the script links on the masterlist.
+          element.onclick = function () {
+            element.classList.remove("blurred");
+          };
+        }
+      };
+    </script>
+</head>

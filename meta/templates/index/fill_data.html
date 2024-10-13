@@ -1,0 +1,51 @@
+<div class="fill-details fill-{{fill.audience | c_summarise_gender}}">
+    <!-- CREATORS -->
+    <span class="fill-creator">{{fill.creators | join(", ")}}</span>
+
+    <!-- LABEL -->
+    {% if fill.label %}
+    <div class="fill-label">
+        {% for line in fill.label.splitlines() %}
+        <div>({{line}})</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- DATE -->
+    <div class="fill-date">{{fill.date}}</div>
+
+    <!-- LINKS -->
+    <span>
+        <div class="fill-links">
+            {% for link in fill.links %}
+            <div>
+                <div class="tooltip">
+                    <a href="{{link.href}}">
+                        <i class="icon {{link.icons}}"></i>
+                    </a>
+                    <div class="tooltiptext">{{link.label}}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </span>
+
+    <!-- ICONS -->
+    {% set ns = namespace() %}
+    {% set ns.attendant = script.attendant_va | default([], true) %}
+    {% set ns.crown = "lilellia" in fill.creators %}
+    {% set ns.star = fill.creators | c_overlap_lists(ns.attendant) %}
+
+    <!-- display icon(s) -->
+    {% if ns.star or ns.crown %}
+    <div class="icon">
+        {% if ns.star %}
+        <i class="icon fa-solid fa-star" aria-hidden="true"></i>
+        {% endif %}
+
+        {% if ns.crown %}
+        <i class="icon fa-solid fa-crown" aria-hidden="true"></i>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

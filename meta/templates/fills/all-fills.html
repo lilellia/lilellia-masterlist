@@ -1,0 +1,15 @@
+<html>
+{% include "head.html" %}
+<body>
+{% include "introduction.html" %}
+
+<div class="all-fills">
+
+    <!-- fill_data = {i: ..., fill: ...} -->
+    {% for fill in fills %}
+    {% include "fill.html" %}
+    {% endfor %}
+
+</div>
+</body>
+</html>

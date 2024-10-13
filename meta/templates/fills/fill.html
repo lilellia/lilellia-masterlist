@@ -1,0 +1,20 @@
+{% set index_page = "https://lilellia.github.io/lilellia-masterlist/index.html" %}
+
+<div class="container fill-{{fill.audience | c_summarise_gender}} {{fill.additional_classes | join(' ')}}">
+    <p>#{{fill.index}} | {{fill.date.strftime("%d %b %Y")}}</p>
+
+    <p class="fill-script-ref">
+        <i class="icon fa-solid fa-file-lines"></i>
+        <a href="{{index_page}}#{{fill.script | c_serialise}}">{{fill.script}}</a>
+    </p>
+
+    <p class="fill-creator">{{fill.creators | join(", ")}}</p>
+
+    <p>{{fill.title}}</p>
+
+    <div class="fill-links">
+        {% for link in fill.links %}
+        {% include "link.html" %}
+        {% endfor %}
+    </div>
+</div>

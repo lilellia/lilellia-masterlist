@@ -67,6 +67,14 @@ div.all-scripts {
     gap: 1.5rem;
 }
 
+div.all-fills {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0rem;
+    row-gap: 1.5rem;
+}
+
 div.container {
     padding: 10px 20px;
     border-radius: 20px;
@@ -242,6 +250,16 @@ div.script-links {
     margin-left: 60px;
 }
 
+div.fill-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 1rem;
+    margin-top: 5px;
+    margin-left: 0px;
+}
+
 
 /* fill speaker tags */
 .fill-male {
@@ -314,13 +332,14 @@ div.script-links {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    background-color: var(--meta-tag-background);
+    background-color: var(--background);
     color: var(--font-color);
     text-align: center;
-    padding: 2px 8px;
+    padding: 8px 8px;
     border: 1px solid white;
     border-radius: 6px;
     font-size: 75%;
+    font-weight: bold;
 
     position: absolute;
     z-index: 1;
@@ -330,7 +349,11 @@ div.script-links {
     visibility: visible;
 }
 
-.tooltiptext > ul {
-    padding: 8px 0;
-    white-space: nowrap;
+p.fill-creator {
+    font-weight: bold;
+}
+
+p.fill-script-ref {
+    font-style: italic;
+    font-size: 80%;
 }
