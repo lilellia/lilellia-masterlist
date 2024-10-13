@@ -3,23 +3,34 @@ function identifyScripts() {
 
     for (const element of document.getElementsByClassName("script-data")) {
         const id = element.id;
-        const title = element.querySelector("p").textContent.trim();
-        const summary = element.querySelector("blockquote").textContent.trim();
-        
+        const title = element.querySelector("p").textContent.trim();        
 
         scripts[id] = {
             title: title,
-            summary: summary,
+            summary: getSummary(id),
             fills: getNumberOfFills(id),
             filledBy: getFilledBy(id),
             series: getSeriesData(id),
             speakers: getSpeakers(id),
             audienceTags: getAudienceTags(id),
             contentTags: getContentTags(id),
+            scriptLinks: getScriptLinks(id)
         };
     }
 
     return scripts;
+}
+
+function getSummary(scriptId) {
+    const blockquote = document.getElementById(scriptId).querySelector("blockquote");
+
+    let lines = [];
+
+    for (const p of blockquote.querySelectorAll("p")) {
+        lines.push(p.textContent.replace(/\n\s+/g, " ").trim());
+    }
+
+    return lines.join("  \n> ");
 }
 
 
@@ -102,6 +113,21 @@ function getSeriesData(scriptId) {
         index: parseInt(root.querySelector("span.series-index").textContent)
     };
 
+}
+
+function getScriptLinks(scriptId) {
+    const root = document.getElementById(scriptId).querySelector("div.script-links");
+
+    if (root === null) {
+        return [];
+    }
+
+    let results = [];
+    for (const a of root.querySelectorAll("div.script-links a")) {
+        results.push(a.href);
+    }
+
+    return results;
 }
 
 
@@ -212,4 +238,37 @@ function filterScripts() {
 
     document.getElementById("numScripts").textContent = scriptsShown;
     document.getElementById("numFills").textContent = fillsShown;
+}
+
+
+function chooseScriptPostLink(links) {
+    for (const link of links) {
+        if (link.includes("reddit\.com")) {
+            return link;
+        }
+    }
+}
+
+
+function scriptToMarkdown(scriptId) {
+    const scripts = identifyScripts();
+    const script = scripts[scriptId];
+
+    const link = chooseScriptPostLink(script["scriptLinks"]);
+    const audience = script["audienceTags"][0];
+
+    const f = function(text) {
+        return text.replace(/\n\s+/g, " ").trim();
+    };
+    const tags = script["contentTags"].map(tag => `\\[${f(tag)}\\]`).join(" ");
+    
+    console.log(script["summary"]);
+    return `**[${script["title"]}](${link})**  \n\\[${audience}\\] ${tags}  \n> _${script["summary"]}_`;
+}
+
+
+
+function copyToClipboard(scriptId) {
+    markdown = scriptToMarkdown(scriptId);
+    navigator.clipboard.writeText(markdown);
 }

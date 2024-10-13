@@ -35,7 +35,7 @@ def html_header() -> str:
     <link href="static/css/series.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="static/favicon.png">
     <script src="https://kit.fontawesome.com/d17f614691.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="static/js/filter.js"></script>
+    <script type="text/javascript" src="static/js/script.js"></script>
     <script>
         window.onload = function() {{
             for(const element of document.getElementsByClassName("blurred")) {{
@@ -266,9 +266,12 @@ def htmlify(script: Script, *, index: int) -> str:
     if is_nsfw(script):
         classes.append("blurred")
 
+    script_id = serialise(script.title)
+
     return f"""\
-    <div class="{' '.join(classes)}" id={serialise(script.title)}>
+    <div class="{' '.join(classes)}" id={script_id}>
         <span class="script-index">{script.published.strftime("%d %b %Y")}: #{index}</span>
+        <span class="copy-text" onclick='copyToClipboard("{script_id}")'>Copy</span>
         <p class="script-title">{script.title}</p>
 
         <ul class="script-tags">

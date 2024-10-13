@@ -93,6 +93,15 @@ span.script-index {
     font-size: 0.7em;
 }
 
+span.copy-text {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    color: var(--script-index-color);
+    font-size: 0.7em;
+    text-decoration: underline;
+}
+
 div.fill-date {
     padding: 4px;
     font-size: 0.7em;
