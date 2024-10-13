@@ -47,15 +47,15 @@ function getContentTags(scriptId) {
 }
 
 function getFilledBy(scriptId) {
-    const ul = document.getElementById(scriptId).querySelector("ul.script-fills");
+    const container = document.getElementById(scriptId).querySelector("div.script-fills");
 
-    if (ul === null) {
+    if (container === null) {
         return [];
     }
 
     let filledBy = [];
-    for (const e of ul.querySelectorAll("li")) {
-        const text = e.querySelector("a").textContent;  // "VA1, VA2, VA3"
+    for (const e of container.querySelectorAll("div.fill-details")) {
+        const text = e.querySelector("span").textContent;  // "VA1, VA2, VA3"
         const voices = text.split(", "); // ["VA1", "VA2", "VA3"]
         filledBy.push(voices);
     }
