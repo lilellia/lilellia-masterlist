@@ -7,18 +7,10 @@ from pathlib import Path
 from typing import Any, Iterator, Iterable, Literal, Collection
 
 from parser import FillData, Script, SeriesData, WordCountData, parse
+from build_icons import make_header_icons, make_link_icon
 
 # a set containing tags that designate the script as NSFW
 NSFW_TAGS = {"18+", "nsfw", "r18"}
-
-LINK_ICONS = {
-    "YouTube": ("fa-brands", "fa-youtube"),
-    "soundgasm": ("fa-solid", "fa-headphones"),
-    "Patreon": ("fa-brands", "fa-patreon"),
-    "Reddit": ("fa-brands", "fa-reddit-alien"),
-    "Google Docs": ("fa-brands", "fa-google-drive"),
-    "scriptbin": ("fa-solid", "fa-file-lines")
-}
 
 
 def reverse_enumerate[T](seq: Collection[T], *, start: int = 1) -> Iterator[tuple[int, T]]:
@@ -57,56 +49,13 @@ def html_header() -> str:
 
 
 def introduction() -> str:
-    return """\
-<body>
-    <h1>lilellia's masterlist</h1>
-
-    <div class="container terms-of-use">
-        <div class="greeting">
-            <p>Hi, I'm <span class="lilellia">lilellia</span>, the butterfly princess of hugs! Welcome to my masterlist!</p>
-            <p>I mostly write cute, domestic/fluff, a bit of romance (established or friends-to-lovers), usually F4F/F4A</p>
-            <p class="butterfly">∼ ʚїɞ ∼</p>
-        </div>
-
-        <h2>Terms of Script Use</h2>
-        <ul>
-            <li class="terms-of-use"><b>Usage:</b> All of my scripts are freely available for use. Please credit me (<a href="https://reddit.com/user/lilellia">u/lilellia</a> and/or @lilellia) if you use the script, and let me know—I'd love to see what you come up with! Feel free to monetise it (but DM me first if you want to post on Patreon, etc.).</li>
-            <li class="terms-of-use"><b>Editing:</b> Small changes to the scripts are okay, but please ask before making any major line changes, additions, deletions, gender swaps, etc. Vocal cues and sound effects are suggestions, so feel free to be creative with those!</li>
-            <li class="terms-of-use"><b>Other notes:</b> I find it easier to write the listener's dialogue rather than keep track of half of a conversation, so their lines are given for context but aren't meant to be voiced. The word counts given only include the spoken text.</li>
-        </ul>
-
-        <div>
-            <p class="butterfly">∼ ʚїɞ ∼</p>
-            <p>NSFW scripts are blurred. Click them to reveal the contents.</p>
-        </div>
-        <div>
-            See <a href="./all-fills.html">here</a> to see all fills in order of post date.
-        </div>
-    </div>
-"""
+    fp = Path(__file__).parent / "introduction.html"
+    return fp.read_text(encoding="utf-8")
 
 
 def introduction_fills_page() -> str:
-    return """\
-    <body>
-        <h1>lilellia's masterlist: fills</h1>
-
-        <div class="container terms-of-use">
-            <div class="greeting">
-                <p>Hi, I'm <span class="lilellia">lilellia</span>, the butterfly princess of hugs! Welcome to my masterlist!</p>
-                <p>I mostly write cute, domestic/fluff, a bit of romance (established or friends-to-lovers), usually F4F/F4A</p>
-                <p class="butterfly">∼ ʚїɞ ∼</p>
-                
-                <p>This is a list of all of the fills of my scripts that I'm aware of!</p>
-            </div>
-
-
-            <div>
-                <p class="butterfly">∼ ʚїɞ ∼</p>
-                <p>NSFW scripts are blurred. Click them to reveal the contents.</p>
-            </div>
-        </div>
-    """
+    fp = Path(__file__).parent / "introduction-fills-page.html"
+    return fp.read_text(encoding="utf-8")
 
 
 def html_filter_section(
@@ -116,71 +65,19 @@ def html_filter_section(
         audience_tags: Iterable[str],
         filled_by: Iterable[str],
 ) -> str:
-    series = "\n".join(
-        f"""\t\t\t<option class="{serialise(name)}" value="{name}">{name}</option>"""
-        for name in sorted(series_names)
-    )
 
-    audience = "\n".join(f"""\t\t\t<option value="{tag}">{tag}</option>""" for tag in sorted(audience_tags))
-    filled_by = "\n".join(
-        f"""\t\t\t<option value="{name}">{name}</option>"""
-        for name in sorted(filled_by, key=str.lower)  # make sort case-insensitive
-    )
+    kwargs = {
+        "num_scripts": num_scripts,
+        "num_fills": num_fills,
+        "series": "\n".join(f"""<option class="{serialise(s)}" value="{s}">{s}</option>""" for s in sorted(series_names)),
+        "audience": "\n".join(f"""<option value="{tag}">{tag}</option>""" for tag in sorted(audience_tags)),
+        "filled_by": "\n".join(f"""<option value="{name}">{name}</option>""" for name in sorted(filled_by, key=str.lower)),
+    }
 
-    return f"""\
-    <div class="search-and-filter">
-        <p><span id="numScripts">{num_scripts:,}</span>/{num_scripts:,} scripts・<span id="numFills">{num_fills:,}</span>/{num_fills:,} fills</p>
+    fp = Path(__file__).parent / "filter-section.html"
+    template = fp.read_text(encoding="utf-8")
 
-
-        <table>
-        <tr>
-        <td colspan="2">
-            
-        <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary..."><br/>
-        </td>
-        </tr>
-
-        <tr>
-        <td><label for="seriesFilter">Filter by Series:</label></td>
-        <td><select name="seriesFilter" id="seriesFilter" onchange="filterScripts()">
-            <option value=""></option>
-            <option value="(one-shots only)">(one-shots only)</option>
-{series}
-        </select>
-        </td>
-        </tr>
-
-        <tr>
-        <td><label for="audienceTagFilter">Filter by Audience Tag:</label></td>
-        <td><select name="audienceTagFilter" id="audienceTagFilter" onchange="filterScripts()">
-            <option value=""></option>
-{audience}
-        </select>
-        </td>
-        </tr>
-
-        <tr>
-        <td><label for="unfilledOnlyFilter">Show unfilled scripts only?</label></td>
-        <td><select name="unfilledOnlyFilter" id="unfilledOnlyFilter" onchange="filterScripts()">
-            <option value="no">no (show all scripts)</option>
-            <option value="yes">yes (show only unfilled scripts)</option>
-        </select>
-        </td>
-        </tr>
-    
-        <tr>
-        <td><label for="filledByFilter">Filter by VAs:</label></td>
-        <td><select name="filledByFilter" id="filledByFilter" onchange="filterScripts()">
-            <option value=""></option>
-{filled_by}
-        </select>
-        </td>
-        </tr>
-    
-        </table>
-
-    </div>
-"""
+    return template.format(**kwargs)
 
 
 def html_closer() -> str:
@@ -214,27 +111,43 @@ def summarise_gender(audience: str) -> str:
     return gender
 
 
-def icon(*fa_classes: str, direction: Literal["left", "right"]) -> str:
-    """Create a font awesome icon."""
-    class_str = " ".join(fa_classes)
-    return f"""<i class="icon-{direction} {class_str}"></i>"""
+def make_label_text(label: str) -> str:
+    if not label:
+        return ""
+    
+    pars = [f"""<div>({par})</div>""" for par in label.splitlines()]
+    result = "\n".join(pars)
+    return f"""<div class="fill-label">{result}</div>"""
 
 
 def htmlify_fill(fill: FillData, *, attendant_va: list[str] | None) -> str:
     priority_link = extract_priority_fill_link(fill)
-    label = f" [{fill.label}]" if fill.label else ""
-    attendant = (
-        icon("fa-solid", "fa-star", direction="right")
-        if attendant_va and set(attendant_va) & set(fill.creators)
-        else ""
-    )
-    self_fill = icon("fa-solid", "fa-crown", direction="right") if "lilellia" in fill.creators else ""
-
-    creators = ", ".join(fill.creators)
-
+    label = make_label_text(fill.label)
     tag_class = f"fill-{summarise_gender(fill.audience)}"
-    tag_label = f"""<a href="{priority_link}">{creators}</a>{label}{attendant}{self_fill}"""
-    return links_to_tag(fill.links, tag_class=tag_class, tag_label=tag_label)
+
+    header_icons = make_header_icons(fill, attendant_va)
+
+    creator_line = f"""<span class="fill-creator">{", ".join(fill.creators)}</span>"""
+
+#     if header_icons:
+#         creator_line = f"""\
+# <div class="tooltip">
+#     {creator_line}
+#     <div class="tooltiptext">
+#         {header_icons}
+#     </div>
+# </div>
+# """
+
+    return f"""\
+    <div class="fill-details {tag_class}">
+            {creator_line}
+            {label}
+            <div class="fill-date">{fill.date.strftime("%d %b %Y")}</div>
+            <span>{make_links(fill.links)}</span>
+            {header_icons}
+    </div>
+"""
 
 
 def htmlify_fills_summary(fills: list[FillData], *, attendant_va: list[str] | None) -> str:
@@ -245,9 +158,9 @@ def htmlify_fills_summary(fills: list[FillData], *, attendant_va: list[str] | No
     return f"""\
         <div class="fill-summary">
             <p><b>Fills (<span class="fill-count">{len(fills)}</span>):</b></p>
-            <ul class="script-fills">
+            <div class="script-fills">
 {fill_tags}
-            </ul>
+            </div>
         </div>
 """
 
@@ -298,44 +211,56 @@ def htmlify_wordcount(words: WordCountData) -> str:
     return f"""\t\t\t<li class="script-tag meta-tag">{content} words</li>"""
 
 
-def get_icon_classes(label: str) -> tuple[str, ...]:
-    if label.startswith("r/"):
-        return LINK_ICONS["Reddit"]
 
-    return LINK_ICONS.get(label, ("",))
+def _make_link(label: str, href: str) -> str:
+    link_icon = make_link_icon(label)
 
+    return f"""\
+    <div>
+        <div class="tooltip">
+            <a href="{href}">{link_icon}</a>
+            <div class="tooltiptext">
+                {label}
+            </div>
+        </div>
+    </div>
+"""
 
-def links_to_tag(links: dict[str, str], tag_class: str, tag_label: str) -> str:
+def make_script_links(links: dict[str, str]) -> str:
     """Convert a dict of {label: href} to a tooltip list of <a> tags"""
 
-    lis = [f"""<li>{icon(*get_icon_classes(label), direction="left")} <a href="{href}">{label}</a></li>""" for
-           label, href in links.items()]
-    li_string = "\n".join(lis)
-    return f"""
-    <li class="{tag_class}">
-		<div class="tooltip">
-		    {tag_label}
-			<div class="tooltiptext">
-				<ul>
-					{li_string}
-				</ul>
-			</div>
-		</div>
-	</li>
+    li_string = " ".join(_make_link(label, href) for label, href in links.items())
+    return f"""\
+        <div class="script-links">
+            {li_string}
+        </div>
+    """
+
+
+def make_links(links: dict[str, str]) -> str:
+    """Convert a dict of {label: href} to a tooltip list of <a> tags"""
+
+    li_string = " ".join(_make_link(label, href) for label, href in links.items())
+    return f"""\
+        <div class="fill-links">
+            {li_string}
+        </div>
 """
 
 
 def htmlify(script: Script, *, index: int) -> str:
     # handle all the "content" tags
     assert script.published is not None
-    date_tag = f"""\t\t\t<li class="script-tag meta-tag">{script.published.strftime("%d %b %Y")}</li>"""
     audience_tag = "\n".join(
-        f"""\t\t\t<li class="script-tag audience-tag {atag.lower()}">{atag.upper()}</li>"""
+        f"""<li class="script-tag audience-tag {atag.lower()}">{atag.upper()}</li>"""
         for atag in script.audience
     )
-    tags = "\n".join(f"""\t\t\t<li class="{script_tag_classes(tag)}">{tag}</li>""" for tag in script.tags)
 
-    summary = "\n".join(f"\t\t\t<p>{par}</p>" for par in script.summary.splitlines())
+    script_links = make_script_links(script.links.combine_dict())
+
+    tags = "\n".join(f"""<li class="{script_tag_classes(tag)}">{tag}</li>""" for tag in script.tags)
+
+    summary = "\n".join(f"<p>{par}</p>" for par in script.summary.splitlines())
 
     classes = ["container", "script-data"]
     if is_nsfw(script):
@@ -343,16 +268,13 @@ def htmlify(script: Script, *, index: int) -> str:
 
     return f"""\
     <div class="{' '.join(classes)}" id={serialise(script.title)}>
-        <span class="script-index">{index}</span>
+        <span class="script-index">{script.published.strftime("%d %b %Y")}: #{index}</span>
         <p class="script-title">{script.title}</p>
 
         <ul class="script-tags">
-{date_tag}
 {audience_tag}
 {tags}
 {htmlify_wordcount(script.words)}
-{links_to_tag(script.links.script, tag_class="link-tag", tag_label="script links")}
-{links_to_tag(script.links.post, tag_class="link-tag", tag_label="post links")}
 </ul>
 
 {htmlify_series_data(script.series)}
@@ -360,6 +282,8 @@ def htmlify(script: Script, *, index: int) -> str:
         <blockquote class="script-summary">
 {summary}
         </blockquote>
+
+<span><b>Links:</b></span> {script_links}
 
 {htmlify_fills_summary(script.fills, attendant_va=script.attendant_va)}
     </div>
@@ -456,7 +380,7 @@ def build_fills_page(scripts: list[Script]) -> None:
         creators = ", ".join(fill.creators)
         date = fill.date.strftime("%d %b %Y")
         links = "\n".join(
-            f"""<li>{icon(*get_icon_classes(label), direction="left")} <a href="{href}">{label}</a></li>""" for
+            f"""<li>{make_link_icon(label)} <a href="{href}">{label}</a></li>""" for
             label, href in fill.links.items())
 
         extra = "blurred" if fill.script in nsfw_scripts else ""
@@ -469,7 +393,7 @@ def build_fills_page(scripts: list[Script]) -> None:
     
     <p>{fill.title}</p>
     
-    <p style="font-style: italic; font-size: 80%;">{icon(*get_icon_classes("scriptbin"), direction="left")} {fill.script}</p>
+    <p style="font-style: italic; font-size: 80%;">{make_link_icon("scriptbin")} {fill.script}</p>
     
         <ul>
             {links}

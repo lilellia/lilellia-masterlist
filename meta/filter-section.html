@@ -1,0 +1,52 @@
+<div class="search-and-filter">
+    <p><span id="numScripts">{num_scripts:,}</span>/{num_scripts:,} scripts・<span id="numFills">{num_fills:,}</span>/{num_fills:,} fills</p>
+
+
+    <table>
+    <tr>
+    <td colspan="2">
+        
+    <input type="text" id="filterInput" onkeyup="filterScripts()" placeholder="filter by title/summary..."><br/>
+    </td>
+    </tr>
+
+    <tr>
+    <td><label for="seriesFilter">Filter by Series:</label></td>
+    <td><select name="seriesFilter" id="seriesFilter" onchange="filterScripts()">
+        <option value=""></option>
+        <option value="(one-shots only)">(one-shots only)</option>
+{series}
+    </select>
+    </td>
+    </tr>
+
+    <tr>
+    <td><label for="audienceTagFilter">Filter by Audience Tag:</label></td>
+    <td><select name="audienceTagFilter" id="audienceTagFilter" onchange="filterScripts()">
+        <option value=""></option>
+{audience}
+    </select>
+    </td>
+    </tr>
+
+    <tr>
+    <td><label for="unfilledOnlyFilter">Show unfilled scripts only?</label></td>
+    <td><select name="unfilledOnlyFilter" id="unfilledOnlyFilter" onchange="filterScripts()">
+        <option value="no">no (show all scripts)</option>
+        <option value="yes">yes (show only unfilled scripts)</option>
+    </select>
+    </td>
+    </tr>
+
+    <tr>
+    <td><label for="filledByFilter">Filter by VAs:</label></td>
+    <td><select name="filledByFilter" id="filledByFilter" onchange="filterScripts()">
+        <option value=""></option>
+{filled_by}
+    </select>
+    </td>
+    </tr>
+
+    </table>
+
+</div>

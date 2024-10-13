@@ -93,6 +93,42 @@ span.script-index {
     font-size: 0.7em;
 }
 
+div.fill-date {
+    padding: 4px;
+    font-size: 0.7em;
+}
+
+div.fill-label {
+    padding: 4px;
+    font-size: 0.7em;
+}
+
+
+div.script-fills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-left: 40px;
+}
+
+div.fill-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 5px;
+}
+
+div.fill-details {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 4px;
+    text-align: center;
+}
+
 p.script-title {
     font-size: 1.5em;
     font-weight: bold;
@@ -104,16 +140,14 @@ blockquote.script-summary {
 
 ul {
     list-style-type: none;
-    display: inline-block;
-    margin: 0px;
+    margin-left: 10px;
 }
 
 li {
     font-size: 90%;
-    
-    float: left;
+    display: inline-block;
     padding: 8px 8px;
-    margin: 4px;
+    margin: 2px;
     border-radius: 10px;
 }
 
@@ -155,12 +189,15 @@ select, option {
     padding: 8px;
 }
 
-i.icon-left {
-    margin-right: 4px;
+i.icon {
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
 }
 
-i.icon-right {
-    margin-left: 4px;
+div.icon {
+    margin-top: 1rem;
+    font-size: 0.6em;
 }
 
 
@@ -185,6 +222,16 @@ li.link-tag {
     border: 2px solid var(--font-color);
 }
 
+
+div.script-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 1rem;
+    margin-top: 5px;
+    margin-left: 60px;
+}
 
 
 /* fill speaker tags */
@@ -264,6 +311,7 @@ li.link-tag {
     padding: 2px 8px;
     border: 1px solid white;
     border-radius: 6px;
+    font-size: 75%;
 
     position: absolute;
     z-index: 1;

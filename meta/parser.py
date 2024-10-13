@@ -30,6 +30,9 @@ class LinkData:
     script: dict[str, str]
     post: dict[str, str]
 
+    def combine_dict(self) -> dict[str, str]:
+        return {**self.script, **self.post}
+
 
 @dataclass
 class FillData:
