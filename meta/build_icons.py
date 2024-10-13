@@ -2,7 +2,6 @@ from typing import Literal
 
 from parser import FillData
 
-
 LINK_ICONS = {
     "YouTube": ("fa-brands", "fa-youtube"),
     "soundgasm": ("fa-solid", "fa-headphones"),
@@ -11,6 +10,7 @@ LINK_ICONS = {
     "Google Docs": ("fa-brands", "fa-google-drive"),
     "scriptbin": ("fa-solid", "fa-file-lines")
 }
+
 
 def icon(*fa_classes: str, direction: Literal["left", "right"]) -> str:
     """Create a font awesome icon."""
@@ -26,7 +26,6 @@ def self_fill_icon() -> str:
     return icon("fa-solid", "fa-crown", direction="right")
 
 
-
 def make_header_icons(fill: FillData, attendant_va: list[str] | None) -> str:
     should_use_attendant = bool(attendant_va and set(attendant_va) & set(fill.creators))
     should_use_self_fill = "lilellia" in fill.creators
@@ -39,7 +38,6 @@ def make_header_icons(fill: FillData, attendant_va: list[str] | None) -> str:
 
 
 def get_link_icon_classes(label: str) -> tuple[str, ...]:
-
     if label.startswith("r/") or label.startswith("u/"):
         return LINK_ICONS["Reddit"]
 
@@ -48,4 +46,3 @@ def get_link_icon_classes(label: str) -> tuple[str, ...]:
 
 def make_link_icon(label: str) -> str:
     return icon(*get_link_icon_classes(label), direction="left")
-

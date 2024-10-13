@@ -1,0 +1,62 @@
+{% set id = script.title | c_serialise %}
+
+<!--suppress GrazieInspection -->
+<div class="{{script.tags | c_script_classes}}" id="{{id}}">
+    <!-- HEADING -->
+    <span class="script-index">{{script.published.strftime("%d %b %Y")}}: #{{script.index}}</span>
+    <span class="copy-text" onclick='copyToClipboard("{{id}}")'>Copy</span>
+    <p class="script-title">{{script.title}}</p>
+
+    <!-- TAGS -->
+    <ul class="script-tags">
+        {% for tag in script.audience_tags %}
+        <li class="script-tag audience-tag {{tag.lower()}}">{{tag}}</li>
+        {% endfor %}
+
+        {% for tag in script.content_tags %}
+        <li class="{{tag | c_script_tag_classes}}">{{tag}}</li>
+        {% endfor %}
+
+        <li class="script-tag meta-tag">
+            {{script.wordcount_tag}}
+        </li>
+    </ul>
+
+    <!-- SERIES -->
+    {% if script.series %}
+    <ul class="script-tags">
+        <li class="script-tag series-tag {{script.series.title | c_serialise}}">
+            Series: <span class="series-title">{{script.series.title}}</span> (Part <span class="series-index">{{script.series.index}}</span>)
+        </li>
+    </ul>
+    {% endif %}
+
+    <!-- SUMMARY -->
+    <blockquote class="script-summary">
+        {% for line in script.summary.splitlines() %}
+        <p>{{line}}</p>
+        {% endfor %}
+    </blockquote>
+
+    <!-- LINKS -->
+    <span><b>Links:</b></span>
+    <div class="script-links">
+        {% for link in script.links %}
+        {% include "link.html" %}
+        {% endfor %}
+    </div>
+
+    <!-- FILLS -->
+    {% if script.fills %}
+    <div class="fill-summary">
+        <p>
+            <b>Fills (<span class="fill-count">{{script.fills | length}}</span>):</b>
+        </p>
+        <div class="script-fills">
+            {% for fill in script.fills %}
+            {% include "fill_data.html" %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
