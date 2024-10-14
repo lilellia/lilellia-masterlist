@@ -6,7 +6,7 @@
     {% if fill.label %}
     <div class="fill-label">
         {% for line in fill.label.splitlines() %}
-        <div>({{line}})</div>
+        <div>({{line | safe}})</div>
         {% endfor %}
     </div>
     {% endif %}
