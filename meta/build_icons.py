@@ -41,7 +41,11 @@ def get_link_icon_classes(label: str) -> tuple[str, ...]:
     if label.startswith("r/") or label.startswith("u/"):
         return LINK_ICONS["Reddit"]
 
-    return LINK_ICONS.get(label, ("",))
+    for key, value in LINK_ICONS.items():
+        if label.startswith(key):
+            return value
+
+    raise ValueError(f"unknown label: {label}")
 
 
 def make_link_icon(label: str) -> str:
