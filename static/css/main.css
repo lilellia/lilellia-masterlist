@@ -305,6 +305,10 @@ div.fill-links {
     background: var(--audience-f4a-background);
 }
 
+.audience-tag.ffff4f {
+    background: var(--audience-f4a-background);
+}
+
 .audience-tag.m4a {
     background: var(--audience-m4a-background);
 }
