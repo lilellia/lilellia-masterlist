@@ -130,7 +130,7 @@ div.script-fills {
     margin-left: 40px;
 }
 
-div.fill-links {
+div.script-fill-links {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

@@ -12,11 +12,11 @@
     {% endif %}
 
     <!-- DATE -->
-    <div class="fill-date">{{fill.date}}</div>
+    <div class="fill-date">{{fill.date.strftime("%d %b %Y")}}</div>
 
     <!-- LINKS -->
     <span>
-        <div class="fill-links">
+        <div class="script-fill-links">
             {% for link in fill.links %}
             <div>
                 <div class="tooltip">
