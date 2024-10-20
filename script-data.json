@@ -1,6 +1,38 @@
 {
   "scripts": [
     {
+      "title": "Encountering a Friendly Puni in the Forest",
+      "audience": [
+        "F4A"
+      ],
+      "tags": [
+        null
+      ],
+      "series": null,
+      "summary": null,
+      "words": {
+        "spoken": {
+          "Puni-ne": null
+        },
+        "total": null
+      },
+      "finished": null,
+      "published": null,
+      "links": {
+        "script": {
+          "scriptbin": null,
+          "Google Docs": null
+        },
+        "post": {
+          "r/ASMRScriptHaven": null
+        }
+      },
+      "attendant VA": [
+        "VociferousVerses"
+      ],
+      "fills": []
+    },
+    {
       "title": "Witch Girls Trio: Observing a Magical Coming-of-Age Ritual",
       "audience": [
         "FFFF4F"
@@ -1425,10 +1457,23 @@
       "fills": [
         {
           "creators": [
+            "CrowsAndKisses"
+          ],
+          "title": "...",
+          "audience": "F4F",
+          "links": {
+            "YouTube": "https://youtu.be/9C-PJ5GUkTQ"
+          },
+          "duration": "13m17s",
+          "date": "2024-10-19",
+          "label": "modern (you)\nft. @laughing_fatpan"
+        },
+        {
+          "creators": [
             "lilellia"
           ],
           "title": "[F4F] Princess Comforts Thy Worries [part 2] [princess×knight] [archaic] [sapphic] [forbidden love]",
-          "audience": "F4A",
+          "audience": "F4F",
           "links": {
             "YouTube": "https://youtu.be/NDhS1P--hJo",
             "soundgasm": "https://soundgasm.net/u/lilellia/F4F-Princess-Comforts-Thy-Worries-part-2-princess-speaker-knight-listener-archaic-English-sapphic-forbidden-love-comfort"
