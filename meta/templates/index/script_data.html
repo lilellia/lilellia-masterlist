@@ -1,7 +1,7 @@
 {% set id = script.title | c_serialise %}
 
 <!--suppress GrazieInspection -->
-<div class="{{script.tags | c_script_classes}}" id="{{id}}">
+<div class="{{script.content_tags | c_script_classes}}" id="{{id}}">
     <!-- HEADING -->
     <span class="script-index">{{script.published.strftime("%d %b %Y")}}: #{{script.index}}</span>
     <span class="copy-text" onclick='copyToClipboard("{{id}}")'>Copy</span>
