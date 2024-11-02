@@ -1,6 +1,42 @@
 {
     "scripts": [
         {
+            "title": "Aquarium First Date with Your Girlfriend",
+            "audience": [
+                "F4A"
+            ],
+            "tags": [
+                "romance",
+                "first date",
+                "aquarium",
+                "cute",
+                "wholesome",
+                "slice of life"
+            ],
+            "series": null,
+            "summary": "You and your friend recently confessed feelings for each other, and now, today is your first date. They suggested meeting at the city's aquarium, which is well-known for its size and impressive exhibits. Having not grown up near here, you've actually never been to this aquarium, but you're excited to explore it on this date today.",
+            "words": {
+                "spoken": {
+                    "Madeline": 2500
+                },
+                "total": 4469
+            },
+            "finished": "2024-11-02",
+            "published": "2024-11-02",
+            "links": {
+                "script": {
+                    "scriptbin": "https://scriptbin.works/s/v92ht",
+                    "Google Docs": "https://docs.google.com/document/d/1ua9q3Tjwd6gZgfeeOOKCLvbhmppk_n1MpTHINSpTyQo/edit?usp=sharing"
+                },
+                "post": {
+                    "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1gi5473/f4a_aquarium_first_date_with_your_girlfriend/",
+                    "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1gi54me/f4a_aquarium_first_date_with_your_girlfriend/"
+                }
+            },
+            "attendant VA": null,
+            "fills": []
+        },
+        {
             "title": "Witch Girls Trio: Observing a Magical Coming-of-Age Ritual",
             "audience": [
                 "FFFF4F"
