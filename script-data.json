@@ -1,6 +1,54 @@
 {
     "scripts": [
         {
+            "title": "Thanksgiving with Your Girlfriend's Family",
+            "audience": [
+                "FFMA4F",
+                "F4F"
+            ],
+            "tags": [
+                "Thanksgiving",
+                "slice of life",
+                "established relationship",
+                "sapphic",
+                "comfort",
+                "affirmations",
+                "TW: mentions of homophobia, family drama",
+                "wholesome"
+            ],
+            "series": {
+                "title": "Holidays with Your Girlfriend's Family",
+                "index": 1
+            },
+            "summary": "You've been dating your girlfriend for almost a year, and now it's Thanksgiving Day, and you've been invited to dinner with your her family, whom you'll be meeting for the first time. You're nervous and hoping to make a good first impression, but she assures you that her family is really nice and accepting and that you don't need to worry. You believe her, though you've enough bad experiences with your own family making aggressive homophobic comments that you can't help but be nervous anyway\u2014though you reckon that it's normal to be nervous when meeting your girlfriend's parents and older sibling for the first time. But as you join them for a much more casual version of the celebration than you're used to and you seem to have made good impressions, you relax and get to enjoy just a nice, cosy, wholesome family gathering.",
+            "words": {
+                "spoken": {
+                    "Katherine": 3399,
+                    "Ellen": 1468,
+                    "Brian": 1471,
+                    "Avery": 1531
+                },
+                "total": 10710
+            },
+            "finished": "2024-11-12",
+            "published": "2024-11-14",
+            "links": {
+                "script": {
+                    "scriptbin": "https://scriptbin.works/u/lilellia/ffma4f-series-holidays-with-your-girlfriend-s",
+                    "Google Docs": "https://drive.google.com/file/d/1Utun5cQ5opXkWxxwyZ2tKqoMZ6rVgnVz/view?usp=drive_link"
+                },
+                "post": {
+                    "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1gr12yk/ffma4f_f4f_thanksgiving_with_your_girlfriends/",
+                    "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1gr13ds/ffma4f_f4f_thanksgiving_with_your_girlfriends/",
+                    "r/GWASapphic": "https://www.reddit.com/r/GWASapphic/comments/1gr17he/ffma4f_thanksgiving_with_your_girlfriends_family/"
+                }
+            },
+            "attendant VA": [
+                "lilellia"
+            ],
+            "fills": []
+        },
+        {
             "title": "Aquarium First Date with Your Girlfriend",
             "audience": [
                 "F4A"
@@ -388,7 +436,7 @@
             ]
         },
         {
-            "title": "The Princesses' Polycule",
+            "title": "Princesses' Polycule",
             "audience": [
                 "FF4F"
             ],
