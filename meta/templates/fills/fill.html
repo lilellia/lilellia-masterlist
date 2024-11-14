@@ -5,7 +5,7 @@
 
     <p class="fill-script-ref">
         <i class="icon fa-solid fa-file-lines"></i>
-        <a href="{{index_page}}#{{fill.script | c_serialise}}">{{fill.script}}</a>
+        <a href="{{index_page}}#{{fill.script.title | c_serialise}}">{{fill.script.title}}</a>
     </p>
 
     <p class="fill-creator">{{fill.creators | join(", ")}}</p>

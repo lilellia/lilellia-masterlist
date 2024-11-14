@@ -3613,5 +3613,126 @@
                 }
             ]
         }
+    ],
+    "audios": [
+        {
+            "creators": [
+                "lilellia",
+                "Vociferous Voices"
+            ],
+            "title": "[F4F] Flustered Confession from Your Princess [maid speaker] [princess listener] [F2L] [flustered]",
+            "audience": "F4F",
+            "links": {
+                "YouTube": "https://youtu.be/Gre4adVhDyc",
+                "soundgasm": null
+            },
+            "duration": "36m31s",
+            "date": "2024-06-29",
+            "script": {
+                "title": "When Honest Flowers Bloom",
+                "authors": [
+                    "u/LarkMelody"
+                ],
+                "link": "https://scriptbin.works/u/LarkMelody/ff4ff-when-honest-feelings-bloom-romance-low"
+            }
+        },
+        {
+            "creators": [
+                "lilellia",
+                "ApolloVA",
+                "Asaki Valentine"
+            ],
+            "title": "[FFF4TF] Your Magical Girl Friends Ask You to Join Them [trans listener] [magical girls] [comfort]",
+            "audience": "FFF4TF",
+            "links": {
+                "YouTube": "https://youtu.be/4NfJCDfnQI4",
+                "soundgasm": null
+            },
+            "duration": "16m25s",
+            "date": "2024-05-27",
+            "script": {
+                "title": "Your Magical Girl Friends Ask You to Join Them",
+                "authors": [
+                    "u/Turt1eShark"
+                ],
+                "link": "https://www.reddit.com/r/ASMRScriptHaven/comments/zp28vi/your_magical_girl_friends_ask_you_to_join_them/"
+            }
+        },
+        {
+            "creators": [
+                "lilellia",
+                "ADragonSpeaks"
+            ],
+            "title": "[F4F] Princess Comforts Thy Worries [part 2] [princess\u00d7knight] [archaic] [sapphic] [forbidden love]",
+            "audience": "F4F",
+            "links": {
+                "YouTube": "https://youtu.be/NDhS1P--hJo",
+                "soundgasm": null
+            },
+            "duration": "14m00s",
+            "date": "2024-05-07",
+            "script": {
+                "title": "Princess Comforts Thy Worries",
+                "link": "https://new.reddit.com/r/ASMRScriptHaven/comments/19dcpa6/f4f_part_ii_princess_comforts_thy_worries/"
+            }
+        },
+        {
+            "creators": [
+                "lilellia"
+            ],
+            "title": "[F4F] Playful Fairy Flirts with You (...but is flustered the whole time) [fairy speaker] [water nymph speaker] [strangers to more] [flowers] [playful] [kissing] [meet cute]",
+            "audience": "F4F",
+            "links": {
+                "YouTube": "https://youtu.be/-z6Yf_ZIkTg",
+                "soundgasm": "https://soundgasm.net/u/lilellia/F4F-Playful-Fairy-Flirts-with-You-but-is-flustered-the-whole-time-fairy-speaker-water-nymph-speaker-strangers-to-more-flowers-playful-kissing-meet-cute",
+                "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1ciyp1j/f4f_playful_fairy_flirts_with_you_but_is/?utm_source=share&utm_medium=web2x&context=3"
+            },
+            "duration": "8m38s",
+            "date": "2024-05-02",
+            "script": {
+                "title": "Playful Fairy Flirts With You (But Is Flustered The Whole Time)",
+                "authors": [
+                    "u/softlikestatic"
+                ],
+                "link": "https://new.reddit.com/r/ASMRScriptHaven/comments/utlp4c/f4f_playful_fairy_flirts_with_you_but_is/"
+            }
+        },
+        {
+            "creators": [
+                "lilellia"
+            ],
+            "title": "[F4F] Rescuing Thine Injured Princess [princess \u00d7 knight] [archaic] [friends to lovers]",
+            "audience": "F4F",
+            "links": {
+                "YouTube": "https://youtu.be/bn7_-26yWCE",
+                "soundgasm": null
+            },
+            "duration": "13m31s",
+            "date": "2024-04-02",
+            "script": {
+                "title": "Rescuing Thine Injured Princess",
+                "link": "https://www.reddit.com/r/ASMRScriptHaven/comments/18x6er9/f4f_part_i_rescuing_thine_injured_princess/"
+            }
+        },
+        {
+            "creators": [
+                "lilellia"
+            ],
+            "title": "[F4A] Taking Care of an Abandoned Neko",
+            "audience": "F4A",
+            "links": {
+                "YouTube": "https://www.youtube.com/watch?v=mjFaNE-n7-U",
+                "soundgasm": "https://soundgasm.net/u/lilellia/SFW-F4A-Taking-Care-of-an-Abandoned-Neko-Script-Fill-Neko-Listener-Pampering-Cuddling-Cute-Wholesome"
+            },
+            "duration": "11m38s",
+            "date": "2023-12-25",
+            "script": {
+                "title": "Taking care of an abandoned Neko.",
+                "authors": [
+                    "u/rydikar1"
+                ],
+                "link": "https://new.reddit.com/r/ASMRScriptHaven/comments/18fegrs/asmr_rp_a4a_taking_care_of_an_abandoned_neko_neko/"
+            }
+        }
     ]
 }

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import re
 from dataclasses import dataclass, field
@@ -33,10 +35,14 @@ class LinkData:
     def combine_dict(self) -> dict[str, str]:
         return {**self.script, **self.post}
 
+    @property
+    def canonical_link(self) -> str:
+        key = list(self.post.keys())[0]
+        return self.post[key]
 
 @dataclass
 class FillData:
-    script: str
+    script: ScriptFingerprint
     creators: list[str]
     title: str
     audience: str
@@ -72,12 +78,28 @@ class FillData:
         date_str = data.pop("date", "")
         date = dateparser.parse(date_str)
 
+        # make fingerprint
+        if isinstance(data["script"], dict):
+            data["script"] = ScriptFingerprint(
+                title=data["script"]["title"],
+                authors=data["script"].get("authors", ["lilellia"]),
+                canonical_link=data["script"]["link"],
+            )
+
         return cls(**data, duration=duration, date=date)
+
+
+@dataclass
+class ScriptFingerprint:
+    title: str
+    authors: list[str]
+    canonical_link: str
 
 
 @dataclass
 class Script:
     title: str
+    authors: list[str]
     audience: list[str]
     tags: list[str]
     series: SeriesData | None
@@ -90,8 +112,18 @@ class Script:
     fills: list[FillData] = field(default_factory=list)
     notes: str | None = None
 
+    @property
+    def fingerprint(self) -> ScriptFingerprint:
+        return ScriptFingerprint(
+            title=self.title,
+            authors=self.authors,
+            canonical_link=self.links.canonical_link,
+        )
+
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> Self:
+        authors = data.pop("authors", ["lilellia"])
+
         series = data.pop("series", None)
         if series:
             series = SeriesData(**series)
@@ -108,17 +140,26 @@ class Script:
         if published:
             published = dateparser.parse(published)
 
-        fills = data.pop("fills", [])
-        fills = [FillData.from_dict({"script": data["title"], **f}) for f in fills]
-
         links = data.pop("links", None)
         if links:
             links = LinkData(**links)
+
+        fingerprint = ScriptFingerprint(
+            title=data["title"],
+            authors=data.get("authors", ["lilellia"]),
+            canonical_link=links.canonical_link,
+        )
+
+        fill_data: list[dict[str, Any]] = data.pop("fills", [])
+        fills: list[FillData] = []
+        for f in fill_data:
+            fills.append(FillData.from_dict({"script": fingerprint, **f}))
 
         attendant_va = data.pop("attendant VA", None)
 
         return cls(
             **data,
+            authors=authors,
             series=series,
             words=words,
             finished=finished,

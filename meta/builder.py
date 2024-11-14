@@ -1,17 +1,18 @@
 from __future__ import annotations
 
+import json
+import re
 from collections.abc import Collection, Iterable, Iterator
-from dataclasses import dataclass, field, asdict
-from datetime import datetime, date
+from dataclasses import asdict, dataclass, field
+from datetime import date, datetime
 from operator import attrgetter
+from parser import FillData, Script, ScriptFingerprint, SeriesData, WordCountData, parse
 from pathlib import Path
 from typing import Self
 
 import jinja2
-
 from build_icons import get_link_icon_classes
 from custom_filters import add_all_filters, any_nsfw
-from parser import Script, SeriesData, WordCountData, parse, FillData
 
 
 def reverse_enumerate[T](seq: Collection[T], *, start: int = 1) -> Iterator[tuple[int, T]]:
@@ -29,6 +30,14 @@ def load_scripts() -> list[Script]:
     # filter to only published scripts
     scripts = [s for s in scripts if s.published is not None and s.published <= datetime.today()]
     return sorted(scripts, key=attrgetter("published"), reverse=True)
+
+
+def load_audios() -> list[EFillData]:
+    datafile = Path(__file__).parent.parent / "script-data.json"
+    data = json.loads(datafile.read_text(encoding="utf-8"))
+
+    fills = [FillData.from_dict(fill) for fill in data["audios"]]
+    return [EFillData.from_fill_data(f) for f in fills]
 
 
 @dataclass
@@ -49,9 +58,16 @@ class EFillData:
     date: date
     links: list[ELinkData]
     label: str | None
-    script: str
+    script: ScriptFingerprint
     index: int | None = None
     additional_classes: list[str] = field(default_factory=list)
+    embed: str | None = field(init=False)
+    
+    def __post_init__(self):
+        if (match := re.search(r"youtube\.com/watch\?v=([^&]+)|youtu\.be/([^&]+)", self.links[0].href)):
+            self.embed = f"https://www.youtube.com/embed/{match.group(1) if match.group(1) else match.group(2)}"
+        else:
+            self.embed = None
 
     @classmethod
     def from_fill_data(cls, data: FillData, *, index: int | None = None,
@@ -61,11 +77,13 @@ class EFillData:
 
         links = [ELinkData(href=href, label=label) for label, href in data.links.items() if href]
 
+        assert data.date is not None
+
         return cls(
             creators=data.creators,
             title=data.title,
             audience=data.audience,
-            date=data.date,
+            date=data.date.date(),
             links=links,
             label=data.label,
             index=index,
@@ -97,13 +115,13 @@ class EScriptData:
     wordcount_tag: str
     summary: str
     links: list[ELinkData]
-    published: date
+    published: date | None
     fills: list[EFillData]
     attendant_va: list[str] | None
 
 
 @dataclass
-class Context:
+class ScriptContext:
     num_scripts: int
     num_fills: int
     series_options: list[str] = field(default_factory=list)
@@ -120,6 +138,19 @@ class Context:
             audience_tags=get_audience_tags(scripts),
             filled_by=get_filled_by(scripts),
             scripts=make_script_data(scripts)
+        )
+
+
+@dataclass
+class AudioContext:
+    num_audios: int
+    audios: list[EFillData] = field(default_factory=list)
+
+    @classmethod
+    def from_audios(cls, audios: list[EFillData]):
+        return cls(
+            num_audios=len(audios),
+            audios=audios
         )
 
 
@@ -200,15 +231,15 @@ def make_fill_data(scripts: list[Script]) -> list[EFillData]:
     fills.sort(key=lambda fill: fill.date, reverse=True)
 
     # fix the indexing
-    for i, fill in reverse_enumerate(fills):
-        fill.index = i
+    for i, efill in reverse_enumerate(fills):
+        efill.index = i
 
     return fills
 
 
 def build_index(scripts: list[Script], template_dir: Path, output_file: Path) -> None:
     """Write a new index.html"""
-    context = Context.from_scripts(scripts=scripts)
+    context = ScriptContext.from_scripts(scripts=scripts)
 
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(str(template_dir)),
@@ -217,6 +248,23 @@ def build_index(scripts: list[Script], template_dir: Path, output_file: Path) ->
     add_all_filters(env)
 
     template = env.get_template("index.html")
+    html = template.render(**asdict(context))
+
+    with open(output_file, mode="w", encoding="utf-8") as f:
+        f.write(html)
+
+
+def build_audios(audios: list[EFillData], template_dir: Path, output_file: Path) -> None:
+    """Write a new audios.html"""
+    context = AudioContext.from_audios(audios=audios)
+
+    env = jinja2.Environment(
+        loader=jinja2.FileSystemLoader(str(template_dir)),
+        autoescape=jinja2.select_autoescape(),
+    )
+    add_all_filters(env)
+
+    template = env.get_template("audios.html")
     html = template.render(**asdict(context))
 
     with open(output_file, mode="w", encoding="utf-8") as f:
@@ -245,8 +293,10 @@ def main():
     template_root = root / "meta" / "templates"
 
     scripts = load_scripts()
+    audios = load_audios()
 
     build_index(scripts, template_dir=template_root / "index", output_file=root / "index.html")
+    # build_audios(audios, template_dir=template_root / "audios", output_file=root / "audios.html")
     build_all_fills(scripts, template_dir=template_root / "fills", output_file=root / "all-fills.html")
 
 

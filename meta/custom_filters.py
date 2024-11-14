@@ -73,13 +73,18 @@ def serialise(text: str) -> str:
     return text
 
 
+def make_csv(items: list[str]) -> str:
+    return ", ".join(items)
+
+
 NEW_FILTERS = {
     "c_script_tag_classes": script_tag_classes,
     "c_overlap_lists": overlap_lists,
     "c_any_nsfw": any_nsfw,
     "c_summarise_gender": summarise_gender,
     "c_serialise": serialise,
-    "c_script_classes": script_classes
+    "c_script_classes": script_classes,
+    "c_make_csv": make_csv
 }
 
 

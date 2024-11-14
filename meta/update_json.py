@@ -1,17 +1,17 @@
+import json
 from argparse import ArgumentParser
 from collections.abc import Iterable, Mapping
-import json
 from pathlib import Path
 from typing import Any
 
 import yaml
 
 
-def load_data(datafile: Path) -> list[dict[str, Any]]:
+def load_data(datafile: Path) -> dict[str, Any]:
     with open(datafile, "r", encoding="utf-8") as f:
         data: dict[str, list[dict[str, Any]]] = yaml.safe_load(f)
 
-    result: list[dict[str, Any]] = []
+    scripts: list[dict[str, Any]] = []
 
     for script in data["scripts"]:
         if script.get("published") is not None:
@@ -31,9 +31,16 @@ def load_data(datafile: Path) -> list[dict[str, Any]]:
             if dt := fill.get("date"):
                 fill["date"] = dt.strftime("%Y-%m-%d")
 
-        result.append(script)
+        scripts.append(script)
+    
+    audios: list[dict[str, Any]] = []
+    for audio in data["audios"]:
+        if audio.get("date") is not None:
+            audio["date"] = audio["date"].strftime("%Y-%m-%d")
+        audios.append(audio)
 
-    return result
+
+    return {"scripts": scripts, "audios": audios}
 
 
 def remove_unpublished(data: Iterable[Mapping[str, Any]]) -> list[dict[str, Any]]:
@@ -48,18 +55,21 @@ def main():
     args = parser.parse_args()
 
     # read the source data
-    all_scripts = load_data(args.in_file)
-    public_scripts = remove_unpublished(all_scripts)
+    all_data = load_data(args.in_file)
+    public_data = {
+        "scripts": remove_unpublished(all_data["scripts"]),
+        "audios": all_data["audios"]
+    }
 
     # output the data to file
     with open(args.out_file, "w", encoding="utf-8") as f:
-        json.dump({"scripts": public_scripts}, f, indent=4)
+        json.dump(public_data, f, indent=4)
 
     if args.private is None:
         args.private = args.out_file.with_stem(f"{args.out_file.stem}-private")
 
     with open(args.private, "w", encoding="utf-8") as f:
-        json.dump({"scripts": all_scripts}, f, indent=4)
+        json.dump(all_data, f, indent=4)
 
 
 if __name__ == "__main__":
