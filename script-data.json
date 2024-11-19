@@ -159,7 +159,20 @@
                 }
             },
             "attendant VA": null,
-            "fills": []
+            "fills": [
+                {
+                    "creators": [
+                        "Flawless Fae Audio"
+                    ],
+                    "title": "[F4A] [TF4A] Your Tsundere Neko is Afraid of Thunder [neko speaker] [tsundere speaker]",
+                    "audience": "F4A",
+                    "links": {
+                        "YouTube": "https://www.youtube.com/watch?v=th5AfQDZMhU"
+                    },
+                    "duration": "11m35s",
+                    "date": "2024-11-19"
+                }
+            ]
         },
         {
             "title": "Being Comforted for Sensory Overload",
