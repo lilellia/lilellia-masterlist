@@ -177,7 +177,7 @@ def get_filled_by(scripts: Iterable[Script]) -> list[str]:
     for script in scripts:
         options |= script.filled_by
 
-    return ["", *sorted(options)]
+    return ["", *sorted(options, key=str.lower)]
 
 
 def make_wordcount_tag(words: WordCountData) -> str:
