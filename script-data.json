@@ -1,6 +1,44 @@
 {
     "scripts": [
         {
+            "title": "Adopting Neko Twin Sisters from the Shelter",
+            "audience": [
+                "FF4A"
+            ],
+            "tags": [
+                "neko speakers",
+                "twin sister speakers",
+                "adoption",
+                "wholesome",
+                "cute",
+                "strangers to friends",
+                "platonic"
+            ],
+            "series": null,
+            "summary": "You recently moved to a new city for work, far from where you grew up. As such, you don't really know anyone here aside from some of your coworkers, and the last month or two have been fairly stressful and lonely as you've worked to settle in and adjust. Meeting new people is hard, but now that you're at least mostly adjusted to this new life, you're now in a position where you feel comfortable adopting a neko, looking to have someone around the house (as well as provide a home to the neko, of course). You decide to visit the neko shelter after work, and although most of the nekos are busy, you find a pair of twins curled up together on the bed. After talking with them for a while, you learn that they grew up here at the shelter and they're picky about who they might go home with, but you all seem to get along pretty well, so... ^_^",
+            "words": {
+                "spoken": {
+                    "Lydia": 1889,
+                    "Ella": 1816
+                },
+                "total": 5512
+            },
+            "finished": "2025-01-02",
+            "published": "2025-01-04",
+            "links": {
+                "script": {
+                    "scriptbin": "https://scriptbin.works/s/ehet4",
+                    "Google Docs": "https://docs.google.com/document/d/1FPzn6RWr1_afd9NndjkCbuC-AOeY5aBZzeLkcIhCrvY/edit?usp=sharing"
+                },
+                "post": {
+                    "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1htspjh/ff4a_adopting_neko_twin_sisters_from_the_shelter/",
+                    "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1htsqho/ff4a_adopting_neko_twin_sisters_from_the_shelter/"
+                }
+            },
+            "attendant VA": null,
+            "fills": []
+        },
+        {
             "title": "Role Reversal: Stepping Out of Our Comfort Zones Together",
             "audience": [
                 "F4F"
