@@ -3602,7 +3602,21 @@
                 }
             },
             "attendant VA": null,
-            "fills": []
+            "fills": [
+                {
+                    "creators": [
+                        "lilellia"
+                    ],
+                    "title": "[F4A] Performing Your First Synthesis [part 2] [alchemist speaker] [lore heavy] [fantasy] [comfort]",
+                    "audience": "F4A",
+                    "links": {
+                        "YouTube": "https://www.youtube.com/watch?v=EgLMKFkK9Uw",
+                        "soundgasm": "https://soundgasm.net/u/lilellia/F4A-Performing-Your-First-Synthesis-part-2-alchemist-speaker-lore-heavy-fantasy-comfort"
+                    },
+                    "duration": "26m36s",
+                    "date": "2025-01-16"
+                }
+            ]
         },
         {
             "title": "Automata Deserve Cuddles Too",
