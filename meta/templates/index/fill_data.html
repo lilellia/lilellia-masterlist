@@ -11,8 +11,10 @@
     </div>
     {% endif %}
 
-    <!-- DATE -->
-    <div class="fill-date">{{fill.date.strftime("%d %b %Y")}}</div>
+    <!-- DATE & DURATION -->
+    <div class="fill-date">
+        <span>{{fill.date.strftime("%d %b %y")}} ・ {{fill.duration | c_format_timedelta}}</span>
+    </div>
 
     <!-- LINKS -->
     <span>

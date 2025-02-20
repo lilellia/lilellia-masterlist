@@ -1,4 +1,5 @@
 import re
+from datetime import timedelta
 
 import jinja2
 
@@ -77,6 +78,14 @@ def make_csv(items: list[str]) -> str:
     return ", ".join(items)
 
 
+def format_timedelta(t: timedelta | None) -> str:
+    if not t:
+        return ""
+
+    minutes, seconds = divmod(t.total_seconds(), 60)
+    return f"{minutes:02.0f}:{seconds:02.0f}"
+
+
 NEW_FILTERS = {
     "c_script_tag_classes": script_tag_classes,
     "c_overlap_lists": overlap_lists,
@@ -84,7 +93,8 @@ NEW_FILTERS = {
     "c_summarise_gender": summarise_gender,
     "c_serialise": serialise,
     "c_script_classes": script_classes,
-    "c_make_csv": make_csv
+    "c_make_csv": make_csv,
+    "c_format_timedelta": format_timedelta
 }
 
 

@@ -110,7 +110,7 @@ span.copy-text {
     text-decoration: underline;
 }
 
-div.fill-date {
+div.fill-date, div.fill-duration {
     padding: 4px;
     font-size: 0.7em;
 }

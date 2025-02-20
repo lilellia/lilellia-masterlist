@@ -4,15 +4,16 @@ import json
 import re
 from collections.abc import Collection, Iterable, Iterator
 from dataclasses import asdict, dataclass, field
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from operator import attrgetter
-from parser import FillData, Script, ScriptFingerprint, SeriesData, WordCountData, parse
 from pathlib import Path
 from typing import Self
 
 import jinja2
+
 from build_icons import get_link_icon_classes
 from custom_filters import add_all_filters, any_nsfw
+from parser import FillData, Script, ScriptFingerprint, SeriesData, WordCountData, parse
 
 
 def reverse_enumerate[T](seq: Collection[T], *, start: int = 1) -> Iterator[tuple[int, T]]:
@@ -56,13 +57,14 @@ class EFillData:
     title: str
     audience: str
     date: date
+    duration: timedelta | None
     links: list[ELinkData]
     label: str | None
     script: ScriptFingerprint
     index: int | None = None
     additional_classes: list[str] = field(default_factory=list)
     embed: str | None = field(init=False)
-    
+
     def __post_init__(self):
         if (match := re.search(r"youtube\.com/watch\?v=([^&]+)|youtu\.be/([^&]+)", self.links[0].href)):
             self.embed = f"https://www.youtube.com/embed/{match.group(1) if match.group(1) else match.group(2)}"
@@ -84,6 +86,7 @@ class EFillData:
             title=data.title,
             audience=data.audience,
             date=data.date.date(),
+            duration=data.duration,
             links=links,
             label=data.label,
             index=index,

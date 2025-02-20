@@ -40,6 +40,7 @@ class LinkData:
         key = list(self.post.keys())[0]
         return self.post[key]
 
+
 @dataclass
 class FillData:
     script: ScriptFingerprint
