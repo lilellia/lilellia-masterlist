@@ -1,6 +1,75 @@
 {
     "scripts": [
         {
+            "title": "Witch Turns You into a Cat (...and also a neko)",
+            "audience": [
+                "F4A"
+            ],
+            "tags": [
+                "witch speaker",
+                "human listener",
+                "transformation",
+                "willing listener",
+                "cat listener",
+                "neko listener",
+                "fantasy",
+                "magic",
+                "strangers to ???"
+            ],
+            "series": {
+                "title": "Witch Turns You into a Cat",
+                "index": 1
+            },
+            "summary": "Late at night, you travel deep into the forest outside of town, looking for the witch Linnea who's said to live near the forest's centre. It's also said that she's a \"dark and evil witch\" who lives alone so that her victims can't be heard from town, but you don't really believe the rumours. And you're right not to: when you reach her cabin, you find a very kind woman who simply likes the quiet life away from the town. Of course, she's curious as to why you've come to visit her, especially at this hour, and you tell her that it's because you have a particular wish that you're hoping that she can grant: you wish you were a cat. And she seems quite willing to help with this endeavour.",
+            "words": {
+                "spoken": {
+                    "Linnea": 6225
+                },
+                "total": 8911
+            },
+            "finished": "2025-04-10",
+            "published": "2025-04-16",
+            "links": {
+                "script": {
+                    "scriptbin": "https://scriptbin.works/s/2fw8n",
+                    "Google Docs": "https://docs.google.com/document/d/1JSI-VtiGJ0Q6ei81bnwmZMNnLfgy6-4xOgNNst0YYMw/edit?usp=sharing"
+                },
+                "post": {
+                    "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1k0wey3/f4a_witch_turns_you_into_a_cat_and_also_a_neko/",
+                    "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1k0wfag/f4a_witch_turns_you_into_a_cat_and_also_a_neko/"
+                }
+            },
+            "attendant VA": null,
+            "fills": [
+                {
+                    "creators": [
+                        "Asaki Valentine"
+                    ],
+                    "title": "[F4A] Witch Turns You Into a Cat (...and also a neko) [Witch Speaker] [Human Listener] [Transformation] [Willing Listener] [Cat Listener] [Neko Listener] [Fantasy] [Magic] [Strangers to ???]",
+                    "audience": "F4A",
+                    "links": {
+                        "Patreon": "https://www.patreon.com/posts/f4a-witch-turns-126762848"
+                    },
+                    "date": "2025-04-16",
+                    "duration": "77m56s"
+                },
+                {
+                    "creators": [
+                        "lilellia"
+                    ],
+                    "title": "[F4A] Witch Turns You into a Cat (& Neko) [part 1][witch speaker][transformation][willing listener]",
+                    "audience": "F4A",
+                    "links": {
+                        "YouTube": "https://youtu.be/rLscVOJtVYA",
+                        "soundgasm": "https://soundgasm.net/u/lilellia/F4A-Witch-Turns-You-Into-a-Cat-and-also-a-neko-part-1-witch-speaker-human-listener-transformation-willing-listener-cat-listener-neko-listener-fantasy-magic-strangers-to-TW-small-amount-of-blood-used-for-the-potion-6310",
+                        "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1k0wgfw/f4a_witch_turns_you_into_a_cat_and_also_a_neko/"
+                    },
+                    "date": "2025-04-16",
+                    "duration": "63m10s"
+                }
+            ]
+        },
+        {
             "title": "Your Alchemist Friends Make a Love Potion\u2014Among Others\u2014and Suspiciously Want You to Try One",
             "audience": [
                 "FFF4A"
@@ -2562,6 +2631,19 @@
                 "NaughtPlusZero"
             ],
             "fills": [
+                {
+                    "creators": [
+                        "lilellia"
+                    ],
+                    "title": "[F4A] Comforting Your Kitsune Girlfriend's Insecurities [kitsune speaker] [GFE] [reverse comfort]",
+                    "audience": "F4A",
+                    "links": {
+                        "YouTube": "https://youtu.be/X3EUOGSRk6c",
+                        "soundgasm": "https://soundgasm.net/u/lilellia/F4A-Comforting-Your-Kitsune-Girlfriends-Insecurities-kitsune-speaker-human-listener-established-relationship-GFE-reverse-comfort-supportive-listener-wholesome-petting"
+                    },
+                    "duration": "16m21s",
+                    "date": "2024-04-13"
+                },
                 {
                     "creators": [
                         "TwilightAudio"
