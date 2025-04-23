@@ -112,6 +112,61 @@
             "fills": []
         },
         {
+            "title": "Tea Party Sleepover with Your Friends",
+            "audience": [
+                "FF4F"
+            ],
+            "tags": [
+                "college/university students",
+                "platonic",
+                "tea party",
+                "sleepover",
+                "slice of life",
+                "rambling",
+                "reminiscing",
+                "wholesome",
+                "cuddling",
+                "sharing the bed"
+            ],
+            "series": null,
+            "summary": "You've been invited to a girls' night sleepover at your friend's place tonight. You got caught in the rain on your way there, but you're still excited. It's the first time you've come over, as most of your hang-out sessions have been studying together in the library or being pulled to a club meeting after class, or whatever. But tonight, it's a sleepover, which quickly turns into just cosily chatting and sharing stories and spending time together before one of the other girls suggests having a little tea party before bed.",
+            "words": {
+                "spoken": {
+                    "Katherine": 3510,
+                    "Isabelle": 3387
+                },
+                "total": 9024
+            },
+            "finished": "2025-03-03",
+            "published": "2025-04-23",
+            "links": {
+                "script": {
+                    "scriptbin": "https://scriptbin.works/s/necx6",
+                    "Google Docs": "https://docs.google.com/document/d/17H0x9fWSVCWdtTLB70Hr7IQIQZboJSuq1kiJMOA80z0/edit?usp=sharing"
+                },
+                "post": {
+                    "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1k6b46f/ff4f_tea_party_sleepover_with_your_friends/",
+                    "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1k6b4k9/ff4f_tea_party_sleepover_with_your_friends/"
+                }
+            },
+            "attendant VA": null,
+            "fills": [
+                {
+                    "creators": [
+                        "lilellia",
+                        "PositiviBeeVA"
+                    ],
+                    "title": "[FF4F] Tea Party Sleepover with Your Friends (ft. PositiviBeeVA) [college students] [platonic]",
+                    "audience": "FF4F",
+                    "links": {
+                        "YouTube": "https://youtu.be/Le17EhiLIpg"
+                    },
+                    "date": "2025-04-23",
+                    "duration": "61m1s"
+                }
+            ]
+        },
+        {
             "title": "Foreversnuggles: Forgetting That It's Actually a Bank Holiday and You Don't Have to Go to Work",
             "audience": [
                 "F4F"
