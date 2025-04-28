@@ -44,7 +44,8 @@ def overlap_lists[T](haystack1: list[T], haystack2: list[T]) -> bool:
 
 def any_nsfw(tags: list[str]) -> bool:
     """Determine whether a tag with these tags should be marked nsfw."""
-    return any(tag in NSFW_TAGS for tag in tags)
+    overlap = NSFW_TAGS & set(tags)
+    return bool(overlap)
 
 
 def summarise_gender(audience: str) -> str:

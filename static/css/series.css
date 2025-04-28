@@ -1,6 +1,6 @@
 li.script-tag.series-tag.--neko-and-inu-- {
-    background: #1F7F92;
-    color: #6BF1F0;
+    background: #1f7f92;
+    color: #6bf1f0;
 }
 
 li.script-tag.series-tag.automata-deserve-things-too {
@@ -9,8 +9,8 @@ li.script-tag.series-tag.automata-deserve-things-too {
 }
 
 li.script-tag.series-tag.adventures-with-a-mermaid {
-    background: #A940F1;
-    color: #DDACFF;
+    background: #a940f1;
+    color: #ddacff;
 }
 
 li.script-tag.series-tag.thou-and-thy-princess {
@@ -36,4 +36,9 @@ li.script-tag.series-tag.magical-girl-best-friend {
 li.script-tag.series-tag.neko-girl-comes-out {
     background: #724288;
     color: #daa4e0;
+}
+
+li.script-tag.series-tag.witch-turns-you-into-a-cat {
+    background: #5c2453;
+    color: #fda1fd;
 }
