@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
     --background: #111111;
@@ -83,15 +83,13 @@ div.container {
     position: relative;
 }
 
-
 .blurred {
     -webkit-filter: blur(var(--nsfw-blur-range));
     -moz-filter: blur(var(--nsfw-blur-range));
     -o-filter: blur(var(--nsfw-blur-range));
     -ms-filter: blur(var(--nsfw-blur-range));
-    filter: blur(var(--nsfw-blur-range)); 
+    filter: blur(var(--nsfw-blur-range));
 }
-
 
 span.script-index {
     position: absolute;
@@ -110,7 +108,8 @@ span.copy-text {
     text-decoration: underline;
 }
 
-div.fill-date, div.fill-duration {
+div.fill-date,
+div.fill-duration {
     padding: 4px;
     font-size: 0.7em;
 }
@@ -119,7 +118,6 @@ div.fill-label {
     padding: 4px;
     font-size: 0.7em;
 }
-
 
 div.script-fills {
     display: flex;
@@ -188,7 +186,6 @@ input#filterInput {
     padding: 8px 8px;
 }
 
-
 table {
     padding: 10px 40px;
     border-collapse: collapse;
@@ -196,11 +193,11 @@ table {
 
 td {
     padding: 2px 10px;
-    text-align: right;
+    text-align: left;
 }
 
-
-select, option {
+select,
+option {
     width: 100%;
     border-radius: 10px;
     padding: 8px;
@@ -217,7 +214,6 @@ div.icon {
     font-size: 0.6em;
 }
 
-
 li.script-tag {
     background: var(--tag-background);
 }
@@ -227,7 +223,7 @@ li.script-tag.nsfw-tag {
 }
 
 li.script-tag.meta-tag {
-    background: var(--meta-tag-background)
+    background: var(--meta-tag-background);
 }
 
 li.script-tag.series-tag {
@@ -238,7 +234,6 @@ li.link-tag {
     background: var(--script-link-background);
     border: 2px solid var(--font-color);
 }
-
 
 div.script-links {
     display: flex;
@@ -260,7 +255,6 @@ div.fill-links {
     margin-left: 0px;
 }
 
-
 /* fill speaker tags */
 .fill-male {
     background: var(--fill-male-background);
@@ -273,7 +267,6 @@ div.fill-links {
 .fill-neutral {
     background: var(--fill-neutral-background);
 }
-
 
 /* audience tags */
 

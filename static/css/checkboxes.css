@@ -1,0 +1,78 @@
+/* taken from https://codepen.io/iign/pen/poRZKap  */
+
+:root {
+    --color-selected: #6bcc62;
+    --color-unselected: #bc4848;
+}
+
+.lns-checkbox {
+    display: inline-flex;
+    text-transform: uppercase;
+    align-items: center;
+    line-height: 1;
+    border-radius: 5px;
+    background-color: #010101;
+    color: var(--color-unselected);
+    padding: 5px 7px 5px 7px;
+    user-select: none;
+
+    span {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    input[type="checkbox"] {
+        position: absolute;
+        clip: rect(1px, 1px, 1px, 1px);
+        padding: 0;
+        border: 0;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+
+        &:checked + span::after {
+            background-color: var(--color-selected);
+        }
+
+        &:checked + span {
+            color: var(--color-selected);
+        }
+
+        &:focus + span::before {
+            border-color: var(--color-selected);
+        }
+
+        &:disabled {
+            opacity: 0.85;
+            & + span {
+                color: #9a9a88;
+            }
+        }
+    }
+
+    span::before {
+        content: "";
+        display: inline-block;
+        border-radius: 3px;
+        background-color: #414051;
+        margin-right: 8px;
+        height: 16px;
+        width: 16px;
+        border: 1px solid transparent;
+    }
+
+    input[type="checkbox"] {
+    }
+
+    span::after {
+        content: "";
+        display: inline-block;
+        height: 12px;
+        width: 12px;
+        border-radius: 3px;
+        background-color: transparent;
+        left: 3px;
+        position: absolute;
+    }
+}

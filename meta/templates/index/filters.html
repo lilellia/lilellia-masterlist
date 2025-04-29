@@ -1,18 +1,18 @@
 <div class="search-and-filter">
     <p>
-        <span id="numScripts">{{num_scripts}}</span>/{{num_scripts}} scripts・<span id="numFills">{{num_fills}}</span
-    >/{{num_fills}} fills
+        <span id="numScripts">{{num_scripts}}</span>/{{num_scripts}}
+        scripts・<span id="numFills">{{num_fills}}</span>/{{num_fills}} fills
     </p>
 
     <table>
         <tr>
             <td colspan="2">
                 <input
-                        type="text"
-                        id="filterInput"
-                        onkeyup="filterScripts()"
-                        placeholder="filter by title/summary..."
-                /><br/>
+                    type="text"
+                    id="filterInput"
+                    onkeyup="filterScripts()"
+                    placeholder="filter by title/summary..."
+                /><br />
             </td>
         </tr>
 
@@ -20,12 +20,39 @@
         <tr>
             <td><label for="seriesFilter">Filter by Series:</label></td>
             <td>
-                <select name="seriesFilter" id="seriesFilter" onchange="filterScripts()">
+                <select
+                    name="seriesFilter"
+                    id="seriesFilter"
+                    onchange="filterScripts()"
+                >
                     {% for opt in series_options %}
-                    <option value="{{opt}}">{{opt}}
-                    </option>
+                    <option value="{{opt}}">{{opt}}</option>
                     {% endfor %}
                 </select>
+            </td>
+        </tr>
+
+        <!-- NUMBER OF SPEAKERS FILTER -->
+        <tr>
+            <td>
+                <label for="numSpeakersFilter">
+                    Filter by Number of Speakers:
+                </label>
+            </td>
+            <td>
+                <div id="numSpeakersFilter">
+                    {% for opt in speaker_count_options %}
+                    <label class="lns-checkbox">
+                        <input
+                            type="checkbox"
+                            value="{{opt}}"
+                            checked
+                            onchange="filterScripts()"
+                        />
+                        <span>{{opt}}</span>
+                    </label>
+                    {% endfor %}
+                </div>
             </td>
         </tr>
 
@@ -35,24 +62,50 @@
                 <label for="audienceTagFilter">Filter by Audience Tag:</label>
             </td>
             <td>
-                <select name="audienceTagFilter" id="audienceTagFilter" onchange="filterScripts()">
+                <div id="audienceTagFilter">
                     {% for opt in audience_tags %}
-                    <option value="{{opt}}">{{opt}}</option>
+                    <label class="lns-checkbox">
+                        <input
+                            type="checkbox"
+                            value="{{opt}}"
+                            checked
+                            onchange="filterScripts()"
+                        />
+                        <span>{{opt}}</span>
+                    </label>
                     {% endfor %}
-                </select>
+                </div>
             </td>
         </tr>
 
         <!-- UNFILLED-ONLY FILTER -->
         <tr>
             <td>
-                <label for="unfilledOnlyFilter">Show unfilled scripts only?</label>
+                <label for="filledStatusFilter">
+                    Filter by Filled Status:
+                </label>
             </td>
             <td>
-                <select name="unfilledOnlyFilter" id="unfilledOnlyFilter" onchange="filterScripts()">
-                    <option value="no">no (show all scripts)</option>
-                    <option value="yes">yes (show only unfilled scripts)</option>
-                </select>
+                <div id="filledStatusFilter">
+                    <label class="lns-checkbox">
+                        <input
+                            type="checkbox"
+                            value="filled"
+                            checked
+                            onchange="filterScripts()"
+                        />
+                        <span>filled</span>
+                    </label>
+                    <label class="lns-checkbox">
+                        <input
+                            type="checkbox"
+                            value="unfilled"
+                            checked
+                            onchange="filterScripts()"
+                        />
+                        <span>unfilled</span>
+                    </label>
+                </div>
             </td>
         </tr>
 
@@ -60,11 +113,42 @@
         <tr>
             <td><label for="filledByFilter">Filter by VAs:</label></td>
             <td>
-                <select name="filledByFilter" id="filledByFilter" onchange="filterScripts()">
+                <select
+                    name="filledByFilter"
+                    id="filledByFilter"
+                    onchange="filterScripts()"
+                >
                     {% for opt in filled_by %}
                     <option value="{{opt}}">{{opt}}</option>
                     {% endfor %}
                 </select>
+            </td>
+        </tr>
+
+        <!-- NSFW/18+ FILTER -->
+        <tr>
+            <td><label for="nsfwFilter">Filter by SFW/NSFW:</label></td>
+            <td>
+                <div id="nsfwFilter">
+                    <label class="lns-checkbox">
+                        <input
+                            type="checkbox"
+                            value="SFW"
+                            checked
+                            onchange="filterScripts()"
+                        />
+                        <span>sfw</span>
+                    </label>
+                    <label class="lns-checkbox">
+                        <input
+                            type="checkbox"
+                            value="NSFW"
+                            checked
+                            onchange="filterScripts()"
+                        />
+                        <span>nsfw</span>
+                    </label>
+                </div>
             </td>
         </tr>
     </table>

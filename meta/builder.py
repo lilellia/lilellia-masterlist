@@ -23,6 +23,12 @@ def reverse_enumerate[T](seq: Collection[T], *, start: int = 1) -> Iterator[tupl
         yield i, item
 
 
+def count_speakers(audience_tag: str) -> int:
+    """Determine the number of speakers specified in the audience tag."""
+    matches = re.findall(r"TM|TF|TA|NB|M|F|A", audience_tag.split("4")[0])
+    return len(matches)
+
+
 def load_scripts() -> list[Script]:
     """Return a list of the scripts loaded from the file."""
     datafile = Path(__file__).parent.parent / "script-data.json"
@@ -128,6 +134,7 @@ class ScriptContext:
     num_scripts: int
     num_fills: int
     series_options: list[str] = field(default_factory=list)
+    speaker_count_options: list[int] = field(default_factory=list)
     audience_tags: list[str] = field(default_factory=list)
     filled_by: list[str] = field(default_factory=list)
     scripts: list[EScriptData] = field(default_factory=list)
@@ -138,6 +145,7 @@ class ScriptContext:
             num_scripts=len(scripts),
             num_fills=sum(s.num_fills for s in scripts),
             series_options=get_series_options(scripts),
+            speaker_count_options=get_number_of_speakers(scripts),
             audience_tags=get_audience_tags(scripts),
             filled_by=get_filled_by(scripts),
             scripts=make_script_data(scripts)
@@ -170,7 +178,19 @@ def get_audience_tags(scripts: Iterable[Script]) -> list[str]:
     for script in scripts:
         options |= set(tag.upper() for tag in script.audience)
 
-    return ["", *sorted(options)]
+    return sorted(options)
+
+
+def get_number_of_speakers(scripts: Iterable[Script]) -> list[int]:
+    """Get a sorted list of all numbers of speakers across the different scripts."""
+    options: set[int] = set()
+
+    for script in scripts:
+        for audience in script.audience:
+            speakers = count_speakers(audience)
+            options.add(speakers)
+
+    return sorted(options)
 
 
 def get_filled_by(scripts: Iterable[Script]) -> list[str]:

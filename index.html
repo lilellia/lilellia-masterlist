@@ -3,6 +3,8 @@
     <meta charset="utf-8" />
     <title>lilellia's masterlist</title>
     <link href="static/css/main.css" rel="stylesheet" />
+    <link href="static/css/dropdowns.css" rel="stylesheet" />
+    <link href="static/css/checkboxes.css" rel="stylesheet" />
     <link href="static/css/series.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="static/favicon.png" />
     <script
@@ -136,12 +138,60 @@
                 Witch Turns You into a Cat
               </option>
 
-              <option value="Witch Turns You Into a Cat">
-                Witch Turns You Into a Cat
-              </option>
-
               <option value="∼ neko &amp; inu ∼">∼ neko &amp; inu ∼</option>
             </select>
+          </td>
+        </tr>
+
+        <!-- NUMBER OF SPEAKERS FILTER -->
+        <tr>
+          <td>
+            <label for="numSpeakersFilter">
+              Filter by Number of Speakers:
+            </label>
+          </td>
+          <td>
+            <div id="numSpeakersFilter">
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="1"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>1</span>
+              </label>
+
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="2"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>2</span>
+              </label>
+
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="3"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>3</span>
+              </label>
+
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="4"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>4</span>
+              </label>
+            </div>
           </td>
         </tr>
 
@@ -151,54 +201,156 @@
             <label for="audienceTagFilter">Filter by Audience Tag:</label>
           </td>
           <td>
-            <select
-              name="audienceTagFilter"
-              id="audienceTagFilter"
-              onchange="filterScripts()"
-            >
-              <option value=""></option>
+            <div id="audienceTagFilter">
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="A4A"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>A4A</span>
+              </label>
 
-              <option value="A4A">A4A</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="F4A"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>F4A</span>
+              </label>
 
-              <option value="F4A">F4A</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="F4F"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>F4F</span>
+              </label>
 
-              <option value="F4F">F4F</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="F4TF"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>F4TF</span>
+              </label>
 
-              <option value="F4TF">F4TF</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="FA4A"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>FA4A</span>
+              </label>
 
-              <option value="FA4A">FA4A</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="FF4A"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>FF4A</span>
+              </label>
 
-              <option value="FF4A">FF4A</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="FF4F"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>FF4F</span>
+              </label>
 
-              <option value="FF4F">FF4F</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="FFF4A"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>FFF4A</span>
+              </label>
 
-              <option value="FFF4A">FFF4A</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="FFF4F"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>FFF4F</span>
+              </label>
 
-              <option value="FFF4F">FFF4F</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="FFFF4F"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>FFFF4F</span>
+              </label>
 
-              <option value="FFFF4F">FFFF4F</option>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="FFMA4F"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>FFMA4F</span>
+              </label>
 
-              <option value="FFMA4F">FFMA4F</option>
-
-              <option value="M4A">M4A</option>
-            </select>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="M4A"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>M4A</span>
+              </label>
+            </div>
           </td>
         </tr>
 
         <!-- UNFILLED-ONLY FILTER -->
         <tr>
           <td>
-            <label for="unfilledOnlyFilter">Show unfilled scripts only?</label>
+            <label for="filledStatusFilter"> Filter by Filled Status: </label>
           </td>
           <td>
-            <select
-              name="unfilledOnlyFilter"
-              id="unfilledOnlyFilter"
-              onchange="filterScripts()"
-            >
-              <option value="no">no (show all scripts)</option>
-              <option value="yes">yes (show only unfilled scripts)</option>
-            </select>
+            <div id="filledStatusFilter">
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="filled"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>filled</span>
+              </label>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="unfilled"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>unfilled</span>
+              </label>
+            </div>
           </td>
         </tr>
 
@@ -391,6 +543,33 @@
             </select>
           </td>
         </tr>
+
+        <!-- NSFW/18+ FILTER -->
+        <tr>
+          <td><label for="nsfwFilter">Filter by SFW/NSFW:</label></td>
+          <td>
+            <div id="nsfwFilter">
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="SFW"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>sfw</span>
+              </label>
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  value="NSFW"
+                  checked
+                  onchange="filterScripts()"
+                />
+                <span>nsfw</span>
+              </label>
+            </div>
+          </td>
+        </tr>
       </table>
     </div>
 
@@ -467,7 +646,7 @@
         <ul class="script-tags">
           <li class="script-tag series-tag witch-turns-you-into-a-cat">
             Series:
-            <span class="series-title">Witch Turns You Into a Cat</span> (Part
+            <span class="series-title">Witch Turns You into a Cat</span> (Part
             <span class="series-index">1.5</span>)
           </li>
         </ul>
