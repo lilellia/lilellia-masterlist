@@ -3,6 +3,7 @@
 :root {
     --color-selected: #6bcc62;
     --color-unselected: #bc4848;
+    --color-checkbox-bg: #111111;
 }
 
 .lns-checkbox {
@@ -11,7 +12,7 @@
     align-items: center;
     line-height: 1;
     border-radius: 5px;
-    background-color: #010101;
+    background-color: var(--color-checkbox-bg);
     color: var(--color-unselected);
     padding: 5px 7px 5px 7px;
     user-select: none;
