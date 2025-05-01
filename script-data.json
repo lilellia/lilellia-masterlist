@@ -3986,7 +3986,21 @@
                 }
             },
             "attendant VA": null,
-            "fills": []
+            "fills": [
+                {
+                    "creators": [
+                        "lilellia",
+                        "VociferousVerses"
+                    ],
+                    "title": "[FF4A] Alchemist & Witch Invite You to Become Their Apprentice [part 3] (ft. VociferousVerses)",
+                    "audience": "FF4A",
+                    "links": {
+                        "YouTube": "https://youtu.be/irdSuIFLv-g"
+                    },
+                    "duration": "17m52s",
+                    "date": "2025-04-28"
+                }
+            ]
         },
         {
             "title": "Confessing to Your Best Friend at the Amusement Park",
