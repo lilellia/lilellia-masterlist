@@ -7,6 +7,7 @@ function identifyScripts() {
 
     scripts[id] = {
       title: title,
+      wordCount: getWordCount(id),
       summary: getSummary(id),
       fills: getNumberOfFills(id),
       filledBy: getFilledBy(id),
@@ -33,6 +34,20 @@ function getSummary(scriptId) {
   }
 
   return lines.join("  \n> ");
+}
+
+function getWordCount(scriptId) {
+  const metaTags = document
+    .getElementById(scriptId)
+    .querySelectorAll("li.meta-tag");
+  for (const tag of metaTags) {
+    const match = tag.innerHTML.replace(/,/g, "").match(/(\d+) words/);
+    if (match !== null) {
+      return Number.parseInt(match[1]);
+    }
+  }
+
+  return NaN;
 }
 
 function getAudienceTags(scriptId) {
@@ -222,6 +237,10 @@ function filterScripts() {
     .getElementById("filterInput")
     .value.trim()
     .toLowerCase();
+  const minSpokenWords =
+    document.getElementById("filterWordCountMin").valueAsNumber;
+  const maxSpokenWords =
+    document.getElementById("filterWordCountMax").valueAsNumber;
   const seriesFilter = document.getElementById("seriesFilter").value;
   const audienceTagFilter = getCheckedIn("audienceTagFilter");
   const filledByFilter = document.getElementById("filledByFilter").value;
@@ -238,6 +257,17 @@ function filterScripts() {
     const data = scripts[id];
 
     if (!matchesTextFilter(data, filterText)) {
+      element.style.display = "none";
+      continue;
+    }
+
+    // filter by word count
+    if (minSpokenWords !== NaN && data["wordCount"] < minSpokenWords) {
+      element.style.display = "none";
+      continue;
+    }
+
+    if (maxSpokenWords !== NaN && data["wordCount"] > maxSpokenWords) {
       element.style.display = "none";
       continue;
     }

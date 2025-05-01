@@ -174,16 +174,37 @@ li.terms-of-use {
     font-size: 1em;
 }
 
-div.search-and-filter {
-    text-align: center;
-    width: fit-content;
-    margin: auto;
+details.search-and-filter {
+    background: var(--terms-of-use-background);
+    border: 1px solid var(--font-color);
+    border-radius: 10px;
+    padding: 8px 8px;
+    margin: 30px;
+    width: auto;
+}
+
+details.search-and-filter summary {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 16px 12px;
+}
+
+details.search-and-filter tr {
+    padding: 8px 0px;
+}
+
+input {
+    border-radius: 10px;
+    padding: 8px 8px;
 }
 
 input#filterInput {
     width: 100%;
-    border-radius: 10px;
-    padding: 8px 8px;
+}
+
+input#filterWordCountMin,
+input#filterWordCountMax {
+    width: 49.5%;
 }
 
 table {
@@ -193,7 +214,10 @@ table {
 
 td {
     padding: 2px 10px;
-    text-align: left;
+}
+
+td.filterLabel {
+    text-align: right;
 }
 
 select,

@@ -74,28 +74,50 @@
         post date.
       </div>
     </div>
-    <div class="search-and-filter">
-      <p>
+    <details class="search-and-filter">
+      <summary>
+        <span>Filters・</span>
         <span id="numScripts">67</span>/67 scripts・<span id="numFills"
           >134</span
         >/134 fills
-      </p>
+      </summary>
 
       <table>
         <tr>
-          <td colspan="2">
+          <td class="filterLabel">Filter by Title/Summary/Tags:</td>
+          <td>
             <input
               type="text"
               id="filterInput"
               onkeyup="filterScripts()"
-              placeholder="filter by title/summary..."
             /><br />
+          </td>
+        </tr>
+
+        <!-- WORD COUNT FILTER -->
+        <tr>
+          <td class="filterLabel">Filter by Spoken Word Count:</td>
+          <td>
+            <input
+              type="number"
+              id="filterWordCountMin"
+              onkeyup="filterScripts()"
+              placeholder="min spoken words"
+            />
+            <input
+              type="number"
+              id="filterWordCountMax"
+              onkeyup="filterScripts()"
+              placeholder="max spoken words"
+            />
           </td>
         </tr>
 
         <!-- SERIES FILTER -->
         <tr>
-          <td><label for="seriesFilter">Filter by Series:</label></td>
+          <td class="filterLabel">
+            <label for="seriesFilter">Filter by Series:</label>
+          </td>
           <td>
             <select
               name="seriesFilter"
@@ -145,7 +167,7 @@
 
         <!-- NUMBER OF SPEAKERS FILTER -->
         <tr>
-          <td>
+          <td class="filterLabel">
             <label for="numSpeakersFilter">
               Filter by Number of Speakers:
             </label>
@@ -197,7 +219,7 @@
 
         <!-- AUDIENCE TAG FILTER -->
         <tr>
-          <td>
+          <td class="filterLabel">
             <label for="audienceTagFilter">Filter by Audience Tag:</label>
           </td>
           <td>
@@ -327,7 +349,7 @@
 
         <!-- UNFILLED-ONLY FILTER -->
         <tr>
-          <td>
+          <td class="filterLabel">
             <label for="filledStatusFilter"> Filter by Filled Status: </label>
           </td>
           <td>
@@ -356,7 +378,9 @@
 
         <!-- FILLED BY FILTER -->
         <tr>
-          <td><label for="filledByFilter">Filter by VAs:</label></td>
+          <td class="filterLabel">
+            <label for="filledByFilter">Filter by VAs:</label>
+          </td>
           <td>
             <select
               name="filledByFilter"
@@ -546,7 +570,9 @@
 
         <!-- NSFW/18+ FILTER -->
         <tr>
-          <td><label for="nsfwFilter">Filter by SFW/NSFW:</label></td>
+          <td class="filterLabel">
+            <label for="nsfwFilter">Filter by SFW/NSFW:</label>
+          </td>
           <td>
             <div id="nsfwFilter">
               <label class="lns-checkbox">
@@ -571,7 +597,7 @@
           </td>
         </tr>
       </table>
-    </div>
+    </details>
 
     <div id="_scripts" class="all-scripts tabcontent">
       <!--suppress GrazieInspection -->
