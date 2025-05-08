@@ -1,3 +1,4 @@
+from __future__ import annotations
 import re
 from datetime import timedelta
 
@@ -30,6 +31,11 @@ def script_classes(tags: list[str]) -> str:
         classes.append("blurred")
 
     return " ".join(classes)
+
+
+def join_content_tags(tags: list[str]) -> str:
+    """Return a string with all of the tags concatenated as [tag1][tag2][tag3]..."""
+    return "".join(f"[{tag}]" for tag in tags)
 
 
 def overlap_lists[T](haystack1: list[T], haystack2: list[T]) -> bool:
@@ -87,15 +93,33 @@ def format_timedelta(t: timedelta | None) -> str:
     return f"{minutes:02.0f}:{seconds:02.0f}"
 
 
+def render_series(s: dict[str, str | int] | None) -> str:
+    if s is None:
+        return ""
+
+    return str(s.get("title", ""))
+
+
+def render_series_index(s: dict[str, str | int] | None) -> str:
+    if s is None:
+        return ""
+
+    return str(s.get("index", ""))
+
+
+
 NEW_FILTERS = {
     "c_script_tag_classes": script_tag_classes,
+    "c_join_content_tags": join_content_tags,
     "c_overlap_lists": overlap_lists,
     "c_any_nsfw": any_nsfw,
     "c_summarise_gender": summarise_gender,
     "c_serialise": serialise,
     "c_script_classes": script_classes,
     "c_make_csv": make_csv,
-    "c_format_timedelta": format_timedelta
+    "c_format_timedelta": format_timedelta,
+    "c_render_series": render_series,
+    "c_render_series_index": render_series_index
 }
 
 

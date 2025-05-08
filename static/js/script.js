@@ -1,105 +1,31 @@
-function identifyScripts() {
-  let scripts = {};
+/**
+ * Return an array of the ID for every script on the page.
+ * @returns {Array<String>}
+ */
+const getScriptIds = function () {
+  return Array.from(document.querySelectorAll(".script-data")).map((element) => element.id);
+};
 
-  for (const element of document.getElementsByClassName("script-data")) {
-    const id = element.id;
-    const title = element.querySelector("p").textContent.trim();
+/**
+ * Extract tag values from a string of the form "[tag1] [tag2] [tag3] ..."
+ * @param {*} tagString - string in the form of "[tag1] [tag2] [tag3] ..."
+ * @returns {Array<String>} the array of strings
+ */
+const extractTags = function (tagString) {
+  const matches = Array.from(tagString.matchAll(/\[(.*?)\]/g));
+  return matches.map((m) => m[1]);
+};
 
-    scripts[id] = {
-      title: title,
-      wordCount: getWordCount(id),
-      summary: getSummary(id),
-      fills: getNumberOfFills(id),
-      filledBy: getFilledBy(id),
-      series: getSeriesData(id),
-      speakers: getSpeakers(id),
-      audienceTags: getAudienceTags(id),
-      contentTags: getContentTags(id),
-      scriptLinks: getScriptLinks(id),
-    };
-  }
-
-  return scripts;
-}
-
-function getSummary(scriptId) {
-  const blockquote = document
-    .getElementById(scriptId)
-    .querySelector("blockquote");
-
-  let lines = [];
-
-  for (const p of blockquote.querySelectorAll("p")) {
-    lines.push(p.textContent.replace(/\n\s+/g, " ").trim());
-  }
-
-  return lines.join("  \n> ");
-}
-
-function getWordCount(scriptId) {
-  const metaTags = document
-    .getElementById(scriptId)
-    .querySelectorAll("li.meta-tag");
-  for (const tag of metaTags) {
-    const match = tag.innerHTML.replace(/,/g, "").match(/(\d+) words/);
-    if (match !== null) {
-      return Number.parseInt(match[1]);
-    }
-  }
-
-  return NaN;
-}
-
-function getAudienceTags(scriptId) {
-  const elements = document
-    .getElementById(scriptId)
-    .querySelectorAll("li.audience-tag");
-
-  let results = [];
-  for (const e of elements) {
-    results.push(e.textContent);
-  }
-
-  return results;
-}
-
-function getContentTags(scriptId) {
-  const elements = document
-    .getElementById(scriptId)
-    .querySelectorAll("li.script-tag:not(.meta-tag):not(.audience-tag)");
-
-  let results = [];
-  for (const e of elements) {
-    results.push(e.textContent);
-  }
-
-  return results;
-}
-
-function getFilledBy(scriptId) {
-  const container = document
-    .getElementById(scriptId)
-    .querySelector("div.script-fills");
-
-  if (container === null) {
-    return [];
-  }
-
-  let filledBy = [];
-  for (const e of container.querySelectorAll("div.fill-details")) {
-    const text = e.querySelector("span").textContent; // "VA1, VA2, VA3"
-    const voices = text.split(", "); // ["VA1", "VA2", "VA3"]
-    filledBy.push(voices);
-  }
-
-  return filledBy; // [["VA1", "VA2"], ["VA3", "VA4"]]
-}
-
-function getSpeakers(scriptId) {
-  const el = document.getElementById(scriptId).querySelector("li.audience-tag");
-
-  // MTMFNBTF4A -> speaker = "MTMFNBTF"
-  const speaker = el.textContent.split("4")[0];
+/**
+ * Extract a list of speakers for the given audience tag.
+ * Example: extractSpeakers("FFM4A") --> ["F", "F", "M"]
+ * @param {String} audienceTag - the audience tag
+ * @returns {Array<String>} - an array of speaker abbreviations
+ */
+const extractSpeakers = function (audienceTag) {
+  // audienceTag = MTMFNBTF4A
+  // -> speaker = "MTMFNBTF"
+  const speaker = audienceTag.split("4")[0];
 
   // recognised speaker tags
   // TF, TM, TA = transfem, transmasc, transany
@@ -108,35 +34,10 @@ function getSpeakers(scriptId) {
   const matches = speaker.matchAll(/TF|TM|TA|M|F|NB|A/g);
 
   return Array.from(matches);
-}
-
-function getNumberOfFills(scriptId) {
-  const el = document.getElementById(scriptId).querySelector("span.fill-count");
-
-  if (el === null) {
-    return 0;
-  }
-
-  return parseInt(el.textContent);
-}
-
-function getSeriesData(scriptId) {
-  const root = document.getElementById(scriptId).querySelector("li.series-tag");
-
-  if (root === null) {
-    return null;
-  }
-
-  return {
-    title: root.querySelector("span.series-title").textContent,
-    index: parseInt(root.querySelector("span.series-index").textContent),
-  };
-}
+};
 
 function getScriptLinks(scriptId) {
-  const root = document
-    .getElementById(scriptId)
-    .querySelector("div.script-links");
+  const root = document.getElementById(scriptId).querySelector("div.script-links");
 
   if (root === null) {
     return [];
@@ -150,28 +51,28 @@ function getScriptLinks(scriptId) {
   return results;
 }
 
-function matchesTextFilter(scriptData, filterText) {
+/**
+ *
+ * @param {String} scriptId - the id of the script to check
+ * @param {String} filterText - the text to filter against
+ * @returns {boolean} - whether the given script matches the given text filter
+ */
+function matchesTextFilter(scriptId, filterText) {
   if (filterText === "") {
     // all scripts match the empty filter
     return true;
   }
 
-  if (scriptData["title"].toLowerCase().includes(filterText)) {
+  const element = document.getElementById(scriptId);
+  if (element.getAttribute("data-title").toLowerCase().includes(filterText)) {
     return true;
   }
 
-  if (scriptData["summary"].toLowerCase().includes(filterText)) {
+  if (element.getAttribute("data-summary").toLowerCase().includes(filterText)) {
     return true;
   }
 
-  if (
-    scriptData["series"] !== null &&
-    scriptData["series"]["title"].toLowerCase().includes(filterText)
-  ) {
-    return true;
-  }
-
-  for (const tag of scriptData["contentTags"]) {
+  for (const tag of extractTags(element.getAttribute("data-tags").toLowerCase())) {
     if (tag.toLowerCase().includes(filterText)) {
       return true;
     }
@@ -180,7 +81,13 @@ function matchesTextFilter(scriptData, filterText) {
   return false;
 }
 
-function matchesSeries(target, actual) {
+/**
+ * Determine whether the given series value matches the target value.
+ * @param {String} target - the "target" value for the series title
+ * @param {String} actual - the "actual" value for the series title
+ * @returns {boolean} whether the script matches the series value
+ */
+const matchesSeries = function (target, actual) {
   if (target === "") {
     // empty string for target means we have no filter
     // i.e., everything passes
@@ -189,31 +96,24 @@ function matchesSeries(target, actual) {
 
   if (target === "(one-shots only)") {
     // only those which do not have series data will pass
-    return actual === null;
+    return actual === "";
   }
 
   // we know that the target is some particular series
-  if (actual === null) {
+  if (actual === "") {
     return false;
   }
 
-  return actual["title"] === target;
-}
+  return actual === target;
+};
 
-function isVoicedBy(scriptData, targetVA) {
-  for (const voices of scriptData["filledBy"]) {
-    if (voices.includes(targetVA)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
+/**
+ * Return an array of values checked within the given div.
+ * @param {String} divId - the ID of the div to look within
+ * @returns {Array<String>} - the values of all checked checkboxes
+ */
 function getCheckedIn(divId) {
-  const checkboxes = document.querySelectorAll(
-    `div#${divId} input[type=checkbox]`,
-  );
+  const checkboxes = document.querySelectorAll(`div#${divId} input[type=checkbox]`);
   let values = [];
 
   for (const checkbox of checkboxes) {
@@ -225,6 +125,12 @@ function getCheckedIn(divId) {
   return values;
 }
 
+/**
+ * Determine whether two arrays share any elements.
+ * @param {Array} arr1
+ * @param {Array} arr2
+ * @returns {boolean} whether the arrays share at least one element
+ */
 function doArraysOverlap(arr1, arr2) {
   const set1 = new Set(arr1);
   const set2 = new Set(arr2);
@@ -233,91 +139,107 @@ function doArraysOverlap(arr1, arr2) {
 }
 
 function filterScripts() {
-  const filterText = document
-    .getElementById("filterInput")
-    .value.trim()
-    .toLowerCase();
-  const minSpokenWords =
-    document.getElementById("filterWordCountMin").valueAsNumber;
-  const maxSpokenWords =
-    document.getElementById("filterWordCountMax").valueAsNumber;
+  const filterText = document.getElementById("filterInput").value.trim().toLowerCase();
+  const minSpokenWords = document.getElementById("filterWordCountMin").valueAsNumber;
+  const maxSpokenWords = document.getElementById("filterWordCountMax").valueAsNumber;
   const seriesFilter = document.getElementById("seriesFilter").value;
   const audienceTagFilter = getCheckedIn("audienceTagFilter");
   const filledByFilter = document.getElementById("filledByFilter").value;
   const numSpeakersFilter = getCheckedIn("numSpeakersFilter");
   const filledStatusFilter = getCheckedIn("filledStatusFilter");
   const nsfwStatusFilter = getCheckedIn("nsfwFilter");
-  let scripts = identifyScripts();
+
+  let scriptIds = getScriptIds();
 
   let scriptsShown = 0;
   let fillsShown = 0;
 
-  for (const id in scripts) {
-    const element = document.getElementById(id);
-    const data = scripts[id];
+  for (const id of scriptIds) {
+    const script = document.getElementById(id);
 
-    if (!matchesTextFilter(data, filterText)) {
-      element.style.display = "none";
+    // -----------------------------------------------------------------------------------------------------------
+    // filter by title / tags / summary
+    // -----------------------------------------------------------------------------------------------------------
+    if (!matchesTextFilter(id, filterText)) {
+      script.style.display = "none";
       continue;
     }
 
+    // -----------------------------------------------------------------------------------------------------------
     // filter by word count
-    if (minSpokenWords !== NaN && data["wordCount"] < minSpokenWords) {
-      element.style.display = "none";
+    // -----------------------------------------------------------------------------------------------------------
+    const wordcount = +script.getAttribute("data-wordcount");
+
+    if (minSpokenWords !== NaN && wordcount < minSpokenWords) {
+      script.style.display = "none";
       continue;
     }
 
-    if (maxSpokenWords !== NaN && data["wordCount"] > maxSpokenWords) {
-      element.style.display = "none";
+    if (maxSpokenWords !== NaN && wordcount > maxSpokenWords) {
+      script.style.display = "none";
       continue;
     }
 
+    // -----------------------------------------------------------------------------------------------------------
     // filter by filled status
-    if (data["fills"] === 0 && !filledStatusFilter.includes("unfilled")) {
-      element.style.display = "none";
+    // -----------------------------------------------------------------------------------------------------------
+    const numFills = +script.getAttribute("data-numFills");
+    if (numFills === 0 && !filledStatusFilter.includes("unfilled")) {
+      script.style.display = "none";
       continue;
     }
 
-    if (data["fills"] > 0 && !filledStatusFilter.includes("filled")) {
-      element.style.display = "none";
+    if (numFills > 0 && !filledStatusFilter.includes("filled")) {
+      script.style.display = "none";
       continue;
     }
 
+    // -----------------------------------------------------------------------------------------------------------
     // filter by series
-    if (!matchesSeries(seriesFilter, data["series"])) {
-      element.style.display = "none";
+    // -----------------------------------------------------------------------------------------------------------
+    const series = script.getAttribute("data-series");
+    if (!matchesSeries(seriesFilter, series)) {
+      script.style.display = "none";
       continue;
     }
 
-    // filter by number of speakers
-    const numSpeakers = data["speakers"].length;
-    if (!numSpeakersFilter.includes(numSpeakers.toString())) {
-      element.style.display = "none";
+    // -----------------------------------------------------------------------------------------------------------
+    // filter by audience / number of speakers
+    // -----------------------------------------------------------------------------------------------------------
+    const audiences = script.getAttribute("data-audience").split(",");
+    const numSpeakers = audiences.map((audience) => extractSpeakers(audience).length.toString());
+
+    if (!doArraysOverlap(numSpeakersFilter, numSpeakers)) {
+      script.style.display = "none";
       continue;
     }
 
-    // filter by audience tags
-    if (!doArraysOverlap(data["audienceTags"], audienceTagFilter)) {
-      element.style.display = "none";
+    if (!doArraysOverlap(audiences, audienceTagFilter)) {
+      script.style.display = "none";
       continue;
     }
 
+    // -----------------------------------------------------------------------------------------------------------
     // filter by VAs filled
-    if (filledByFilter !== "" && !isVoicedBy(data, filledByFilter)) {
-      element.style.display = "none";
+    // -----------------------------------------------------------------------------------------------------------
+    const filledBy = script.getAttribute("data-VAsFilled").split("===");
+    if (filledByFilter !== "" && !filledBy.includes(filledByFilter)) {
+      script.style.display = "none";
       continue;
     }
 
-    // filter by sfw/nsfw status
-    nsfwStatus = data["contentTags"].includes("18+") ? "NSFW" : "SFW";
+    // -----------------------------------------------------------------------------------------------------------
+    // filter by SFW/NSFW status
+    // -----------------------------------------------------------------------------------------------------------
+    nsfwStatus = script.getAttribute("data-nsfw");
     if (!nsfwStatusFilter.includes(nsfwStatus)) {
-      element.style.display = "none";
+      script.style.display = "none";
       continue;
     }
 
-    element.style.display = "block";
+    script.style.display = "block";
     scriptsShown += 1;
-    fillsShown += data["fills"];
+    fillsShown += numFills;
   }
 
   document.getElementById("numScripts").textContent = scriptsShown;

@@ -121,11 +121,13 @@ class EScriptData:
     series: ESeriesData | None
     audience_tags: list[str]
     content_tags: list[str]
+    wordcount: int
     wordcount_tag: str
     summary: str
     links: list[ELinkData]
     published: date | None
     fills: list[EFillData]
+    filled_by: list[str]
     attendant_va: list[str] | None
 
 
@@ -222,17 +224,21 @@ def _make_script_data(i: int, script: Script) -> EScriptData:
     links = [ELinkData(href=href, label=label) for label, href in script.links.combine_dict().items() if href]
     fills = [EFillData.from_fill_data(data=fill) for fill in script.fills]
 
+    filled_by: set[str] = set().union(*(set(fill.creators) for fill in fills))
+
     series = ESeriesData.from_series_data(script.series) if script.series else None
     return EScriptData(
         index=i,
         title=script.title,
         audience_tags=script.audience,
         content_tags=script.tags,
+        wordcount=script.words.all_spoken,
         wordcount_tag=make_wordcount_tag(script.words),
         summary=script.summary,
         links=links,
         published=script.published,
         fills=fills,
+        filled_by=sorted(filled_by),
         series=series,
         attendant_va=script.attendant_va
     )
