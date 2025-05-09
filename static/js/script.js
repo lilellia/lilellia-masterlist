@@ -246,28 +246,18 @@ function filterScripts() {
   document.getElementById("numFills").textContent = fillsShown;
 }
 
-function chooseScriptPostLink(links) {
-  for (const link of links) {
-    if (link.includes("reddit\.com")) {
-      return link;
-    }
-  }
-}
-
 function scriptToMarkdown(scriptId) {
-  const scripts = identifyScripts();
-  const script = scripts[scriptId];
+  const script = document.getElementById(scriptId);
 
-  const link = chooseScriptPostLink(script["scriptLinks"]);
-  const audience = script["audienceTags"][0];
+  const title = script.getAttribute("data-title");
+  const summary = script.getAttribute("data-summary");
+  const link = script.getAttribute("data-link");
+  const audience = script.getAttribute("data-audience").split(",")[0];
+  const tags = extractTags(script.getAttribute("data-tags"))
+    .map((tag) => `\\[${tag.replace(/\n\s+/g, " ").trim()}\\]`)
+    .join(" ");
 
-  const f = function (text) {
-    return text.replace(/\n\s+/g, " ").trim();
-  };
-  const tags = script["contentTags"].map((tag) => `\\[${f(tag)}\\]`).join(" ");
-
-  console.log(script["summary"]);
-  return `**[${script["title"]}](${link})**  \n\\[${audience}\\] ${tags}  \n> _${script["summary"]}_`;
+  return `**[${title}](${link})**  \n\\[${audience}\\] ${tags}  \n> _${summary}_`;
 }
 
 function copyToClipboard(scriptId) {

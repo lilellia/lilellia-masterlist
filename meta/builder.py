@@ -129,6 +129,15 @@ class EScriptData:
     fills: list[EFillData]
     filled_by: list[str]
     attendant_va: list[str] | None
+    primary_link: str = field(init=False)
+
+    def __post_init__(self):
+        self.primary_link = ""
+        for link in self.links:
+            if "reddit.com" in link.href:
+                self.primary_link = link.href
+                break
+
 
 
 @dataclass

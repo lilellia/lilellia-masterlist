@@ -13,6 +13,7 @@
     data-series="{{script.series | c_render_series}}"
     data-seriesIndex="{{script.series | c_render_series_index}}"
     data-nsfw="{{ 'NSFW' if is_nsfw else 'SFW' }}"
+    data-link="{{script.primary_link}}"
 >
     <!-- HEADING -->
     <span class="script-index">{{script.published.strftime("%d %b %Y")}}: #{{script.index}}</span>
