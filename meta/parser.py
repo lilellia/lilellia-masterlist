@@ -47,10 +47,11 @@ class FillData:
     creators: list[str]
     title: str
     audience: str
-    links: dict[str, str]
+    links: dict[str, str] | None
     date: datetime | None
     duration: timedelta | None
     label: str | None = None
+    private: bool = False
 
     @staticmethod
     def parse_duration(duration_str: str) -> timedelta:

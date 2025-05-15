@@ -68,11 +68,12 @@ class EFillData:
     label: str | None
     script: ScriptFingerprint
     index: int | None = None
+    private: bool = False
     additional_classes: list[str] = field(default_factory=list)
     embed: str | None = field(init=False)
 
     def __post_init__(self):
-        if (match := re.search(r"youtube\.com/watch\?v=([^&]+)|youtu\.be/([^&]+)", self.links[0].href)):
+        if self.links and (match := re.search(r"youtube\.com/watch\?v=([^&]+)|youtu\.be/([^&]+)", self.links[0].href)):
             self.embed = f"https://www.youtube.com/embed/{match.group(1) if match.group(1) else match.group(2)}"
         else:
             self.embed = None
@@ -83,7 +84,10 @@ class EFillData:
         if additional_classes is None:
             additional_classes = []
 
-        links = [ELinkData(href=href, label=label) for label, href in data.links.items() if href]
+        if data.links is None:
+            links = []
+        else:
+            links = [ELinkData(href=href, label=label) for label, href in data.links.items() if href]
 
         assert data.date is not None
 
@@ -97,6 +101,7 @@ class EFillData:
             label=data.label,
             index=index,
             script=data.script,
+            private=data.private,
             additional_classes=additional_classes
         )
 

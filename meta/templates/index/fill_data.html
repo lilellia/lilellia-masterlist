@@ -28,24 +28,29 @@
                     <div class="tooltiptext">{{link.label}}</div>
                 </div>
             </div>
-            {% endfor %}
+            {% endfor %} {% if fill.private %}
+            <div>
+                <div class="tooltip">
+                    <span>
+                        <i class="icon fa-solid fa-eye-slash"></i>
+                    </span>
+                    <div class="tooltiptext">privately filled</div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </span>
 
     <!-- ICONS -->
-    {% set ns = namespace() %}
-    {% set ns.attendant = script.attendant_va | default([], true) %}
-    {% set ns.crown = "lilellia" in fill.creators %}
-    {% set ns.star = fill.creators | c_overlap_lists(ns.attendant) %}
+    {% set ns = namespace() %} {% set ns.attendant = script.attendant_va | default([], true) %} {% set ns.crown = "lilellia" in fill.creators %} {% set ns.star
+    = fill.creators | c_overlap_lists(ns.attendant) %} {% set ns.private = fill.private %}
 
     <!-- display icon(s) -->
     {% if ns.star or ns.crown %}
     <div class="icon">
         {% if ns.star %}
         <i class="icon fa-solid fa-star" aria-hidden="true"></i>
-        {% endif %}
-
-        {% if ns.crown %}
+        {% endif %} {% if ns.crown %}
         <i class="icon fa-solid fa-crown" aria-hidden="true"></i>
         {% endif %}
     </div>

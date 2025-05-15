@@ -13,8 +13,15 @@
     <p>{{fill.title}}</p>
 
     <div class="fill-links">
-        {% for link in fill.links %}
-        {% include "link.html" %}
-        {% endfor %}
+        {% for link in fill.links %} {% include "link.html" %} {% endfor %} {% if fill.private %}
+        <div>
+            <div class="tooltip">
+                <span>
+                    <i class="icon fa-solid fa-eye-slash"></i>
+                </span>
+                <div class="tooltiptext">privately filled</div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
