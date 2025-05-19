@@ -1,6 +1,44 @@
 {
     "scripts": [
         {
+            "title": "Date at the Library with Your Girlfriend",
+            "audience": [
+                "F4A"
+            ],
+            "tags": [
+                "library",
+                "slice of life",
+                "GFE",
+                "romance",
+                "date",
+                "picking out books for each other",
+                "cuddling",
+                "wholesome"
+            ],
+            "series": null,
+            "summary": "The two of you have been busy recently, but this evening, you and your girlfriend have the opportunity to go on a date together. As you're both quite avid readers, you suggested going to the library to pick out books and read together\u2014something you both rather enjoy. She suggests the cute idea of picking out books for each other, based on what you think the other will like. And once you've wandered the library looking for books, it'll be time to curl up and read together ^_^",
+            "words": {
+                "spoken": {
+                    "Amy": 1913
+                },
+                "total": 3359
+            },
+            "finished": "2025-05-17",
+            "published": "2025-05-18",
+            "links": {
+                "script": {
+                    "scriptbin": "https://scriptbin.works/s/thrf2",
+                    "Google Docs": "https://docs.google.com/document/d/1TNuqc1Rxd6mROjvRqyjVHqUjyNRohWNGlhxRsegXAn8/edit?usp=sharing"
+                },
+                "post": {
+                    "r/ASMRScriptHaven": "https://www.reddit.com/r/ASMRScriptHaven/comments/1kpzroy/f4a_date_at_the_library_with_your_girlfriend/",
+                    "r/talkingtalltales": "https://www.reddit.com/r/talkingtalltales/comments/1kpzs2s/f4a_date_at_the_library_with_your_girlfriend/"
+                }
+            },
+            "attendant VA": null,
+            "fills": []
+        },
+        {
             "title": "Neko-Transformation Potion - Side Effects May Include: Being in Heat",
             "audience": [
                 "F4F"
@@ -844,6 +882,18 @@
                 "VociferousVerses"
             ],
             "fills": [
+                {
+                    "creators": [
+                        "NyxLitten ASMR"
+                    ],
+                    "title": "[F4F] [TF4F] Being Adopted As A Neko [Catgirl Listener] [Nurtering Speaker] [Comfort]",
+                    "audience": "F4F",
+                    "links": {
+                        "YouTube": "https://www.youtube.com/watch?v=O3Zr9Bq6VGk"
+                    },
+                    "duration": "20m23s",
+                    "date": "2025-05-15"
+                },
                 {
                     "creators": [
                         "Midnight Audios"
