@@ -370,7 +370,7 @@ div.fill-links {
     visibility: visible;
 }
 
-p.fill-creator {
+span.fill-creator {
     font-weight: bold;
 }
 
