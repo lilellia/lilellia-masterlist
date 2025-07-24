@@ -74,7 +74,10 @@ class FillData:
     def from_dict(cls, data: dict[str, Any]) -> Self:
         # process duration value
         duration_str = data.pop("duration", "")
-        duration = cls.parse_duration(duration_str)
+        try:
+            duration = cls.parse_duration(duration_str)
+        except ValueError as e:
+            raise ValueError(f"cannot parse duration: {duration_str!r}; context: {data}")
 
         # process date value
         date_str = data.pop("date", "")
