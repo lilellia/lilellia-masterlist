@@ -503,7 +503,9 @@
             "attendant VA": "VociferousVerses",
             "fills": [
                 {
-                    "creators": "BlewsVA",
+                    "creators": [
+                        "BlewsVA"
+                    ],
                     "title": "[F4F] Your Girlfriend Takes you on a Surprise Blind Date [Cute] [Kisses] [Sweet] [Silly] [Slow Burn]",
                     "audience": "F4F",
                     "links": {
@@ -613,6 +615,18 @@
             },
             "attendant VA": null,
             "fills": [
+                {
+                    "creators": [
+                        "Vermillion ASMR"
+                    ],
+                    "title": "F4F | Foreversnuggles Forgetting that it\u2019s actually Bank Holiday and you Don\u2019t need to go to work",
+                    "audience": "F4F",
+                    "links": {
+                        "YouTube": "https://www.youtube.com/watch?v=jcsNDsDP6to"
+                    },
+                    "date": "2026-02-28",
+                    "duration": "28m38s"
+                },
                 {
                     "creators": [
                         "Grimoire"
@@ -2548,12 +2562,12 @@
                 },
                 {
                     "creators": [
-                        "Penlock Holmes"
+                        "PenlockVA"
                     ],
                     "title": "[ASMR] Reassured by Your Loving Girlfriend",
                     "audience": "F4F",
                     "links": {
-                        "YouTube": "https://www.youtube.com/watch?v=gTQfV7RpL9M"
+                        "YouTube": "https://www.youtube.com/watch?v=mUngmdW-hMg"
                     },
                     "duration": "10m45s",
                     "date": "2024-02-26"
@@ -4242,6 +4256,18 @@
             },
             "attendant VA": null,
             "fills": [
+                {
+                    "creators": [
+                        "AudiosWithLove"
+                    ],
+                    "title": "\"Caught\" by a Flirtatious Fishergirl | F4F Girlfriend Audio | Strangers to Lovers",
+                    "audience": "F4F",
+                    "links": {
+                        "YouTube": "https://www.youtube.com/watch?v=iq-85mniYNo"
+                    },
+                    "duration": "11m12s",
+                    "date": "2026-01-21"
+                },
                 {
                     "creators": [
                         "AliceSMR"
